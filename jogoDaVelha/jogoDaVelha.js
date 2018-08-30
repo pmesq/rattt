@@ -37,7 +37,7 @@ function analisaVencedor() {
 		if(i && analisaSequencia(4 - 2 * i, 4, 4 + 2 * i))
 			return tabuleiro[4];
 	}
-	return 0;
+	return casasPreenchidas == 9 ? 3 : 0;
 }
 
 $('#botao-reiniciar').click(reinicia);
