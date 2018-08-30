@@ -26,7 +26,7 @@ function vencedor() {
 }
 
 $('.casa').click(function() {
-	if(jogador[vez - 1].tipo == 'j')
+	if(jogadores[vez - 1].tipo == 'j')
 		preencheCasa($('.casa').index($(this)), 1);
 });
 
