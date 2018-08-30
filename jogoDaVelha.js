@@ -1,5 +1,5 @@
 var tabuleiro;
-var jogador = [{ tipo: 'j', simbolo: 'blue'},
+var jogadores = [{ tipo: 'j', simbolo: 'blue'},
 			   { tipo: 'j', simbolo: 'red' }];
 var vez = 1;
 
@@ -18,7 +18,7 @@ function reinicia() {
 function preencheCasa(i, jogador) {
 	tabuleiro[i] = jogador;
 	console.log(i);
-	$('.casa:eq(' + i + ')').css('background-color', simbolo[jogador - 1]);
+	$('.casa:eq(' + i + ')').css('background-color', jogadores[jogador - 1].simbolo);
 }
 
 function vencedor() {
