@@ -42,6 +42,33 @@ function analisaVencedor() {
 
 $('#botao-reiniciar').click(reinicia);
 
+function analisaPossibilidadeVitoria(i1, i2, i3, jogador) {
+	if(tabuleiro[i1] == 0 && tabuleiro[i2] == jogador && tabuleiro[i3] == jogador)
+		return i1;
+	if(tabuleiro[i1] == jogador && tabuleiro[i2] == 0 && tabuleiro[i3] == jogador)
+		return i2;
+	if(tabuleiro[i1] == jogador && tabuleiro[i2] == jogador && tabuleiro[i3] == 0)
+		return i3;
+}
+
+function analisaCasoVitoriaCerta(jogador) {
+	let casa = -1;
+	for(let i = 0; i <= 2; i++) {
+		if((casa = analisaPossibilidadeVitoria(i, i + 3, i + 6, jogador)) != -1)
+			return casa;
+		if((casa = analisaPossibilidadeVitoria(3 * i, 3 * i + 1, 3 * i + 2, jogador)) != -1)
+			return casa;
+		if((casa = analisaPossibilidadeVitoria(4 - 2 * i, 4, 4 + 2 * i, jogador)) != -1)
+			return casa;
+	}
+	return -1;
+}
+
+function jogadaComputador(jogador) {
+	let casa = -1;
+	if((casa = analisaCasoVitoriaCerta(jogador)) != -1) preencheCasa(casa, jogador);
+}
+
 $('.casa').click(function() {
 	let indice = $('.casa').index($(this));
 	if(vez && jogadores[vez].tipo == 'j' && tabuleiro[indice] == 0) {
@@ -52,7 +79,8 @@ $('.casa').click(function() {
 			vez = 0;
 		} else {
 			vez = (vez == 1) ? 2 : 1;
+			if(jogadores[vez].tipo != 'j') 
+				jogadaComputador(vez);
 		}
 	}
 });
-
