@@ -3,8 +3,8 @@ for(let i = 0; i <= 8; i++)
 	tabuleiro[i] = 0;
 
 let jogadores = [{ tipo: 'n', simbolo: 'white'},
-				 { tipo: 'c', simbolo: 'blue' },
-		   		 { tipo: 'c', simbolo: 'red'  }];
+				 { tipo: 'j', simbolo: 'blue' },
+		   		 { tipo: 'facil', simbolo: 'red'}];
 let vez = 1;
 let casasPreenchidas = 0;
 if(jogadores[1].tipo != 'j') jogadaComputador(1);
@@ -60,6 +60,22 @@ function alteraVez() {
 
 $('#botao-reiniciar').click(reinicia);
 
+function canto() {
+	let v = [];
+	for(let i = 0; i <= 8; i += 2) {
+		if(i != 4 && tabuleiro[i] == 0) v.push(i);
+	}
+	return v[Math.floor(Math.random() * v.length)];
+}
+
+function meio() {
+	let v = [];
+	for(let i = 1; i <= 7; i += 2) {
+		if(tabuleiro[i] == 0) v.push(i);
+	}
+	return v[Math.floor(Math.random() * v.length)];
+}
+
 function analisaPossibilidadeVitoria(i1, i2, i3, jogador) {
 	if(tabuleiro[i1] == 0 && tabuleiro[i2] == jogador && tabuleiro[i3] == jogador)
 		return i1;
@@ -87,6 +103,12 @@ function casoDerrota(jogador) {
 	return casoVitoria(jogador == 1 ? 2 : 1);
 }
 
+function casoPrimeiraJogada(jogador, principal, alternativo) {
+	if(casasPreenchidas > 2) return -1;
+	if(tabuleiro[principal] == 0) return principal;
+	return alternativo;
+}
+
 function casoAleatorio() {
 	let v = [];
 	for(let i = 0; i <= 8; i++) {
@@ -98,9 +120,16 @@ function casoAleatorio() {
 function jogadaComputador(jogador) {
 	setTimeout(function() {
 		let casa;
-		if((casa = casoVitoria(jogador)) != -1) preencheCasa(casa, jogador);
-		else if((casa = casoDerrota(jogador)) != -1) preencheCasa(casa, jogador);
-		else preencheCasa(casoAleatorio(), jogador);
+		switch(jogadores[jogador].tipo) {
+			case 'aleatorio':
+				preencheCasa(casoAleatorio(), jogador);
+				break;
+			case 'facil':
+				if((casa = casoPrimeiraJogada(jogador, 4, canto())) != -1) preencheCasa(casa, jogador);
+				else if((casa = casoVitoria(jogador)) != -1) preencheCasa(casa, jogador);
+				else if((casa = casoDerrota(jogador)) != -1) preencheCasa(casa, jogador);
+				else preencheCasa(casoAleatorio(), jogador);
+		}
 		alteraVez();
 	}, 500);
 }
