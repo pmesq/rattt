@@ -4,7 +4,7 @@ for(let i = 0; i <= 8; i++)
 
 let jogadores = [{ tipo: 'n', simbolo: 'white'},
 				 { tipo: 'c', simbolo: 'blue' },
-		   	     { tipo: 'c', simbolo: 'red'  }];
+		   		 { tipo: 'c', simbolo: 'red'  }];
 let vez = 1;
 let casasPreenchidas = 0;
 if(jogadores[1].tipo != 'j') jogadaComputador(1);
