@@ -3,17 +3,18 @@ for(let i = 0; i <= 8; i++)
 	tabuleiro[i] = 0;
 
 let jogadores = [{ tipo: 'n', simbolo: 'white'},
-				 { tipo: 'j', simbolo: 'blue' },
-		   		 { tipo: 'facil', simbolo: 'red'}];
+				 				 { tipo: 'j', simbolo: 'blue' },
+				 			 	 { tipo: 'impossivel', simbolo: 'red'}];
 let vez = 1;
 let casasPreenchidas = 0;
 if(jogadores[1].tipo != 'j') jogadaComputador(1);
-
+//let jogadas = '';
 function reinicia() {
 	vez = 1;
 	casasPreenchidas = 0;
 	for(let i = 0; i <= 8; i++)
 		preencheCasa(i, 0)
+	//jogadas = '';
 	if(jogadores[1].tipo != 'j') jogadaComputador(1);
 }
 
@@ -21,6 +22,7 @@ function preencheCasa(i, jogador) {
 	tabuleiro[i] = jogador;
 	$('.casa:eq(' + i + ')').css('background-color', jogadores[jogador].simbolo);
 	if(jogador) casasPreenchidas++;
+	//jogadas += jogador + ': ' + i + '\n';
 }
 
 function analisaSequencia(i1, i2, i3) {
@@ -42,15 +44,28 @@ function analisaVencedor() {
 	return casasPreenchidas == 9 ? 3 : 0;
 }
 
+/*function imprime() {
+	let s = '';
+	for(let i = 0; i <= 6; i += 3) {
+		s = '';
+		for(let j = 0; j <= 2; j++) {
+			s += tabuleiro[i + j] + ' ';
+		}
+		console.log(s);
+	}
+	console.log(jogadas);
+	console.log('=========');
+}*/
+
 function alteraVez() {
 	let analise = analisaVencedor();
 	if(analise == 0) {
 		vez = (vez == 1) ? 2 : 1;
-		if(jogadores[vez].tipo != 'j') 
+		if(jogadores[vez].tipo != 'j')
 			jogadaComputador(vez);
 	}
 	else if(analise == 1 || analise == 2) {
-		console.log('jogador ' + vez + ' venceu');
+		console.log('jogador ' + vez + ' venceu');//if(analise == 1) imprime();
 		vez = 0;
 	} else {
 		console.log('deu velha');
@@ -65,7 +80,7 @@ function canto() {
 	for(let i = 0; i <= 8; i += 2) {
 		if(i != 4 && tabuleiro[i] == 0) v.push(i);
 	}
-	return v[Math.floor(Math.random() * v.length)];
+	return v.length ? v[Math.floor(Math.random() * v.length)] : -1;
 }
 
 function meio() {
@@ -73,7 +88,7 @@ function meio() {
 	for(let i = 1; i <= 7; i += 2) {
 		if(tabuleiro[i] == 0) v.push(i);
 	}
-	return v[Math.floor(Math.random() * v.length)];
+	return v.length ? v[Math.floor(Math.random() * v.length)] : -1;
 }
 
 function analisaPossibilidadeVitoria(i1, i2, i3, jogador) {
@@ -109,6 +124,42 @@ function casoPrimeiraJogada(jogador, principal, alternativo) {
 	return alternativo;
 }
 
+function defensivaDiagonais(jogador) {
+	let jogadorAdversario = (jogador == 1) ? 2 : 1;
+	if((tabuleiro[0] == jogadorAdversario && tabuleiro[8] == jogadorAdversario) ||
+		 (tabuleiro[2] == jogadorAdversario && tabuleiro[6] == jogadorAdversario))
+		return meio();
+	return -1;
+}
+
+function defensivaMeios(jogador) {
+	let jogadorAdversario = (jogador == 1) ? 2 : 1;
+	for(let i = 0; i <= 8; i++) {
+		if(tabuleiro[i <= 2 ? 1 : i - 3] == jogadorAdversario &&
+			 tabuleiro[i >= 6 ? 7 : i + 3] == jogadorAdversario) {
+			let v = [], n;
+			if(tabuleiro[i] == 0) v.push(i)
+			if(tabuleiro[n = (i == 0 || i == 8 ? 2 : 0)] == 0) v.push(n)
+			if(tabuleiro[n = (i == 0 || i == 8 ? 6 : 8)] == 0) v.push(n)
+			if(v.length) return v[Math.floor(Math.random() * v.length)];
+		}
+	}
+	return -1;
+}
+
+function defensivaCantoMeio(jogador) {
+	let jogadorAdversario = (jogador == 1) ? 2 : 1, n;
+	for(let i = 0; i <= 8; i += 2) {
+		if(i != 4 && tabuleiro[i] == jogadorAdversario) {
+			if(tabuleiro[i >= 6 ? 1 : 5 - i] == jogadorAdversario &&
+				 tabuleiro[n = (i == 0 || i == 8) ? 2 : 0] == 0) return n;
+			if(tabuleiro[i <= 2 ? 7 : 11 - i] == jogadorAdversario &&
+				 tabuleiro[n = (i == 0 || i == 8) ? 6 : 8] == 0) return n;
+		}
+	}
+	return -1;
+}
+
 function casoAleatorio() {
 	let v = [];
 	for(let i = 0; i <= 8; i++) {
@@ -129,6 +180,17 @@ function jogadaComputador(jogador) {
 				else if((casa = casoVitoria(jogador)) != -1) preencheCasa(casa, jogador);
 				else if((casa = casoDerrota(jogador)) != -1) preencheCasa(casa, jogador);
 				else preencheCasa(casoAleatorio(), jogador);
+				break;
+			case 'impossivel':
+				if((casa = casoPrimeiraJogada(jogador, 4, canto())) != -1) preencheCasa(casa, jogador);
+				else if((casa = casoVitoria(jogador)) != -1) preencheCasa(casa, jogador);
+				else if((casa = casoDerrota(jogador)) != -1) preencheCasa(casa, jogador);
+				else if((casa = defensivaDiagonais(jogador)) != -1) preencheCasa(casa, jogador);
+				else if((casa = defensivaCantoMeio(jogador)) != -1) preencheCasa(casa, jogador);
+				else if((casa = defensivaMeios(jogador)) != -1) preencheCasa(casa, jogador);
+				else if((casa = canto()) != -1) preencheCasa(casa, jogador);
+				else preencheCasa(meio(), jogador);
+				break;
 		}
 		alteraVez();
 	}, 500);
