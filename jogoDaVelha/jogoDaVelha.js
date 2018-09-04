@@ -3,19 +3,21 @@ for(let i = 0; i <= 8; i++)
 	tabuleiro[i] = 0;
 
 let jogadores = [{ tipo: 'n', simbolo: 'white'},
-				 				 { tipo: 'j', simbolo: 'blue' },
-				 			 	 { tipo: 'impossivel', simbolo: 'red'}];
+				 { tipo: 'usuario', simbolo: 'blue' },
+				 { tipo: 'impossivel', simbolo: 'red'}];
 let vez = 1;
 let casasPreenchidas = 0;
-if(jogadores[1].tipo != 'j') jogadaComputador(1);
+if(jogadores[1].tipo != 'usuario') jogadaComputador(1);
 //let jogadas = '';
 function reinicia() {
-	vez = 1;
-	casasPreenchidas = 0;
-	for(let i = 0; i <= 8; i++)
-		preencheCasa(i, 0)
-	//jogadas = '';
-	if(jogadores[1].tipo != 'j') jogadaComputador(1);
+	if(vez == 0 || jogadores[vez].tipo == 'usuario') {
+		vez = 1;
+		casasPreenchidas = 0;
+		for(let i = 0; i <= 8; i++)
+			preencheCasa(i, 0)
+		//jogadas = '';
+		if(jogadores[1].tipo != 'usuario') jogadaComputador(1);
+	}
 }
 
 function preencheCasa(i, jogador) {
@@ -61,7 +63,7 @@ function alteraVez() {
 	let analise = analisaVencedor();
 	if(analise == 0) {
 		vez = (vez == 1) ? 2 : 1;
-		if(jogadores[vez].tipo != 'j')
+		if(jogadores[vez].tipo != 'usuario')
 			jogadaComputador(vez);
 	}
 	else if(analise == 1 || analise == 2) {
@@ -196,10 +198,20 @@ function jogadaComputador(jogador) {
 	}, 500);
 }
 
-$('.casa').click(function() {
-	let indice = $('.casa').index($(this));
-	if(vez && jogadores[vez].tipo == 'j' && tabuleiro[indice] == 0) {
+function jogadaUsuario(indice) {
+	if(vez && jogadores[vez].tipo == 'usuario' && tabuleiro[indice] == 0) {
 		preencheCasa(indice, vez);
 		alteraVez();
 	}
+}
+
+$('.casa').click(function() {
+	jogadaUsuario($('.casa').index($(this)));
+});
+
+$('body').keyup(function(event) {
+	if(event.which >= 103 && event.which <= 105) jogadaUsuario(event.which - 103);
+	else if(event.which >= 100 && event.which <= 102) jogadaUsuario(event.which - 97);
+	else if(event.which >= 97 && event.which <= 99) jogadaUsuario(event.which - 91);
+	else if(event.which == 82 || event.which == 96) reinicia();
 });
