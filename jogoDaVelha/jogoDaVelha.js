@@ -2,7 +2,7 @@ let tabuleiro = new Array(9);
 for(let i = 0; i <= 8; i++)
 	tabuleiro[i] = 0;
 
-let jogadores = [{ tipo: 'n', simbolo: 'white'},
+let jogadores = [{ tipo: 'n',       simbolo: 'white'      },
 				 { tipo: 'usuario', simbolo: 'imgs/x.png' },
 				 { tipo: 'usuario', simbolo: 'imgs/o.png' }];
 let vez = 1;
@@ -69,6 +69,8 @@ function alteraVez() {
 			jogadaComputador(vez);
 	}
 	else if(analise == 1 || analise == 2) {
+		for(let i = 0; i <= 8; i++)
+			$('.casa:eq(' + i + ')').css('cursor', 'default');
 		console.log('jogador ' + vez + ' venceu');//if(analise == 1) imprime();
 		vez = 0;
 	} else {

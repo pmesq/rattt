@@ -54,3 +54,19 @@ main {
 	font-size: 24px;
 	cursor: pointer;
 }
+#help {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	color: white;
+	background-color: #212121;
+	border-width: 0;
+	font-family: 'Noto Serif', sans-serif;
+	outline: none;
+	font-size: 24px;
+	width: 48px;
+	height: 48px;
+	padding: 0px;
+	border-radius: 360px;
+	cursor: pointer;
+}
