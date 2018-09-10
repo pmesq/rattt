@@ -6,6 +6,9 @@
 		<link rel="stylesheet" href="jogoDaVelha.css">
 	</head>
 	<body>
+		<header>
+			<h1>Rattt</h1>
+		</header>
 		<main>
 			<div class="linha">
 				<canvas class="casa"></canvas>
@@ -23,24 +26,29 @@
 				<canvas class="casa"></canvas>
 			</div>
 		</main>
-		<label>Jogador 1
-			<select class="selectJogador">
-				<option value="usuario">Usuário</option>
-				<option value="aleatorio">Random Bot</option>
-				<option value="medio">Normal Bot</option>
-				<option value="impossivel">Invincible Bot</option>
-			</select>
-		</label>
+		<section id="jogador1">
+			<h2>Jogador 1</h2>
+			<label>Jogador
+				<select class="selectJogador">
+					<option value="usuario">Usuário</option>
+					<option value="aleatorio">Random Bot</option>
+					<option value="medio">Normal Bot</option>
+					<option value="impossivel">Invincible Bot</option>
+				</select>
+			</label>
+		</section>
 		<br>
-		<label>Jogador 2
-			<select class="selectJogador">
-				<option value="usuario">Usuário</option>
-				<option value="aleatorio">Random Bot</option>
-				<option value="medio">Normal Bot</option>
-				<option value="impossivel">Invincible Bot</option>
-			</select>
-		</label>
-		<br>
+		<section id="jogador2">
+			<h2>Jogador 2</h2>
+			<label>Jogador
+				<select class="selectJogador">
+					<option value="usuario">Usuário</option>
+					<option value="aleatorio">Random Bot</option>
+					<option value="medio">Normal Bot</option>
+					<option value="impossivel">Invincible Bot</option>
+				</select>
+			</label>
+		</section>
 		<button type="button" id="botao-reiniciar">Reiniciar</button>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="jogoDaVelha.js"></script>

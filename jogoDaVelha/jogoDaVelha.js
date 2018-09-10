@@ -3,8 +3,8 @@ for(let i = 0; i <= 8; i++)
 	tabuleiro[i] = 0;
 
 let jogadores = [{ tipo: 'n', simbolo: 'white'},
-				 { tipo: 'usuario', simbolo: 'blue' },
-				 { tipo: 'usuario', simbolo: 'red'}];
+				 { tipo: 'usuario', simbolo: 'imgs/x.png' },
+				 { tipo: 'usuario', simbolo: 'imgs/o.png' }];
 let vez = 1;
 let casasPreenchidas = 0;
 let timeout = null;
@@ -22,7 +22,9 @@ function reinicia() {
 
 function preencheCasa(i, jogador) {
 	tabuleiro[i] = jogador;
-	$('.casa:eq(' + i + ')').css('background-color', jogadores[jogador].simbolo);
+	$('.casa:eq(' + i + ')').css('background-image', 
+		'url("' + jogadores[jogador].simbolo + '")');
+	$('.casa:eq(' + i + ')').css('cursor', jogador ? 'default' : 'pointer');
 	if(jogador) casasPreenchidas++;
 	//jogadas += jogador + ': ' + i + '\n';
 }
