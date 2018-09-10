@@ -4,20 +4,20 @@ for(let i = 0; i <= 8; i++)
 
 let jogadores = [{ tipo: 'n', simbolo: 'white'},
 				 { tipo: 'usuario', simbolo: 'blue' },
-				 { tipo: 'impossivel', simbolo: 'red'}];
+				 { tipo: 'usuario', simbolo: 'red'}];
 let vez = 1;
 let casasPreenchidas = 0;
+let timeout = null;
 if(jogadores[1].tipo != 'usuario') jogadaComputador(1);
 //let jogadas = '';
 function reinicia() {
-	if(vez == 0 || jogadores[vez].tipo == 'usuario') {
-		vez = 1;
-		casasPreenchidas = 0;
-		for(let i = 0; i <= 8; i++)
-			preencheCasa(i, 0)
-		//jogadas = '';
-		if(jogadores[1].tipo != 'usuario') jogadaComputador(1);
-	}
+	clearTimeout(timeout);
+	vez = 1;
+	casasPreenchidas = 0;
+	for(let i = 0; i <= 8; i++)
+		preencheCasa(i, 0)
+	//jogadas = '';
+	if(jogadores[1].tipo != 'usuario') jogadaComputador(1);
 }
 
 function preencheCasa(i, jogador) {
@@ -171,13 +171,13 @@ function casoAleatorio() {
 }
 
 function jogadaComputador(jogador) {
-	setTimeout(function() {
+	timeout = setTimeout(function() {
 		let casa;
 		switch(jogadores[jogador].tipo) {
 			case 'aleatorio':
 				preencheCasa(casoAleatorio(), jogador);
 				break;
-			case 'facil':
+			case 'medio':
 				if((casa = casoPrimeiraJogada(jogador, 4, canto())) != -1) preencheCasa(casa, jogador);
 				else if((casa = casoVitoria(jogador)) != -1) preencheCasa(casa, jogador);
 				else if((casa = casoDerrota(jogador)) != -1) preencheCasa(casa, jogador);
@@ -214,4 +214,10 @@ $('body').keyup(function(event) {
 	else if(event.which >= 100 && event.which <= 102) jogadaUsuario(event.which - 97);
 	else if(event.which >= 97 && event.which <= 99) jogadaUsuario(event.which - 91);
 	else if(event.which == 82 || event.which == 96) reinicia();
+});
+
+$('.selectJogador').change(function() {
+	let indice = $('.selectJogador').index($(this));
+	jogadores[indice + 1].tipo = $(this).val();
+	reinicia();
 });
