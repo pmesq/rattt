@@ -212,13 +212,13 @@ class TicTacToe {
 					break;
 				case 'medio':
 					if((casa = that.casoPrimeiraJogada()) != -1) 
-						this.preencheCasa(casa, i);
+						that.preencheCasa(casa, i);
 					else if((casa = that.casoVitoria(i)) != -1) 
-						this.preencheCasa(casa, i);
+						that.preencheCasa(casa, i);
 					else if((casa = that.casoDerrota(i)) != -1) 
-						this.preencheCasa(casa, i);
+						that.preencheCasa(casa, i);
 					else 
-						this.preencheCasa(that.casoAleatorio(), i);
+						that.preencheCasa(that.casoAleatorio(), i);
 					break;
 				case 'impossivel':
 					if((casa = that.casoPrimeiraJogada()) != -1)
@@ -229,7 +229,7 @@ class TicTacToe {
 					else if((casa = that.defensivaCantoMeio(i)) != -1) that.preencheCasa(casa, i);
 					else if((casa = that.defensivaMeios(i)) != -1) that.preencheCasa(casa, i);
 					else if((casa = that.canto()) != -1) that.preencheCasa(casa, i);
-					else this.preencheCasa(that.meio(), i);
+					else that.preencheCasa(that.meio(), i);
 					break;
 			}
 			that.alteraVez();
