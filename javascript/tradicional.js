@@ -24,9 +24,6 @@ $('#janela-help').hide();
 $('#janela-help').css('opacity', '1');
 
 $('#botao-help').click(function() {
-	let left = (parseInt($('body').css('width')) -
-		parseInt($('#janela-help').css('width'))) / 2;
-	$('#janela-help').css('left', left + 'px');
 	$('#janela-help').show();
 });
 
