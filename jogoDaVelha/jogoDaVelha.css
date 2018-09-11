@@ -2,10 +2,12 @@ html, body {
 	width: 100%;
 	height: 100%;
 	background-image: linear-gradient(to right top, #a5a5a5, #7a7a7a);
+	margin: 0;
 }
 h1 {
 	text-align: center;
 	color: white;
+	font-size: 40px;
 	font-family: 'Roboto', sans-serif;
 }
 .casa {
@@ -54,7 +56,7 @@ main {
 	font-size: 24px;
 	cursor: pointer;
 }
-#help {
+#botao-help {
 	position: absolute;
 	top: 20px;
 	right: 20px;
@@ -66,7 +68,30 @@ main {
 	font-size: 24px;
 	width: 48px;
 	height: 48px;
-	padding: 0px;
 	border-radius: 360px;
 	cursor: pointer;
+}
+#janela-help {
+	position: fixed;
+	background-color: #212121;
+	padding: 10px;
+	border-radius: 24px;
+	color: white;
+	top: 100px;
+	left: 300px;
+	display: block;
+	opacity: 0;
+}
+#fechar-janela-help {
+	font-family: 'Roboto', sans-serif;
+	cursor: pointer;
+	outline: none;
+	background-color: #a5a5a5;
+	color: white;
+	display: block;
+	margin: auto;
+	border-width: 0;
+	border-radius: 360px;
+	width: 32px;
+	height: 32px;
 }

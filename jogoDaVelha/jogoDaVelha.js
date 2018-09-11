@@ -225,3 +225,17 @@ $('.selectJogador').change(function() {
 	jogadores[indice + 1].tipo = $(this).val();
 	reinicia();
 });
+
+$('#janela-help').hide();
+let left = (parseInt($('body').css('width')) -
+		parseInt($('#janela-help').css('width'))) / 2;
+$('#janela-help').css('left', left + 'px');
+$('#janela-help').css('opacity', '1');
+
+$('#botao-help').click(function() {
+	$('#janela-help').show();
+});
+
+$('#fechar-janela-help').click(function() {
+	$('#janela-help').hide();
+});
