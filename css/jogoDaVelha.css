@@ -11,12 +11,12 @@ h1 {
 	font-family: 'Roboto', sans-serif;
 }
 .casa {
-	width: 150px;
-	height: 150px;
 	border: 1px solid black;
 	background-color: white;
 	background-size: cover;
 	cursor: pointer;
+	width: 130px;
+	height: 130px;
 }
 main {
 	text-align: center;
@@ -27,8 +27,8 @@ main {
 	border-bottom-right-radius: 24px;
 	padding: 10px;
 	position: absolute;
+	top: 250px;
 	left: 0;
-	top: 200px;
 	color: white;
 	font-family: 'Roboto', sans-serif;
 }
@@ -38,8 +38,8 @@ main {
 	border-bottom-left-radius: 24px;
 	padding: 10px;
 	position: absolute;
+	top: 250px;
 	right: 0;
-	top: 200px;
 	color: white;
 	font-family: 'Roboto', sans-serif;
 }
@@ -94,4 +94,48 @@ main {
 	border-radius: 360px;
 	width: 32px;
 	height: 32px;
+}
+
+@media (min-height: 650px) and (max-height: 750px) {
+	.casa {
+		width: 150px;
+		height: 150px;
+	}
+	#jogador1, #jogador2 {
+		top: 250px;
+	}
+	#botao-reiniciar{
+		font-size: 28px;
+	}
+}
+
+@media (min-height: 750px) and (max-height: 850px) {
+	h1 {
+		font-size: 48px;
+	}
+	.casa {
+		width: 180px;
+		height: 180px;
+	}
+	#jogador1, #jogador2 {
+		top: 300px;
+	}
+	#botao-reiniciar{
+		font-size: 32px;
+	}
+}
+@media (min-height: 850px) {
+	h1 {
+		font-size: 54px;
+	}
+	.casa {
+		width: 200px;
+		height: 200px;
+	}
+	#jogador1, #jogador2 {
+		top: 320px;
+	}
+	#botao-reiniciar{
+		font-size: 36px;
+	}
 }
