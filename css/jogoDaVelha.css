@@ -47,9 +47,10 @@ select {
 	background-color: white;
 	outline: none;
 	cursor: pointer;
-	border-width: 0;
+	border: 1px solid white;
 	padding: 5px;
 	border-radius: 10px;
+	transition: all .25s ease;
 }
 #botao-reiniciar {
 	display: block;
@@ -63,6 +64,7 @@ select {
 	font-family: 'Roboto', sans-serif;
 	font-size: 24px;
 	cursor: pointer;
+	transition: all .25s ease;
 }
 #botao-help {
 	position: absolute;
@@ -78,6 +80,7 @@ select {
 	height: 48px;
 	border-radius: 360px;
 	cursor: pointer;
+	transition: all .25s ease;
 }
 #janela-help {
 	position: fixed;
@@ -103,14 +106,25 @@ select {
 	font-family: 'Roboto', sans-serif;
 	cursor: pointer;
 	outline: none;
-	background-color: #a5a5a5;
-	color: white;
+	background-color: white;
+	color: #212121;
 	display: block;
 	margin: auto;
-	border-width: 0;
+	border: 1px solid white;
 	border-radius: 360px;
 	width: 32px;
 	height: 32px;
+	transition: all .25s ease;
+}
+
+#botao-reiniciar:hover, #botao-help:hover {
+	background-color: white;
+	color: #212121;
+}
+select:hover, #fechar-janela-help:hover {
+	background-color: #212121;
+	color: white;
+	border-color: white;
 }
 
 @media (min-height: 650px) and (max-height: 750px) {

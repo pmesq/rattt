@@ -24,11 +24,11 @@ $('#janela-help').hide();
 $('#janela-help').css('opacity', '1');
 
 $('#botao-help').click(function() {
-	$('#janela-help').show();
+	$('#janela-help').fadeToggle(250);
 });
 
 $('#fechar-janela-help').click(function() {
-	$('#janela-help').hide();
+	$('#janela-help').fadeOut(250);
 });
 
 /*let tabuleiro = new Array(9);
