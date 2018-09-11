@@ -32,6 +32,11 @@ class TicTacToe {
 		this.reinicia();
 	}
 
+	atualizaSimboloJogador(i, simbolo) {
+		this.jogadores[i].simbolo = simbolo;
+		this.reinicia();
+	}
+
 	imprime() {
 		let s = '';
 		for(let i = 0; i < this.numLinhas; i++) {

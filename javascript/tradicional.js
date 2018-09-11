@@ -8,9 +8,14 @@ $('#botao-reiniciar').click(function() {
 	ttt.reinicia();
 });
 
-$('.selectJogador').change(function() {
-	let indice = $('.selectJogador').index($(this)) + 1;
+$('.select-jogador').change(function() {
+	let indice = $('.select-jogador').index($(this)) + 1;
 	ttt.atualizaTipoJogador(indice, $(this).val());
+});
+
+$('.select-simbolo').change(function() {
+	let indice = $('.select-simbolo').index($(this)) + 1;
+	ttt.atualizaSimboloJogador(indice, $(this).val());
 });
 
 $('body').keyup(function(event) {

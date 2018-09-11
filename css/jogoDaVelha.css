@@ -43,6 +43,14 @@ main {
 	color: white;
 	font-family: 'Roboto', sans-serif;
 }
+h2 {
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+}
+label {
+	display: block;
+	margin-bottom: 5px;
+}
 select {
 	background-color: white;
 	outline: none;
@@ -51,6 +59,7 @@ select {
 	padding: 5px;
 	border-radius: 10px;
 	transition: all .25s ease;
+	width: 112px;
 }
 #botao-reiniciar {
 	display: block;
@@ -93,10 +102,6 @@ select {
 	margin: 0 200px;
 	display: block;
 	opacity: 0;
-}
-#janela-help > h2 {
-	font-family: 'Roboto', sans-serif;
-	text-align: center;
 }
 #janela-help > p, #janela-help li {
 	font-family: 'Roboto', sans-serif;
