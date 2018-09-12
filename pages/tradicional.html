@@ -14,8 +14,24 @@
 			<h1>Rattt</h1>
 			<p id="log">Vez do Jogador 1</p>
 		</header>
-		<main></main>
-		<!--<section id="jogador1">
+		<main>
+			<div class="linha">
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+			</div>
+			<div class="linha">
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+			</div>
+			<div class="linha">
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+			</div>
+		</main>
+		<section id="jogador1">
 			<h2>Jogador 1</h2>
 			<label>Jogador:
 				<select class="select-jogador">
@@ -27,8 +43,14 @@
 			</label>
 			<label>Símbolo:
 				<select class="select-simbolo">
-					<option value="../imgs/x.png">Xis</option>
+					<option value="../imgs/x.png" selected>Xis</option>
 					<option value="../imgs/o.png">Bolinha</option>
+					<option value="../imgs/triangulo.png">Triângulo</option>
+					<option value="../imgs/quadrado.png">Quadrado</option>
+					<option value="../imgs/rat.png">Rat</option>
+					<option value="../imgs/sigma.png">Sigma(σ)</option>
+					<option value="../imgs/teta.png">Teta(θ)</option>
+					<option value="../imgs/pi.png">Pi</option>
 				</select>
 			</label>
 		</section>
@@ -47,9 +69,15 @@
 				<select class="select-simbolo">
 					<option value="../imgs/x.png">Xis</option>
 					<option value="../imgs/o.png" selected>Bolinha</option>
+					<option value="../imgs/triangulo.png">Triângulo</option>
+					<option value="../imgs/quadrado.png">Quadrado</option>
+					<option value="../imgs/rat.png">Rat</option>
+					<option value="../imgs/sigma.png">Sigma(σ)</option>
+					<option value="../imgs/teta.png">Teta(θ)</option>
+					<option value="../imgs/pi.png">Pi</option>
 				</select>
 			</label>
-		</section>-->
+		</section>
 		<button type="button" id="botao-reiniciar">Reiniciar</button>
 		<button type="button" id="botao-help">i</button>
 		<div id="janela-help">
@@ -71,7 +99,8 @@
 			<button type="button" id="fechar-janela-help">X</button>
 		</div>
 		<script src="../javascript/jquery.js"></script>
-		<script src="../javascript/tttx.js"></script>
+		<script src="../javascript/ttt.js"></script>
+		<script src="../javascript/tradicional.js"></script>
 	</body>
 </html>
 
