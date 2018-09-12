@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Rattt</title>
+		<link rel="stylesheet" 
+			href="https://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" 
+			href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+		<link rel="stylesheet" media="screen" href="../css/jogoDaVelha.css">
+	</head>
+	<body>
+		<header>
+			<h1>Rattt</h1>
+			<p id="log">Vez do Jogador 1</p>
+		</header>
+		<main>
+			<div class="linha">
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+			</div>
+			<div class="linha">
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+			</div>
+			<div class="linha">
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+			</div>
+			<div class="linha">
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+				<canvas class="casa"></canvas>
+			</div>
+		</main>
+		<button type="button" id="botao-reiniciar">Reiniciar</button>
+		<button type="button" id="botao-help">i</button>
+		<div id="janela-help">
+			<h2>Instruções</h2>
+			<p>
+				Jogo da velha tradicional. 
+				Vence quem marcar primeiro 3 casas seguidas na horizontal, 
+				vertical ou diagonal. Cada um joga alternadamente.
+				<ul>
+					<li>
+						Para marcar uma casa -> Clique sobre ela ou use os números
+						do teclado.
+					</li>
+					<li>
+						Para reiniciar -> Clique no botão Reiniciar ou aperte R.
+					</li>
+				</ul>
+			</p>
+			<button type="button" id="fechar-janela-help">X</button>
+		</div>
+		<script src="../javascript/jquery.js"></script>
+		<script src="../javascript/ttt.js"></script>
+		<script src="../javascript/4x4.js"></script>
+	</body>
+</html>
+

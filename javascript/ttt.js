@@ -1,10 +1,10 @@
 class TicTacToe {
-	constructor(linhas, colunas, jogadores, $casas, $log) {
+	constructor(linhas, colunas, sequencia, jogadores, $casas, $log) {
 		this.numLinhas = linhas;
 		this.numColunas = colunas;
 		this.tamTabuleiro = linhas * colunas;
 		this.numJogadores = jogadores;
-		this.sequenciaNecessaria = 3;
+		this.sequenciaNecessaria = sequencia;
 		this.casas = $casas;
 		this.log = $log;
 
@@ -17,15 +17,20 @@ class TicTacToe {
 			});
 		}
 
-		this.tabuleiro = new Array(this.tamTabuleiro);
-		for(let i = 0; i < this.tamTabuleiro; i++) {
-			this.tabuleiro[i] = 0;
-		}
+		this.criaTabuleiro();
 
 		this.vez = 1;
 		this.casasPreenchidas = 0;
 
 		this.timeout = null;
+	}
+
+	criaTabuleiro() {
+		let linhas = this.numLinhas, colunas = this.numColunas;
+		this.tabuleiro = new Array(linhas);
+		this.tabuleiro.fill(new Array(colunas));
+		for(let i = 0; i < colunas; i++)
+			this.tabuleirio[i].fill(0);
 	}
 
 	imprime() {
@@ -61,7 +66,7 @@ class TicTacToe {
 		clearTimeout(this.timeout);
 		this.vez = 1;
 		this.casasPreenchidas = 0;
-		for(let i = 0; i <= 8; i++)
+		for(let i = 0; i < this.tamTabuleiro; i++)
 			this.preencheCasa(i, 0);
 		if(this.jogadores[1].tipo != 'usuario')
 			this.jogadaComputador(1);
@@ -99,7 +104,7 @@ class TicTacToe {
 				this.jogadaComputador(this.vez);
 		}
 		else if(analise == 1 || analise == 2) {
-			for(let i = 0; i <= 8; i++)
+			for(let i = 0; i < this.tamTabuleiro; i++)
 				$(this.casas[i]).css('cursor', 'default');
 			$(this.log).html('Jogador ' + this.vez + ' venceu');
 			this.vez = 0;
@@ -118,7 +123,7 @@ class TicTacToe {
 
 	canto() {
 		let v = [];
-		for(let i = 0; i <= 8; i += 2) {
+		for(let i = 0; i < this.tamTabuleiro; i += 2) {
 			if(i != 4 && this.tabuleiro[i] == 0) v.push(i);
 		}
 		return v.length ? v[Math.floor(Math.random() * v.length)] : -1;
@@ -203,7 +208,7 @@ class TicTacToe {
 
 	casoAleatorio() {
 		let v = [];
-		for(let i = 0; i <= 8; i++) {
+		for(let i = 0; i < this.tamTabuleiro; i++) {
 			if(this.tabuleiro[i] == 0) v.push(i);
 		}
 		return v[Math.floor(Math.random() * v.length)];
