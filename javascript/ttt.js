@@ -17,20 +17,15 @@ class TicTacToe {
 			});
 		}
 
-		this.criaTabuleiro();
+		this.tabuleiro = new Array(9);
+		for(let i = 0; i < 9; i++) {
+			this.tabuleiro[i] = 0;
+		}
 
 		this.vez = 1;
 		this.casasPreenchidas = 0;
 
 		this.timeout = null;
-	}
-
-	criaTabuleiro() {
-		let linhas = this.numLinhas, colunas = this.numColunas;
-		this.tabuleiro = new Array(linhas);
-		this.tabuleiro.fill(new Array(colunas));
-		for(let i = 0; i < colunas; i++)
-			this.tabuleirio[i].fill(0);
 	}
 
 	imprime() {
