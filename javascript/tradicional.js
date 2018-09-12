@@ -1,4 +1,4 @@
-let ttt = new TicTacToe($('.casa'), 3, 3, 2);
+let ttt = new TicTacToe(3, 3, 2, $('.casa'), $('#log'));
 
 $('.casa').click(function() {
 	ttt.jogadaUsuario($('.casa').index($(this)));

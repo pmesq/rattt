@@ -1,11 +1,12 @@
 class TicTacToe {
-	constructor(el, linhas, colunas, jogadores) {
-		this.casas = el;
+	constructor(linhas, colunas, jogadores, $casas, $log) {
 		this.numLinhas = linhas;
 		this.numColunas = colunas;
 		this.tamTabuleiro = linhas * colunas;
 		this.numJogadores = jogadores;
 		this.sequenciaNecessaria = 3;
+		this.casas = $casas;
+		this.log = $log;
 
 		this.jogadores = [{ tipo: 'n', simbolo: 
 			'https://vignette.wikia.nocookie.net/uncyclopedia/images/4/44/White_square.png/revision/latest?cb=20061003200043' }];
@@ -27,16 +28,6 @@ class TicTacToe {
 		this.timeout = null;
 	}
 
-	atualizaTipoJogador(i, tipo) {
-		this.jogadores[i].tipo = tipo;
-		this.reinicia();
-	}
-
-	atualizaSimboloJogador(i, simbolo) {
-		this.jogadores[i].simbolo = simbolo;
-		this.reinicia();
-	}
-
 	imprime() {
 		let s = '';
 		for(let i = 0; i < this.numLinhas; i++) {
@@ -46,6 +37,16 @@ class TicTacToe {
 			s += '\n';
 		}
 		console.log(s);
+	}
+
+	atualizaTipoJogador(i, tipo) {
+		this.jogadores[i].tipo = tipo;
+		this.reinicia();
+	}
+
+	atualizaSimboloJogador(i, simbolo) {
+		this.jogadores[i].simbolo = simbolo;
+		this.reinicia();
 	}
 
 	preencheCasa(i, jogador) {
@@ -93,16 +94,17 @@ class TicTacToe {
 		let analise = this.analisaVencedor();
 		if(analise == 0) {
 			this.vez = (this.vez == 1) ? 2 : 1;
+			$(this.log).html('Vez do Jogador ' + this.vez);
 			if(this.jogadores[this.vez].tipo != 'usuario')
 				this.jogadaComputador(this.vez);
 		}
 		else if(analise == 1 || analise == 2) {
 			for(let i = 0; i <= 8; i++)
 				$(this.casas[i]).css('cursor', 'default');
-			console.log('jogador ' + this.vez + ' venceu');
+			$(this.log).html('Jogador ' + this.vez + ' venceu');
 			this.vez = 0;
 		} else if(analise == 3) {
-			console.log('deu velha');
+			$(this.log).html('Deu velha');
 			this.vez = 0;
 		}
 	}
