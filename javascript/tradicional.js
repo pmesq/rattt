@@ -23,3 +23,15 @@ $('#botao-help').click(function() {
 $('#fechar-janela-help').click(function() {
 	$('#janela-help').fadeOut(400);
 });
+
+$('.select-jogador').change(function() {
+	let indice = $('.select-jogador').index($(this)) + 1;
+	let tipo = $(this).val();
+	ttt.atualizaTipoJogador(indice, tipo);
+});
+
+$('.select-simbolo').change(function() {
+	let indice = $('.select-simbolo').index($(this)) + 1;
+	let simbolo = $(this).val();
+	ttt.atualizaSimboloJogador(indice, simbolo);
+});

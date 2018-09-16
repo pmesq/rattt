@@ -3,6 +3,8 @@ $('#janela-help').css('opacity', '1');
 $('#log').hide();
 $('#botao-reiniciar').hide();
 $('#botao-help').hide();
+$('#jogador1').hide();
+$('#jogador2').hide();
 
 $('#botao-jogar').click(function() {
 	linhas = $('#input-linhas').val();
@@ -21,6 +23,8 @@ $('#botao-jogar').click(function() {
 	$('#botao-reiniciar').show();
 	$('#log').show();
 	$('#botao-help').show();
+	$('#jogador1').show();
+	$('#jogador2').show();
 
 	$('#botao-reiniciar').click(function() {
 		ttt.reinicia();
@@ -32,5 +36,17 @@ $('#botao-jogar').click(function() {
 	
 	$('#fechar-janela-help').click(function() {
 		$('#janela-help').fadeOut(400);
+	});
+
+	$('.select-jogador').change(function() {
+		let indice = $('.select-jogador').index($(this)) + 1;
+		let tipo = $(this).val();
+		ttt.atualizaTipoJogador(indice, tipo);
+	});
+
+	$('.select-simbolo').change(function() {
+		let indice = $('.select-simbolo').index($(this)) + 1;
+		let simbolo = $(this).val();
+		ttt.atualizaSimboloJogador(indice, simbolo);
 	});
 });

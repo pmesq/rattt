@@ -14,8 +14,6 @@ class TicTacToe {
 			});
 		}
 
-		this.jogadores[2].tipo = 'tradicional-impossivel';
-
 		this.criaTabuleiro();
 
 		this.vez = 1;
@@ -52,6 +50,7 @@ class TicTacToe {
 	}
 
 	reinicia() {
+		clearTimeout(this.timeout);
 		this.vez = 0;
 		this.casasPreenchidas = 0;
 		for(let i = 0; i < this.linhas; i++)
@@ -60,6 +59,16 @@ class TicTacToe {
 		this.vez = 1;
 		if(this.jogadores[1].tipo != 'usuario')
 			this.jogadaComputador();
+	}
+
+	atualizaTipoJogador(i, tipo) {
+		this.jogadores[i].tipo = tipo;
+		this.reinicia();
+	}
+
+	atualizaSimboloJogador(i, simbolo) {
+		this.jogadores[i].simbolo = simbolo;
+		this.reinicia();
 	}
 
 	analisaHorizontal(i, j) {

@@ -1,1 +1,1 @@
-# [Rattt](https://pedrocesarmesquita.github.io/rattt/jogoDaVelha/)
+# [Rattt](https://pedrocesarmesquita.github.io/rattt/pages/tradicional.html)
