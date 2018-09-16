@@ -4,48 +4,62 @@
 html, body {
 	width: 100%;
 	height: 100%;
-	background-image: linear-gradient(to right top, #a5a5a5, #7a7a7a);
+	background-image: linear-gradient(to left bottom, #42d1f4, #00bfff);
 	margin: 0;
 }
 h1 {
 	text-align: center;
 	color: white;
+	text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black, 
+		1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
 	font-size: 40px;
 }
 #log {
 	text-align: center;
 	color: white;
-	font-size: 22px;
+	text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black, 
+		1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+	font-size: 24px;
+}
+main {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+.linha {
+	margin-top: 0;
+	margin-bottom: 0px;
+
 }
 .casa {
 	border: 1px solid black;
 	background-color: white;
 	background-size: cover;
 	cursor: pointer;
-	width: 100px;
-	height: 100px;
-}
-main {
-	text-align: center;
+	width: 130px;
+	height: 130px;
+	margin-top: 0;
+	margin-bottom: 0;
+	border-collapse: collapse;
 }
 #jogador1 {
 	background-color: #212121;
+	border-top-left-radius: 24px;
 	border-top-right-radius: 24px;
-	border-bottom-right-radius: 24px;
 	padding: 10px;
 	position: absolute;
-	top: 250px;
-	left: 0;
+	bottom: 0;
+	left: 50px;
 	color: white;
 }
 #jogador2 {
 	background-color: #212121;
 	border-top-left-radius: 24px;
-	border-bottom-left-radius: 24px;
+	border-top-right-radius: 24px;
 	padding: 10px;
-	position: absolute;
-	top: 250px;
-	right: 0;
+	position: fixed;
+	right: 50px;
+	bottom: 0;
 	color: white;
 }
 h2 {
@@ -67,7 +81,7 @@ select {
 	width: 140px;
 	font-size: 18px;
 }
-#botao-reiniciar, #botao-jogar {
+#botao-jogar {
 	display: block;
 	margin: auto;
 	color: white;
@@ -80,21 +94,32 @@ select {
 	cursor: pointer;
 	transition: all .25s ease;
 }
-#botao-help {
+.botao {
 	position: absolute;
-	top: 20px;
 	right: 20px;
 	color: white;
-	background-color: #212121;
-	border-width: 0;
+	border: 0px solid white;
 	font-family: 'Roboto Mono', sans-serif;
+	background-color: #004b5e;
 	outline: none;
-	font-size: 24px;
-	width: 48px;
-	height: 48px;
+	font-size: 28px;
+	width: 54px;
+	height: 54px;
 	border-radius: 360px;
 	cursor: pointer;
 	transition: all .25s ease;
+}
+#botao-help {
+	top: 20px;
+}
+#botao-reiniciar {
+	top: 90px;
+}
+#botao-jogador-1 {
+	top: 160px;
+}
+#botao-jogador-2 {
+	top: 230px;
 }
 #janela-help {
 	position: fixed;
@@ -126,12 +151,11 @@ select {
 	transition: all .25s ease;
 }
 
-#botao-reiniciar:hover, 
-#botao-help:hover, 
+.botao:hover, 
 #fechar-janela-help:hover, 
 #botao-jogar:hover {
 	background-color: white;
-	color: #212121;
+	color: #004b5e;
 }
 
 .personalizacao {
