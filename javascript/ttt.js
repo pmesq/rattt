@@ -5,6 +5,8 @@ class TicTacToe {
 		this.numJogadores = jogadores;
 		this.sequenciaNecessaria = sequencia;
 
+		this.tradicional = (linhas == 3 && colunas == 3 && sequencia == 3 && jogadores == 2);
+
 		this.jogadores = [{ tipo: 'n', simbolo: 
 			'https://vignette.wikia.nocookie.net/uncyclopedia/images/4/44/White_square.png/revision/latest?cb=20061003200043' }];
 		for(let i = 1; i <= this.numJogadores; i++) {
@@ -15,6 +17,9 @@ class TicTacToe {
 		}
 
 		this.criaTabuleiro();
+		for(let i = 0; i < this.numJogadores; i++) {
+			this.criaJanelaJogador(i);
+		}
 
 		this.vez = 1;
 		this.casasPreenchidas = 0;
@@ -49,6 +54,37 @@ class TicTacToe {
 		}
 	}
 
+	criaJanelaJogador(i) {
+		$('nav').append('<button class="botao botao-janela botao-jogador">'+(i+1)+'</button>');
+		$('.botao-jogador:eq(' + i + ')').css('top', (160 + i * 70) + 'px');
+
+		$('#janelas-jogador').append('<div class="janela janela-jogador"></div>');
+
+		$('.janela-jogador:eq(' + i + ')').append('<h2>Jogador ' + (i + 1) + '</h2>');
+
+		$('.janela-jogador:eq(' + i + ')').append('<label class="label-tipo">Jogador: </label>');
+		$('.label-tipo:eq(' + i + ')').append('<select class="select-tipo"></select>');
+		$('.select-tipo:eq(' + i + ')').append('<option value="usuario">Usuário</option>');
+		$('.select-tipo:eq(' + i + ')').append('<option value="aleatorio">Random Bot</option>');
+		if(this.tradicional) {
+			$('.select-tipo:eq(' + i + ')').append(
+				'<option value="tradicional-medio">Friendly Bot</option>');
+			$('.select-tipo:eq(' + i + ')').append(
+				'<option value="tradicional-impossivel">Invincible bot</option>');
+		}
+
+		$('.janela-jogador:eq(' + i + ')').append('<label class="label-simbolo">Símbolo: </label>');
+		$('.label-simbolo:eq(' + i + ')').append('<select class="select-simbolo"></select>');
+		$('.select-simbolo:eq(' + i + ')').append('<option value="../imgs/x.png">Xis</option>');
+		$('.select-simbolo:eq(' + i + ')').append('<option value="../imgs/o.png">Bolinha</option>');
+		$('.select-simbolo:eq(' + i + ')').append(
+			'<option value="../imgs/triangulo.png">Triângulo</option>');
+		$('.select-simbolo:eq(' + i + ')').append(
+			'<option value="../imgs/quadrado.png">Quadrado</option>');
+		$('.select-simbolo:eq(' + i + ')').append('<option value="../imgs/rat.png">Rato</option>');
+		$('.janela-jogador:eq(' + i + ')').append('<button class="fechar-janela">X</button>');
+	}
+	
 	reinicia() {
 		clearTimeout(this.timeout);
 		this.vez = 0;

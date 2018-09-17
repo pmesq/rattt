@@ -9,23 +9,32 @@ $('.casa').click(function() {
 	ttt.jogadaUsuario(i, j);
 });
 
-$('#janela-help').hide();
-$('#janela-help').css('opacity', '1');
+$('.janela').hide();
+$('.janela').css('opacity', '1');
+let larguraHTML = parseInt($('html').css('width'));
+for(let i = 0; i <= jogadores; i++) {
+	let larguraJanela = parseInt($('.janela:eq(' + i + ')').css('width'));
+	$('.janela:eq(' + i + ')').css('left', (larguraHTML - larguraJanela) / 2 + 'px');
+}
 
 $('#botao-reiniciar').click(function() {
 	ttt.reinicia();
 });
 
-$('#botao-help').click(function() {
-	$('#janela-help').fadeToggle(400);
+$('.botao-janela').click(function() {
+	let i = $('.botao-janela').index($(this));
+	for(let j = 0; j <= jogadores; j++) {
+		if(j != i) $('.janela:eq(' + j + ')').fadeOut(400);
+	}
+	$('.janela:eq(' + i + ')').fadeToggle(400);
 });
 
-$('#fechar-janela-help').click(function() {
-	$('#janela-help').fadeOut(400);
+$('.fechar-janela').click(function() {
+	$('.janela').fadeOut(400);
 });
 
-$('.select-jogador').change(function() {
-	let indice = $('.select-jogador').index($(this)) + 1;
+$('.select-tipo').change(function() {
+	let indice = $('.select-tipo').index($(this)) + 1;
 	let tipo = $(this).val();
 	ttt.atualizaTipoJogador(indice, tipo);
 });

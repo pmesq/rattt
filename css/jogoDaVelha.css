@@ -115,32 +115,24 @@ select {
 #botao-reiniciar {
 	top: 90px;
 }
-#botao-jogador-1 {
-	top: 160px;
-}
-#botao-jogador-2 {
-	top: 230px;
-}
-#janela-help {
+.janela {
 	position: fixed;
-	background-color: #212121;
+	background-color: #004b5e;
 	padding: 10px;
 	border-radius: 24px;
 	color: white;
 	top: 100px;
-	left: 0;
-	margin: 0 200px;
 	display: block;
 	opacity: 0;
 }
-#janela-help > p, #janela-help li {
+.janela > p, .janela li {
 	text-align: justify;
 	font-size: 18px;
 }
-#fechar-janela-help {
+.fechar-janela {
 	cursor: pointer;
 	outline: none;
-	background-color: #212121;
+	background-color: #004b5e;
 	color: white;
 	display: block;
 	margin: auto;
@@ -152,7 +144,7 @@ select {
 }
 
 .botao:hover, 
-#fechar-janela-help:hover, 
+.fechar-janela:hover, 
 #botao-jogar:hover {
 	background-color: white;
 	color: #004b5e;
