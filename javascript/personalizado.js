@@ -2,6 +2,34 @@ let linhas, colunas, sequencia, jogadores;
 $('#log').hide();
 $('.botao').hide();
 
+$('#input-linhas, #input-colunas').change(function() {
+	if($(this).val() > 20)
+		$(this).val(20);
+	else if($(this).val() < 1)
+		$(this).val(1);
+});
+
+$('#input-sequencia').change(function() {
+	linhas = $('#input-linhas').val();
+	colunas = $('#input-colunas').val();
+	let maximo = (linhas > colunas) ? linhas : colunas;
+	if($(this).val() > maximo)
+		$(this).val(maximo);
+	else if($(this).val() < 1)
+		$(this).val(1);
+});
+
+$('#input-jogadores').change(function() {
+	if($(this).val() > 4)
+		$(this).val(4);
+	else if($(this).val() < 2)
+		$(this).val(2);
+});
+
+$('input').keyup(function(e) {
+	if(e.which == 13) $('#botao-jogar').click();
+});
+
 $('#botao-jogar').click(function() {
 	linhas = $('#input-linhas').val();
 	colunas = $('#input-colunas').val();
