@@ -2,6 +2,8 @@ let linhas, colunas, sequencia, jogadores;
 $('#log').hide();
 $('.botao').hide();
 
+$('#input-linhas').select();
+
 $('#input-linhas, #input-colunas').change(function() {
 	if($(this).val() > 20)
 		$(this).val(20);
@@ -28,6 +30,10 @@ $('#input-jogadores').change(function() {
 
 $('input').keyup(function(e) {
 	if(e.which == 13) $('#botao-jogar').click();
+});
+
+$('input').click(function() {
+	$(this).select();
 });
 
 $('#botao-jogar').click(function() {

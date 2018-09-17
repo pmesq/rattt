@@ -100,6 +100,8 @@ class TicTacToe {
 				+ this.simbolos[s].nome + '</option>'
 			);
 		}
+		
+		$('.janela-jogador:eq(' + i + ')').append('<button class="fechar-janela">X</button>');
 	}
 	
 	reinicia() {
