@@ -10,14 +10,14 @@ html, body {
 h1 {
 	text-align: center;
 	color: white;
-	text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black, 
+	text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
 		1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
 	font-size: 40px;
 }
 #log {
 	text-align: center;
 	color: white;
-	text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black, 
+	text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
 		1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
 	font-size: 24px;
 }
@@ -41,26 +41,6 @@ main {
 	margin-top: 0;
 	margin-bottom: 0;
 	border-collapse: collapse;
-}
-#jogador1 {
-	background-color: #212121;
-	border-top-left-radius: 24px;
-	border-top-right-radius: 24px;
-	padding: 10px;
-	position: absolute;
-	bottom: 0;
-	left: 50px;
-	color: white;
-}
-#jogador2 {
-	background-color: #212121;
-	border-top-left-radius: 24px;
-	border-top-right-radius: 24px;
-	padding: 10px;
-	position: fixed;
-	right: 50px;
-	bottom: 0;
-	color: white;
 }
 h2 {
 	text-align: center;
@@ -143,8 +123,8 @@ select {
 	transition: all .25s ease;
 }
 
-.botao:hover, 
-.fechar-janela:hover, 
+.botao:hover,
+.fechar-janela:hover,
 #botao-jogar:hover {
 	background-color: white;
 	color: #004b5e;

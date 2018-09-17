@@ -3,19 +3,23 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Rattt</title>
-		<link rel="stylesheet" 
+		<link rel="stylesheet"
 			href="https://fonts.googleapis.com/css?family=Roboto">
-		<link rel="stylesheet" 
+		<link rel="stylesheet"
 			href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-		<link rel="stylesheet" type="text/css" href="../css/jogoDaVelha.css">
+		<link rel="stylesheet" media="screen" href="../css/jogoDaVelha.css">
 	</head>
 	<body>
 		<header>
 			<h1>Rattt</h1>
 			<p id="log">Vez do Jogador 1</p>
 		</header>
+		<nav>
+			<button type="button" class="botao botao-janela" id="botao-help">i</button>
+			<button type="button" class="botao" id="botao-reiniciar">↻</button>
+		</nav>
 		<main>
-			<label class="personalizacao"">
+			<label class="personalizacao">
 				Linhas<br>
 				<input type="number" min="1" max="10" value="3" id="input-linhas">
 			</label>
@@ -27,37 +31,50 @@
 				Sequência<br>
 				<input type="number" min="1" max="10" value="3" id="input-sequencia">
 			</label>
+			<label class="personalizacao">
+				Jogadores<br>
+				<input type="number" min="2" max="4" value="2" id="input-jogadores">
+			</label>
 			<br>
 			<button type="button" id="botao-jogar">Jogar</button>
 		</main>
-		<section id="jogador1">
-			<h2>Jogador 1</h2>
-			<label>Jogador:
-				<select class="select-jogador">
-					<option value="usuario">Usuário</option>
-					<option value="aleatorio">Random Bot</option>
-				</select>
-			</label>
-			<label>Símbolo:
-				<select class="select-simbolo">
-					<option value="../imgs/x.png" selected>Xis</option>
-					<option value="../imgs/o.png">Bolinha</option>
-					<option value="../imgs/triangulo.png">Triângulo</option>
-					<option value="../imgs/quadrado.png">Quadrado</option>
-					<option value="../imgs/rat.png">Rat</option>
-					<option value="../imgs/sigma.png">Sigma(σ)</option>
-					<option value="../imgs/teta.png">Teta(θ)</option>
-					<option value="../imgs/pi.png">Pi</option>
-				</select>
-			</label>
-		</section>
-		<br>
-		<section id="jogador2">
+		<div class="janela" id="janela-help">
+			<h2>Instruções</h2>
+			<p>
+				Jogo da velha tradicional.
+				Vence quem marcar primeiro 3 casas seguidas na horizontal,
+				vertical ou diagonal. Cada um joga alternadamente.
+				<ul>
+					<li>
+						Para marcar uma casa -> Clique sobre ela ou use os números
+						do teclado.
+					</li>
+					<li>
+						Para reiniciar -> Clique no botão Reiniciar ou aperte R.
+					</li>
+				</ul>
+			</p>
+			<button class="fechar-janela">X</button>
+		</div>
+		<div id="janelas-jogador">
+		</div>
+		<script src="../javascript/jquery.js"></script>
+		<script src="../javascript/ttt.js"></script>
+		<script src="../javascript/estilo.js"></script>
+		<script src="../javascript/personalizado.js"></script>
+	</body>
+</html>
+
+
+
+<!--<section id="jogador2">
 			<h2>Jogador 2</h2>
 			<label>Jogador:
 				<select class="select-jogador">
 					<option value="usuario">Usuário</option>
 					<option value="aleatorio">Random Bot</option>
+					<option value="tradicional-medio">Normal Bot</option>
+					<option value="tradicional-impossivel">Invincible Bot</option>
 				</select>
 			</label>
 			<label>Símbolo:
@@ -72,29 +89,4 @@
 					<option value="../imgs/pi.png">Pi</option>
 				</select>
 			</label>
-		</section>
-		<button type="button" id="botao-reiniciar">Reiniciar</button>
-		<button type="button" id="botao-help">i</button>
-		<div id="janela-help">
-			<h2>Instruções</h2>
-			<p>
-				Jogo da velha tradicional. 
-				Vence quem marcar primeiro 3 casas seguidas na horizontal, 
-				vertical ou diagonal. Cada um joga alternadamente.
-				<ul>
-					<li>
-						Para marcar uma casa -> Clique sobre ela ou use os números
-						do teclado.
-					</li>
-					<li>
-						Para reiniciar -> Clique no botão Reiniciar ou aperte R.
-					</li>
-				</ul>
-			</p>
-			<button type="button" id="fechar-janela-help">X</button>
-		</div>
-		<script src="../javascript/jquery.js"></script>
-		<script src="../javascript/ttt.js"></script>
-		<script src="../javascript/personalizado.js"></script>
-	</body>
-</html>
+		</section>-->

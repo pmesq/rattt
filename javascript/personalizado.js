@@ -1,17 +1,14 @@
-$('#janela-help').hide();
-$('#janela-help').css('opacity', '1');
+let linhas, colunas, sequencia, jogadores;
 $('#log').hide();
-$('#botao-reiniciar').hide();
-$('#botao-help').hide();
-$('#jogador1').hide();
-$('#jogador2').hide();
+$('.botao').hide();
 
 $('#botao-jogar').click(function() {
 	linhas = $('#input-linhas').val();
 	colunas = $('#input-colunas').val();
 	sequencia = $('#input-sequencia').val();
+	jogadores = $('#input-jogadores').val();
 	$('main').html('');
-	let ttt = new TicTacToe(linhas, colunas, sequencia, 2);
+	let ttt = new TicTacToe(linhas, colunas, sequencia, jogadores);
 
 	$('.casa').click(function() {
 		let indice = $('.casa').index($(this));
@@ -20,22 +17,12 @@ $('#botao-jogar').click(function() {
 		ttt.jogadaUsuario(i, j);
 	});
 
-	$('#botao-reiniciar').show();
+
 	$('#log').show();
-	$('#botao-help').show();
-	$('#jogador1').show();
-	$('#jogador2').show();
+	$('.botao').show();
 
 	$('#botao-reiniciar').click(function() {
 		ttt.reinicia();
-	});
-
-	$('#botao-help').click(function() {
-		$('#janela-help').fadeToggle(400);
-	});
-	
-	$('#fechar-janela-help').click(function() {
-		$('#janela-help').fadeOut(400);
 	});
 
 	$('.select-jogador').change(function() {
@@ -49,4 +36,6 @@ $('#botao-jogar').click(function() {
 		let simbolo = $(this).val();
 		ttt.atualizaSimboloJogador(indice, simbolo);
 	});
+
+	configuraElementos(jogadores);
 });
