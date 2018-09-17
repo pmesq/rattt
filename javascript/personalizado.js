@@ -25,8 +25,8 @@ $('#botao-jogar').click(function() {
 		ttt.reinicia();
 	});
 
-	$('.select-jogador').change(function() {
-		let indice = $('.select-jogador').index($(this)) + 1;
+	$('.select-tipo').change(function() {
+		let indice = $('.select-tipo').index($(this)) + 1;
 		let tipo = $(this).val();
 		ttt.atualizaTipoJogador(indice, tipo);
 	});

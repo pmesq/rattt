@@ -7,12 +7,31 @@ class TicTacToe {
 
 		this.tradicional = (linhas == 3 && colunas == 3 && sequencia == 3 && jogadores == 2);
 
+		this.simbolos = [
+			{
+				img: '../imgs/x.png',
+				nome: 'Xis'
+			}, {
+				img: '../imgs/o.png',
+				nome: 'Bolinha'
+			}, {
+				img: '../imgs/triangulo.png',
+				nome: 'Triângulo'
+			}, {
+				img: '../imgs/quadrado.png',
+				nome: 'Quadrado'
+			}, {
+				img: '../imgs/rat.png',
+				nome: 'Rato'
+			},
+		];
+
 		this.jogadores = [{ tipo: 'n', simbolo: 
 			'https://vignette.wikia.nocookie.net/uncyclopedia/images/4/44/White_square.png/revision/latest?cb=20061003200043' }];
 		for(let i = 1; i <= this.numJogadores; i++) {
 			this.jogadores.push({
 				tipo: 'usuario',
-				simbolo: i == 1 ? '../imgs/x.png' : '../imgs/o.png'
+				simbolo: this.simbolos[i - 1].img
 			});
 		}
 
@@ -75,14 +94,12 @@ class TicTacToe {
 
 		$('.janela-jogador:eq(' + i + ')').append('<label class="label-simbolo">Símbolo: </label>');
 		$('.label-simbolo:eq(' + i + ')').append('<select class="select-simbolo"></select>');
-		$('.select-simbolo:eq(' + i + ')').append('<option value="../imgs/x.png">Xis</option>');
-		$('.select-simbolo:eq(' + i + ')').append('<option value="../imgs/o.png">Bolinha</option>');
-		$('.select-simbolo:eq(' + i + ')').append(
-			'<option value="../imgs/triangulo.png">Triângulo</option>');
-		$('.select-simbolo:eq(' + i + ')').append(
-			'<option value="../imgs/quadrado.png">Quadrado</option>');
-		$('.select-simbolo:eq(' + i + ')').append('<option value="../imgs/rat.png">Rato</option>');
-		$('.janela-jogador:eq(' + i + ')').append('<button class="fechar-janela">X</button>');
+		for(let s = 0; s < this.simbolos.length; s++) {
+			$('.select-simbolo:eq(' + i + ')').append(
+				'<option value="' + this.simbolos[s].img + '" ' + (i == s ? 'selected' : '') + '>'
+				+ this.simbolos[s].nome + '</option>'
+			);
+		}
 	}
 	
 	reinicia() {
@@ -160,7 +177,8 @@ class TicTacToe {
 	}
 
 	fimJogada() {
-		this.vez = (this.vez == 1) ? 2 : 1;
+		this.vez = (this.vez == this.numJogadores) ? 1 : this.vez + 1;
+		
 		let analise = this.analisaVencedor();
 		if(analise == -1) {
 			$('#log').html('Vez do jogador ' + this.vez);

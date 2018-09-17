@@ -28,7 +28,8 @@ main {
 }
 .linha {
 	margin-top: 0;
-	margin-bottom: 0px;
+	margin-bottom: 0;
+	height: auto;
 
 }
 .casa {
@@ -40,6 +41,7 @@ main {
 	height: 130px;
 	margin-top: 0;
 	margin-bottom: 0;
+	padding: 0;
 	border-collapse: collapse;
 }
 h2 {
