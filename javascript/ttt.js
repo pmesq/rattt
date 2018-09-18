@@ -112,6 +112,7 @@ class TicTacToe {
 			for(let j = 0; j < this.colunas; j++)
 				this.preencheCasa([i, j]);
 		this.vez = 1;
+		$('#log').html('Vez do jogador 1');
 		if(this.jogadores[1].tipo != 'usuario')
 			this.jogadaComputador();
 	}
