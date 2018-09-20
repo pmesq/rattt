@@ -1,4 +1,4 @@
-let linhas, colunas, sequencia, jogadores;
+let tabuleiro, linhas, colunas, sequencia, jogadores;
 $('#log').hide();
 $('.botao').hide();
 
@@ -7,8 +7,8 @@ $('#input-linhas').select();
 $('#input-linhas, #input-colunas').change(function() {
 	if($(this).val() > 20)
 		$(this).val(20);
-	else if($(this).val() < 1)
-		$(this).val(1);
+	else if($(this).val() < 2)
+		$(this).val(2);
 });
 
 $('#input-sequencia').change(function() {
@@ -17,8 +17,8 @@ $('#input-sequencia').change(function() {
 	let maximo = (linhas > colunas) ? linhas : colunas;
 	if($(this).val() > maximo)
 		$(this).val(maximo);
-	else if($(this).val() < 1)
-		$(this).val(1);
+	else if($(this).val() < 2)
+		$(this).val(2);
 });
 
 $('#input-jogadores').change(function() {
@@ -41,8 +41,14 @@ $('#botao-jogar').click(function() {
 	colunas = $('#input-colunas').val();
 	sequencia = $('#input-sequencia').val();
 	jogadores = $('#input-jogadores').val();
+	tabuleiro = new Array(linhas);
+	for(let i = 0; i < linhas; i++) {
+		tabuleiro[i] = new Array(colunas);
+		for(let j = 0; j < colunas; j++)
+			tabuleiro[i][j] = 1;
+	}
 	$('main').html('');
-	let ttt = new TicTacToe(linhas, colunas, sequencia, jogadores);
+	let ttt = new TicTacToe(tabuleiro, linhas, colunas, sequencia, jogadores);
 
 	$('.casa').click(function() {
 		let indice = $('.casa').index($(this));
