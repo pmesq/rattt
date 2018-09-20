@@ -1,6 +1,5 @@
-const linhas = 3, colunas = 3, sequencia = 3, jogadores = 2;
-
-let ttt = new TicTacToe(linhas, colunas, sequencia, jogadores);
+const tab = 'tradicional', linhas = 3, colunas = 3, sequencia = 3, jogadores = 2;
+let ttt = new TicTacToe(tab, linhas, colunas, sequencia, jogadores);
 
 $('.casa').click(function() {
 	let indice = $('.casa').index($(this));

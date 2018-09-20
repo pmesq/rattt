@@ -1,11 +1,11 @@
 class TicTacToe {
-	constructor(linhas, colunas, sequencia, jogadores) {
+	constructor(tabuleiro, linhas, colunas, sequencia, jogadores) {
 		this.linhas = linhas;
 		this.colunas = colunas;
 		this.numJogadores = jogadores;
 		this.sequenciaNecessaria = sequencia;
 
-		this.tradicional = (linhas == 3 && colunas == 3 && sequencia == 3 && jogadores == 2);
+		this.tradicional = (tabuleiro == 'tradicional');
 
 		this.simbolos = [
 			{
@@ -35,7 +35,10 @@ class TicTacToe {
 			});
 		}
 
-		this.criaTabuleiro();
+		if(tabuleiro == 'tradicional')
+			tabuleiro = [[1, 1, 1], [1, 1, 1], [1, 1, 1]];
+		this.criaTabuleiro(tabuleiro);
+
 		for(let i = 0; i < this.numJogadores; i++) {
 			this.criaJanelaJogador(i);
 		}
@@ -59,7 +62,7 @@ class TicTacToe {
 		console.log(s);
 	}
 
-	criaTabuleiro() {
+	criaTabuleiro(tab) {
 		this.tabuleiro = new Array(this.linhas);
 		this.linhaEl = new Array(this.linhas);
 		for(let i = 0; i < this.linhas; i++) {
@@ -67,8 +70,18 @@ class TicTacToe {
 			this.linhaEl[i] = $('<div class="linha">');
 			$('main').append(this.linhaEl[i]);
 			for(let j = 0; j < this.colunas; j++) {
-				this.tabuleiro[i][j] = 0;
+				this.tabuleiro[i][j] = tab[i][j] - 1;
 				this.linhaEl[i].append($('<canvas class="casa"></canvas>'));
+				if(tab[i][j] == 0) {
+					$('.linha:eq(' + i + ') > .casa:eq(' + j + ')').css(
+						'background-image', 'linear-gradient(to top, #42d1f4, #42d1f4)');
+					$('.linha:eq(' + i + ') > .casa:eq(' + j + ')').css('cursor', 'default');
+					$('.linha:eq(' + i + ') > .casa:eq(' + j + ')').css(
+						'border-width',
+						'0px ' + (j == this.colunas - 1 ? 0 : (tab[i][j + 1] ? 1 : 0)) + 'px '
+						+ (i == this.linhas - 1 ? 0 : (tab[i + 1][j] ? 1 : 0)) + 'px 0px'
+					);
+				}
 			}
 		}
 	}
@@ -109,8 +122,10 @@ class TicTacToe {
 		this.vez = 0;
 		this.casasPreenchidas = 0;
 		for(let i = 0; i < this.linhas; i++)
-			for(let j = 0; j < this.colunas; j++)
-				this.preencheCasa([i, j]);
+			for(let j = 0; j < this.colunas; j++) {
+				if(this.tabuleiro[i][j] != -1)
+					this.preencheCasa([i, j]);
+			}
 		this.vez = 1;
 		$('#log').html('Vez do Jogador 1');
 		if(this.jogadores[1].tipo != 'usuario')
@@ -127,55 +142,59 @@ class TicTacToe {
 		this.reinicia();
 	}
 
-	analisaHorizontal(i, j) {
-		for(let c = 1; c < this.sequenciaNecessaria; c++) {
-			if(this.tabuleiro[i][j] != this.tabuleiro[i][j + c])
-				return false;
-		}
-		return this.tabuleiro[i][j] != 0;
-	}
-
-	analisaVertical(i, j) {
-		for(let c = 1; c < this.sequenciaNecessaria; c++) {
-			if(this.tabuleiro[i][j] != this.tabuleiro[i + c][j])
-				return false;
-		}
-		return this.tabuleiro[i][j] != 0;
-	}
-
-	analisaDiagonalDecres(i, j) {
-		for(let c = 1; c < this.sequenciaNecessaria; c++) {
-			if(this.tabuleiro[i][j] != this.tabuleiro[i + c][j + c])
-				return false;
-		}
-		return this.tabuleiro[i][j] != 0;
-	}
-
-	analisaDiagonalCres(i, j) {
-		for(let c = 1; c < this.sequenciaNecessaria; c++) {
-			if(this.tabuleiro[i][j] != this.tabuleiro[i + c][j - c])
-				return false;
-		}
-		return this.tabuleiro[i][j] != 0;
-	}
-
 	analisaVencedor() {
+		let sequencia;
+
 		for(let i = 0; i < this.linhas; i++) {
-			for(let j = 0; j <= this.colunas - this.sequenciaNecessaria; j++)
-				if(this.analisaHorizontal(i, j)) return this.tabuleiro[i][j];
+			sequencia = 1;
+			for(let j = 1; j < this.colunas; j++) {
+				if(this.tabuleiro[i][j] > 0 && this.tabuleiro[i][j] == this.tabuleiro[i][j - 1])
+					sequencia++;
+				else sequencia = 1;
+				if(sequencia == this.sequenciaNecessaria)
+					return this.tabuleiro[i][j];
+			}
 		}
+
 		for(let j = 0; j < this.colunas; j++) {
-			for(let i = 0; i <= this.linhas - this.sequenciaNecessaria; i++)
-				if(this.analisaVertical(i, j)) return this.tabuleiro[i][j];
+			sequencia = 1;
+			for(let i = 1; i < this.linhas; i++) {
+				if(this.tabuleiro[i][j] > 0 && this.tabuleiro[i][j] == this.tabuleiro[i - 1][j])
+					sequencia++;
+				else sequencia = 1;
+				if(sequencia == this.sequenciaNecessaria)
+					return this.tabuleiro[i][j];
+			}
 		}
-		for(let i = 0; i <= this.linhas - this.sequenciaNecessaria; i++) {
-			for(let j = 0; j <= this.colunas - this.sequenciaNecessaria; j++)
-				if(this.analisaDiagonalDecres(i, j)) return this.tabuleiro[i][j];
+		
+		for(let i = 0; i < this.linhas - 1; i++) {
+			for(let j = 0; j < this.colunas - 1; j++) {
+				sequencia = 1;
+				for(let k = 1; i + k < this.linhas && j + k < this.colunas; k++) {
+					if(this.tabuleiro[i + k][j + k] > 0 
+					   && this.tabuleiro[i + k][j + k] == this.tabuleiro[i + k - 1][j + k - 1])
+						sequencia++;
+					else sequencia = 1;
+					if(sequencia == this.sequenciaNecessaria)
+						return this.tabuleiro[i + k][j + k];
+				}
+			}
 		}
-		for(let i = 0; i <= this.linhas - this.sequenciaNecessaria; i++) {
-			for(let j = this.sequenciaNecessaria - 1; j <= this.colunas; j++)
-				if(this.analisaDiagonalCres(i, j)) return this.tabuleiro[i][j];
+
+		for(let i = 0; i < this.linhas - 1; i++) {
+			for(let j = 1; j < this.colunas; j++) {
+				sequencia = 1;
+				for(let k = 1; i + k < this.linhas && j - k >= 0; k++) {
+					if(this.tabuleiro[i + k][j - k] > 0 
+					   && this.tabuleiro[i + k][j - k] == this.tabuleiro[i + k - 1][j - k + 1])
+						sequencia++;
+					else sequencia = 1;
+					if(sequencia == this.sequenciaNecessaria)
+						return this.tabuleiro[i + k][j - k];
+				}
+			}
 		}
+
 		return this.casasPreenchidas == this.linhas * this.colunas ? 0 : -1;
 	}
 

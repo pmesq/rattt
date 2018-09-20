@@ -33,7 +33,9 @@ main {
 
 }
 .casa {
-	border: 1px solid black;
+	border-style: solid;
+	border-color: black;
+	border-width: 0px 1px 1px 0px;
 	background-color: white;
 	background-size: cover;
 	cursor: pointer;
@@ -42,6 +44,13 @@ main {
 	margin-top: 0;
 	margin-bottom: 0;
 	padding: 0;
+	box-sizing: border-box;
+}
+.linha:first-child > .casa {
+	border-top-width: 1px;
+}
+.casa:first-child {
+	border-left-width: 1px;
 }
 h2 {
 	text-align: center;
