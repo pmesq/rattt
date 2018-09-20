@@ -1,3 +1,4 @@
+let ttt;
 let tabuleiro, linhas, colunas, sequencia, jogadores;
 $('#log').hide();
 $('.botao').hide();
@@ -36,19 +37,10 @@ $('input').click(function() {
 	$(this).select();
 });
 
-$('#botao-jogar').click(function() {
-	linhas = $('#input-linhas').val();
-	colunas = $('#input-colunas').val();
-	sequencia = $('#input-sequencia').val();
-	jogadores = $('#input-jogadores').val();
-	tabuleiro = new Array(linhas);
-	for(let i = 0; i < linhas; i++) {
-		tabuleiro[i] = new Array(colunas);
-		for(let j = 0; j < colunas; j++)
-			tabuleiro[i][j] = 1;
-	}
+function jogo() {
 	$('main').html('');
-	let ttt = new TicTacToe(tabuleiro, linhas, colunas, sequencia, jogadores);
+
+	ttt = new TicTacToe(tabuleiro, linhas, colunas, sequencia, jogadores);
 
 	$('.casa').click(function() {
 		let indice = $('.casa').index($(this));
@@ -78,4 +70,34 @@ $('#botao-jogar').click(function() {
 	});
 
 	configuraElementos(jogadores);
+}
+
+$('#botao-jogar').click(function() {
+	linhas = $('#input-linhas').val();
+	colunas = $('#input-colunas').val();
+	sequencia = $('#input-sequencia').val();
+	jogadores = $('#input-jogadores').val();
+	tabuleiro = new Array(linhas);
+	for(let i = 0; i < linhas; i++) {
+		tabuleiro[i] = new Array(colunas);
+		for(let j = 0; j < colunas; j++)
+			tabuleiro[i][j] = 1;
+	}
+
+	jogo();
+});
+
+$('#mapa').click(function() {
+	linhas = colunas = 5;
+	sequencia = 3;
+	jogadores = 2;
+	tabuleiro = [
+		[0, 0, 1, 0, 0], 
+		[0, 1, 1, 1, 0], 
+		[1, 1, 0, 1, 1], 
+		[0, 1, 1, 1, 0], 
+		[0, 0, 1, 0, 0]
+	];
+
+	jogo();
 });

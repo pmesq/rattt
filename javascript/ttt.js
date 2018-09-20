@@ -27,7 +27,7 @@ class TicTacToe {
 		];
 
 		this.jogadores = [{ tipo: 'n', simbolo: 
-			'https://vignette.wikia.nocookie.net/uncyclopedia/images/4/44/White_square.png/revision/latest?cb=20061003200043' }];
+			'../imgs/vazio.png' }];
 		for(let i = 1; i <= this.numJogadores; i++) {
 			this.jogadores.push({
 				tipo: 'usuario',
@@ -73,13 +73,14 @@ class TicTacToe {
 				this.tabuleiro[i][j] = tab[i][j] - 1;
 				this.linhaEl[i].append($('<canvas class="casa"></canvas>'));
 				if(tab[i][j] == 0) {
-					$('.linha:eq(' + i + ') > .casa:eq(' + j + ')').css(
-						'background-image', 'linear-gradient(to top, #42d1f4, #42d1f4)');
 					$('.linha:eq(' + i + ') > .casa:eq(' + j + ')').css('cursor', 'default');
 					$('.linha:eq(' + i + ') > .casa:eq(' + j + ')').css(
 						'border-width',
 						'0px ' + (j == this.colunas - 1 ? 0 : (tab[i][j + 1] ? 1 : 0)) + 'px '
 						+ (i == this.linhas - 1 ? 0 : (tab[i + 1][j] ? 1 : 0)) + 'px 0px'
+					);
+					$('.linha:eq(' + i + ') > .casa:eq(' + j + ')').css(
+						'background-color', 'transparent'
 					);
 				}
 			}
