@@ -13,12 +13,13 @@ $('#input-linhas, #input-colunas').change(function() {
 });
 
 $('#input-sequencia').change(function() {
-	linhas = $('#input-linhas').val();
-	colunas = $('#input-colunas').val();
+	linhas = parseInt($('#input-linhas').val());
+	colunas = parseInt($('#input-colunas').val());
+	sequencia = parseInt($(this).val());
 	let maximo = (linhas > colunas) ? linhas : colunas;
-	if($(this).val() > maximo)
+	if(sequencia > maximo)
 		$(this).val(maximo);
-	else if($(this).val() < 2)
+	else if(sequencia < 2)
 		$(this).val(2);
 });
 
@@ -88,37 +89,16 @@ $('#botao-jogar').click(function() {
 });
 
 $('#mapa').click(function() {
-	/*linhas = colunas = 5;
+	linhas = 5;
+	colunas = 5;
 	sequencia = 3;
 	jogadores = 2;
 	tabuleiro = [
-		[0, 0, 1, 0, 0], 
+		[0, 0, 1, 0, 0],
+		[0, 1, 1, 1, 0],
+		[1, 1, 0, 1, 1],
 		[0, 1, 1, 1, 0], 
-		[1, 1, 0, 1, 1], 
-		[0, 1, 1, 1, 0], 
-		[0, 0, 1, 0, 0]
-	];
-	*/
-	linhas = 15;
-	colunas = 7;
-	sequencia = 15;
-	jogadores = 2;
-	tabuleiro = [
-		[0, 0, 1, 1, 1, 0, 0],
-		[0, 1, 1, 1, 1, 1, 0],
-		[0, 1, 1, 1, 1, 1, 0],
-		[0, 1, 1, 1, 1, 1, 0], 
-		[0, 0, 1, 1, 1, 0, 0],
-		[0, 0, 1, 1, 1, 0, 0],
-		[0, 0, 1, 1, 1, 0, 0],
-		[0, 0, 1, 1, 1, 0, 0],  
-		[0, 0, 1, 1, 1, 0, 0],
-		[0, 0, 1, 1, 1, 0, 0], 
-		[0, 0, 1, 1, 1, 0, 0],
-		[1, 1, 1, 1, 1, 1, 1], 
-		[1, 1, 1, 1, 1, 1, 1], 
-		[1, 1, 1, 1, 1, 1, 1],
-		[1, 1, 1, 1, 1, 1, 1]
+		[0, 0, 1, 0, 0],
 	];
 	jogo();
 });
