@@ -26,6 +26,11 @@ class TicTacToe {
 			},
 		];
 
+		this.casas = 0;
+		for(let i = 0; i < linhas; i++)
+			for(let j = 0; j < colunas; j++)
+				if(tabuleiro[i][j]) this.casas++;
+
 		this.jogadores = [{ tipo: 'n', simbolo: 
 			'../imgs/vazio.png' }];
 		for(let i = 1; i <= this.numJogadores; i++) {
@@ -196,7 +201,7 @@ class TicTacToe {
 			}
 		}
 
-		return this.casasPreenchidas == this.linhas * this.colunas ? 0 : -1;
+		return this.casasPreenchidas == this.casas ? 0 : -1;
 	}
 
 	fimJogada() {

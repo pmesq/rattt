@@ -88,17 +88,19 @@ $('#botao-jogar').click(function() {
 	jogo();
 });
 
-$('#mapa').click(function() {
-	linhas = 5;
-	colunas = 5;
-	sequencia = 3;
-	jogadores = 2;
-	tabuleiro = [
-		[0, 0, 1, 0, 0],
-		[0, 1, 1, 1, 0],
-		[1, 1, 0, 1, 1],
-		[0, 1, 1, 1, 0], 
-		[0, 0, 1, 0, 0],
-	];
+let mapas = JSON.parse(localStorage.getItem('mapas'));
+if(mapas == null) mapas = [];
+
+for(let i = 0; i < mapas.length; i++) {
+	$('#mapas').append('<button class="botao-mapa">Mapa' + (i + 1) + '</button>');
+}
+
+$('.botao-mapa').click(function() {
+	let i = $('.botao-mapa').index($(this));
+	linhas = mapas[i].linhas;
+	colunas = mapas[i].colunas;
+	sequencia = mapas[i].sequencia;
+	jogadores = mapas[i].jogadores;
+	tabuleiro = mapas[i].tabuleiro;
 	jogo();
 });
