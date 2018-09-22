@@ -27,8 +27,8 @@ main {
 	margin: 0;
 }
 .linha {
-	margin-top: 0;
-	margin-bottom: 0;
+	position: relative;
+	margin: 0 auto;
 	height: auto;
 }
 .casa {
@@ -45,6 +45,10 @@ main {
 	padding: 0;
 	box-sizing: border-box;
 	transition: opacity .3s ease;
+}
+.simbolo {
+	position: absolute;
+	box-sizing: border-box;
 }
 .linha:first-child > .casa {
 	border-top-width: 1px;

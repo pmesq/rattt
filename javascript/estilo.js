@@ -23,15 +23,15 @@ function configuraElementos(jogadores) {
 		$('.janela').fadeOut(400);
 	});
 
+	let tamanho;
 	if(larguraHTML > alturaHTML) {
-		let tamanho = (alturaHTML - 200) / linhas + 'px';
-		$('.linha').css('height', tamanho);
-		$('.casa').css('width', tamanho);
-		$('.casa').css('height', tamanho);
+		tamanho = (alturaHTML - 200) / linhas;
 	} else {
-		let tamanho = (larguraHTML - 50) / linhas + 'px';
-		$('.linha').css('height', tamanho);
-		$('.casa').css('width', tamanho);
-		$('.casa').css('height', tamanho);
+		tamanho = (larguraHTML - 50) / linhas;
 	}
+	$('.linha').css('width', tamanho * colunas + 'px');
+	$('.linha').css('height', tamanho + 'px');
+	$('.casa').css('width', tamanho + 'px');
+	$('.casa').css('height', tamanho + 'px');
+
 }

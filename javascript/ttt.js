@@ -26,12 +26,7 @@ class TicTacToe {
 			},
 		];
 
-		this.casas = 0;
-		for(let i = 0; i < linhas; i++)
-			for(let j = 0; j < colunas; j++)
-				if(tabuleiro[i][j]) this.casas++;
-
-		this.jogadores = [{ tipo: 'n', simbolo: 
+		this.jogadores = [{ tipo: 'n', simbolo:
 			'../imgs/vazio.png' }];
 		for(let i = 1; i <= this.numJogadores; i++) {
 			this.jogadores.push({
@@ -42,6 +37,12 @@ class TicTacToe {
 
 		if(tabuleiro == 'tradicional')
 			tabuleiro = [[1, 1, 1], [1, 1, 1], [1, 1, 1]];
+
+		this.casas = 0;
+		for(let i = 0; i < linhas; i++)
+			for(let j = 0; j < colunas; j++)
+				if(tabuleiro[i][j]) this.casas++;
+
 		this.criaTabuleiro(tabuleiro);
 
 		for(let i = 0; i < this.numJogadores; i++) {
@@ -119,10 +120,10 @@ class TicTacToe {
 				+ this.simbolos[s].nome + '</option>'
 			);
 		}
-		
+
 		$('.janela-jogador:eq(' + i + ')').append('<button class="fechar-janela">X</button>');
 	}
-	
+
 	reinicia() {
 		clearTimeout(this.timeout);
 		this.vez = 0;
@@ -172,12 +173,12 @@ class TicTacToe {
 					return this.tabuleiro[i][j];
 			}
 		}
-		
+
 		for(let i = 0; i < this.linhas - 1; i++) {
 			for(let j = 0; j < this.colunas - 1; j++) {
 				sequencia = 1;
 				for(let k = 1; i + k < this.linhas && j + k < this.colunas; k++) {
-					if(this.tabuleiro[i + k][j + k] > 0 
+					if(this.tabuleiro[i + k][j + k] > 0
 					   && this.tabuleiro[i + k][j + k] == this.tabuleiro[i + k - 1][j + k - 1])
 						sequencia++;
 					else sequencia = 1;
@@ -191,7 +192,7 @@ class TicTacToe {
 			for(let j = 1; j < this.colunas; j++) {
 				sequencia = 1;
 				for(let k = 1; i + k < this.linhas && j - k >= 0; k++) {
-					if(this.tabuleiro[i + k][j - k] > 0 
+					if(this.tabuleiro[i + k][j - k] > 0
 					   && this.tabuleiro[i + k][j - k] == this.tabuleiro[i + k - 1][j - k + 1])
 						sequencia++;
 					else sequencia = 1;
@@ -206,7 +207,7 @@ class TicTacToe {
 
 	fimJogada() {
 		this.vez = (this.vez == this.numJogadores) ? 1 : this.vez + 1;
-		
+
 		let analise = this.analisaVencedor();
 		if(analise == -1) {
 			$('#log').html('Vez do Jogador ' + this.vez);
@@ -224,6 +225,18 @@ class TicTacToe {
 		}
 	}
 
+	bolinha(i, j) {
+		let canvas = $('<canvas class="simbolo"></canvas>');
+		let tam = parseInt($('.casa').css('width'));
+		canvas.css('width', tam * 0.75 + 'px');
+		canvas.css('height', tam * 0.75 + 'px');
+		canvas.css('border', '3px solid black');
+		canvas.css('border-radius', '360px');
+		$('.linha:eq(' + i + ')').append(canvas);
+		canvas.css('left', tam * (j + 0.125) + 'px');
+		canvas.css('top', tam * 0.125);
+	}
+
 	preencheCasa(pos) {
 		let i = pos[0], j = pos[1];
 		this.tabuleiro[i][j] = this.vez;
@@ -231,6 +244,8 @@ class TicTacToe {
 			'background-image',
 			'url("' + this.jogadores[this.vez].simbolo + '")'
 		);
+		//this.bolinha(i, j);
+
 		$('.casa:eq(' + (this.colunas * i + j) + ')').css(
 			'cursor', this.vez ? 'default' : 'pointer'
 		);
@@ -254,7 +269,7 @@ class TicTacToe {
 				casaDisponivel = [i, j];
 			else if(this.tabuleiro[i][j] != jogador)
 				return false;
-		} 
+		}
 		return casaDisponivel;
 	}
 
@@ -342,27 +357,27 @@ class TicTacToe {
 					that.preencheCasa(that.casoAleatorio());
 					break;
 				case 'tradicional-medio':
-					if(casa = that.tradicional_primeiraJogada()) 
+					if(casa = that.tradicional_primeiraJogada())
 						that.preencheCasa(casa);
-					else if(casa = that.tradicional_casoDireto('vitoria')) 
+					else if(casa = that.tradicional_casoDireto('vitoria'))
 						that.preencheCasa(casa);
-					else if(casa = that.tradicional_casoDireto('derrota')) 
+					else if(casa = that.tradicional_casoDireto('derrota'))
 						that.preencheCasa(casa);
 					else
 						that.preencheCasa(that.casoAleatorio());
 					break;
 				case 'tradicional-impossivel':
-					if(casa = that.tradicional_primeiraJogada()) 
+					if(casa = that.tradicional_primeiraJogada())
 						that.preencheCasa(casa);
-					else if(casa = that.tradicional_casoDireto('vitoria')) 
+					else if(casa = that.tradicional_casoDireto('vitoria'))
 						that.preencheCasa(casa);
-					else if(casa = that.tradicional_casoDireto('derrota')) 
+					else if(casa = that.tradicional_casoDireto('derrota'))
 						that.preencheCasa(casa);
-					else if(casa = that.tradicional_defensivaDiagonais()) 
+					else if(casa = that.tradicional_defensivaDiagonais())
 						that.preencheCasa(casa);
-					else if(casa = that.tradicional_defensivaMedios()) 
+					else if(casa = that.tradicional_defensivaMedios())
 						that.preencheCasa(casa);
-					else if(casa = that.tradicional_defensivaCantoMedio()) 
+					else if(casa = that.tradicional_defensivaCantoMedio())
 						that.preencheCasa(casa);
 					else
 						that.preencheCasa(that.casoAleatorio());
