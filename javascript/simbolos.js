@@ -5,6 +5,9 @@ class Simbolo {
 
 		this.tam = parseFloat($(casa).css('width'));
 
+		this.canvas.style.width = this.tam * 2 + 'px';
+		this.canvas.style.height = this.tam + 'px';
+
 		switch(simbolo) {
 			case 'Xis': this.desenhaXis(); break;
 			case 'Bolinha': this.desenhaBolinha(); break;
@@ -23,10 +26,10 @@ class Simbolo {
 		ctx.beginPath();
 		ctx.lineWidth = 3;
 
-		ctx.moveTo(this.tam * 0.125, this.tam * 0.125);
-		ctx.lineTo(this.tam * 0.875, this.tam * 0.875);
-		ctx.moveTo(this.tam * 0.875, this.tam * 0.125);
-		ctx.lineTo(this.tam * 0.125, this.tam * 0.875);
+		ctx.moveTo(18.75, 18.75);
+		ctx.lineTo(131.75, 131.75);
+		ctx.moveTo(131.75, 18.75);
+		ctx.lineTo(18.75, 131.75);
 
 		ctx.stroke();
 	}
@@ -36,7 +39,7 @@ class Simbolo {
 
 		ctx.beginPath();
 		ctx.lineWidth = 3;
-		ctx.arc(this.tam * 0.5, this.tam * 0.5, this.tam * 0.375, 0, Math.PI * 2);
+		ctx.arc(75, 75, 56.25, 0, Math.PI * 2);
 		ctx.stroke();
 	}
 
@@ -46,10 +49,10 @@ class Simbolo {
 		ctx.beginPath();
 		ctx.lineWidth = 3;
 
-		ctx.moveTo(this.tam * 0.5, this.tam * 0.125);
-		ctx.lineTo(this.tam * (0.25 * Math.sqrt(3) + 0.5), this.tam * 0.875);
-		ctx.lineTo(this.tam - this.tam * (0.25 * Math.sqrt(3) + 0.5), this.tam * 0.875);
-		ctx.lineTo(this.tam * 0.5, this.tam * 0.125);
+		ctx.moveTo(75, 18.75);
+		ctx.lineTo(139.95, 131.75);
+		ctx.lineTo(10.05, 131.75);
+		ctx.lineTo(75, 18.75);
 
 		ctx.stroke();
 	}
@@ -60,11 +63,11 @@ class Simbolo {
 		ctx.beginPath();
 		ctx.lineWidth = 3;
 
-		ctx.moveTo(this.tam * 0.125, this.tam * 0.125);
-		ctx.lineTo(this.tam * 0.875, this.tam * 0.125);
-		ctx.lineTo(this.tam * 0.875, this.tam * 0.875);
-		ctx.lineTo(this.tam * 0.125, this.tam * 0.875);
-		ctx.lineTo(this.tam * 0.125, this.tam * 0.125);
+		ctx.moveTo(18.75, 18.75);
+		ctx.lineTo(131.75, 18.75);
+		ctx.lineTo(131.75, 131.75);
+		ctx.lineTo(18.75, 131.75);
+		ctx.lineTo(18.75, 18.75);
 
 		ctx.stroke();
 	}
