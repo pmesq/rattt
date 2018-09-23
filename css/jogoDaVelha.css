@@ -45,10 +45,14 @@ main {
 	padding: 0;
 	box-sizing: border-box;
 	transition: opacity .3s ease;
+	position: relative;
+	display: inline-block;
 }
 .simbolo {
 	position: absolute;
 	box-sizing: border-box;
+	left: 0;
+	top: 0;
 }
 .linha:first-child > .casa {
 	border-top-width: 1px;

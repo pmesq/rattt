@@ -8,30 +8,15 @@ class TicTacToe {
 		this.tradicional = (tabuleiro == 'tradicional');
 
 		this.simbolos = [
-			{
-				img: '../imgs/x.png',
-				nome: 'Xis'
-			}, {
-				img: '../imgs/o.png',
-				nome: 'Bolinha'
-			}, {
-				img: '../imgs/triangulo.png',
-				nome: 'Triângulo'
-			}, {
-				img: '../imgs/quadrado.png',
-				nome: 'Quadrado'
-			}, {
-				img: '../imgs/rat.png',
-				nome: 'Rato'
-			},
+			'Xis', 'Bolinha', 'Triângulo', 'Quadrado'
 		];
 
 		this.jogadores = [{ tipo: 'n', simbolo:
-			'../imgs/vazio.png' }];
+			'Nenhum' }];
 		for(let i = 1; i <= this.numJogadores; i++) {
 			this.jogadores.push({
 				tipo: 'usuario',
-				simbolo: this.simbolos[i - 1].img
+				simbolo: this.simbolos[(i - 1) % this.simbolos.length]
 			});
 		}
 
@@ -77,7 +62,7 @@ class TicTacToe {
 			$('main').append(this.linhaEl[i]);
 			for(let j = 0; j < this.colunas; j++) {
 				this.tabuleiro[i][j] = tab[i][j] - 1;
-				this.linhaEl[i].append($('<canvas class="casa"></canvas>'));
+				this.linhaEl[i].append($('<div class="casa"></div>'));
 				if(tab[i][j] == 0) {
 					$('.linha:eq(' + i + ') > .casa:eq(' + j + ')').css('cursor', 'default');
 					$('.linha:eq(' + i + ') > .casa:eq(' + j + ')').css(
@@ -116,8 +101,8 @@ class TicTacToe {
 		$('.label-simbolo:eq(' + i + ')').append('<select class="select-simbolo"></select>');
 		for(let s = 0; s < this.simbolos.length; s++) {
 			$('.select-simbolo:eq(' + i + ')').append(
-				'<option value="' + this.simbolos[s].img + '" ' + (i == s ? 'selected' : '') + '>'
-				+ this.simbolos[s].nome + '</option>'
+				'<option value="' + this.simbolos[s] + '" ' + (i == s ? 'selected' : '') + '>'
+				+ this.simbolos[s] + '</option>'
 			);
 		}
 
@@ -130,11 +115,17 @@ class TicTacToe {
 		this.casasPreenchidas = 0;
 		for(let i = 0; i < this.linhas; i++)
 			for(let j = 0; j < this.colunas; j++) {
-				if(this.tabuleiro[i][j] != -1)
-					this.preencheCasa([i, j]);
+				if(this.tabuleiro[i][j] != -1) {
+					this.tabuleiro[i][j] = 0;
+					$('.casa:eq(' + (this.colunas * i + j) + ')').css('cursor', 'pointer');
+				}
 			}
-		this.vez = 1;
+
+		$('.simbolo').fadeOut(300);
+		setTimeout(function() { $('.simbolo').detach();	}, 300);
+
 		$('#log').html('Vez do Jogador 1');
+		this.vez = 1;
 		if(this.jogadores[1].tipo != 'usuario')
 			this.jogadaComputador();
 	}
@@ -225,31 +216,16 @@ class TicTacToe {
 		}
 	}
 
-	bolinha(i, j) {
-		let canvas = $('<canvas class="simbolo"></canvas>');
-		let tam = parseInt($('.casa').css('width'));
-		canvas.css('width', tam * 0.75 + 'px');
-		canvas.css('height', tam * 0.75 + 'px');
-		canvas.css('border', '3px solid black');
-		canvas.css('border-radius', '360px');
-		$('.linha:eq(' + i + ')').append(canvas);
-		canvas.css('left', tam * (j + 0.125) + 'px');
-		canvas.css('top', tam * 0.125);
-	}
-
 	preencheCasa(pos) {
 		let i = pos[0], j = pos[1];
 		this.tabuleiro[i][j] = this.vez;
-		$('.casa:eq(' + (this.colunas * i + j) + ')').css(
-			'background-image',
-			'url("' + this.jogadores[this.vez].simbolo + '")'
+		let simbolo = new Simbolo(
+			$('.casa')[this.colunas * i + j],
+			this.jogadores[this.vez].simbolo
 		);
-		//this.bolinha(i, j);
 
-		$('.casa:eq(' + (this.colunas * i + j) + ')').css(
-			'cursor', this.vez ? 'default' : 'pointer'
-		);
-		if(this.vez) this.casasPreenchidas++;
+		$('.casa:eq(' + (this.colunas * i + j) + ')').css('cursor', 'default');
+		this.casasPreenchidas++;
 	}
 
 	casoAleatorio() {
