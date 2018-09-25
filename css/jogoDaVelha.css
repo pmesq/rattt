@@ -106,6 +106,7 @@ select {
 	border-radius: 360px;
 	cursor: pointer;
 	transition: all .25s ease;
+	z-index: 1;
 }
 #botao-help {
 	top: 20px;
@@ -122,6 +123,7 @@ select {
 	top: 100px;
 	display: block;
 	opacity: 0;
+	z-index: 2;
 }
 .janela > p, .janela li {
 	text-align: justify;
@@ -146,6 +148,7 @@ select {
 #botao-jogar:hover {
 	background-color: white;
 	color: #004b5e;
+	border: 2px solid #004b5e;
 }
 
 .personalizacao {
