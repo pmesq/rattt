@@ -1,5 +1,5 @@
 let ttt;
-let tabuleiro, linhas, colunas, sequencia, jogadores;
+let props = {};
 $('#log').hide();
 $('.botao').hide();
 
@@ -41,12 +41,12 @@ $('input').click(function() {
 function jogo() {
 	$('main').html('');
 
-	ttt = new TicTacToe(tabuleiro, linhas, colunas, sequencia, jogadores);
+	ttt = new TicTacToe(props);
 
 	$('.casa').click(function() {
 		let indice = $('.casa').index($(this));
-		let i = Math.floor(indice / colunas);
-		let j = indice % colunas;
+		let i = Math.floor(indice / props.colunas);
+		let j = indice % props.colunas;
 		ttt.jogadaUsuario(i, j);
 	});
 
@@ -70,19 +70,28 @@ function jogo() {
 		ttt.atualizaSimboloJogador(indice, simbolo);
 	});
 
-	configuraElementos(jogadores);
+	configuraElementos(props.jogadores, props.linhas, props.colunas);
 }
 
 $('#botao-jogar').click(function() {
-	linhas = $('#input-linhas').val();
-	colunas = $('#input-colunas').val();
-	sequencia = $('#input-sequencia').val();
-	jogadores = $('#input-jogadores').val();
-	tabuleiro = new Array(linhas);
-	for(let i = 0; i < linhas; i++) {
-		tabuleiro[i] = new Array(colunas);
-		for(let j = 0; j < colunas; j++)
-			tabuleiro[i][j] = 1;
+
+	props.linhas = $('#input-linhas').val();
+	props.colunas = $('#input-colunas').val();
+	props.sequencia = $('#input-sequencia').val();
+	props.gravidade = $('#input-gravidade').val();
+	props.jogadores = $('#input-jogadores').val();
+	props.tabuleiro = new Array(props.linhas);
+
+	if(props.gravidade == 0) props.gravidade = false;
+	else if(props.gravidade == 1) props.gravidade = "cima";
+	else if(props.gravidade == 2) props.gravidade = "direita";
+	else if(props.gravidade == 3) props.gravidade = "baixo";
+	else if(props.gravidade == 4) props.gravidade = "esquerda";
+
+	for(let i = 0; i < props.linhas; i++) {
+		props.tabuleiro[i] = new Array(props.colunas);
+		for(let j = 0; j < props.colunas; j++)
+			props.tabuleiro[i][j] = 1;
 	}
 
 	jogo();
@@ -97,10 +106,11 @@ for(let i = 0; i < mapas.length; i++) {
 
 $('.botao-mapa').click(function() {
 	let i = $('.botao-mapa').index($(this));
-	linhas = mapas[i].linhas;
-	colunas = mapas[i].colunas;
-	sequencia = mapas[i].sequencia;
-	jogadores = mapas[i].jogadores;
-	tabuleiro = mapas[i].tabuleiro;
+	props.tabuleiro = mapas[i].tabuleiro;
+	props.linhas = mapas[i].linhas;
+	props.colunas = mapas[i].colunas;
+	props.sequencia = mapas[i].sequencia;
+	props.gravidade = mapas[i].gravidade;
+	props.jogadores = mapas[i].jogadores;
 	jogo();
 });

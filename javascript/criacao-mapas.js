@@ -86,6 +86,7 @@ $('#salvar').click(function() {
 			linhas: numLinhas,
 			colunas: numColunas,
 			sequencia: 3,
+			gravidade: false,
 			jogadores: 2,
 			tabuleiro: tab
 		});

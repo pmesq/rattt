@@ -1,11 +1,12 @@
 class TicTacToe {
-	constructor(tabuleiro, linhas, colunas, sequencia, jogadores) {
-		this.linhas = linhas;
-		this.colunas = colunas;
-		this.numJogadores = jogadores;
-		this.sequenciaNecessaria = sequencia;
+	constructor(props) {
+		this.linhas = props.linhas;
+		this.colunas = props.colunas;
+		this.numJogadores = props.jogadores;
+		this.sequenciaNecessaria = props.sequencia;
+		this.gravidade = props.gravidade;
 
-		this.tradicional = (tabuleiro == 'tradicional');
+		this.tradicional = (props.tabuleiro == 'tradicional');
 
 		this.simbolos = [
 			'Xis', 'Bolinha', 'Triângulo', 'Quadrado'
@@ -20,15 +21,15 @@ class TicTacToe {
 			});
 		}
 
-		if(tabuleiro == 'tradicional')
-			tabuleiro = [[1, 1, 1], [1, 1, 1], [1, 1, 1]];
+		if(props.tabuleiro == 'tradicional')
+			props.tabuleiro = [[1, 1, 1], [1, 1, 1], [1, 1, 1]];
 
 		this.casas = 0;
-		for(let i = 0; i < linhas; i++)
-			for(let j = 0; j < colunas; j++)
-				if(tabuleiro[i][j]) this.casas++;
+		for(let i = 0; i < this.linhas; i++)
+			for(let j = 0; j < this.colunas; j++)
+				if(props.tabuleiro[i][j]) this.casas++;
 
-		this.criaTabuleiro(tabuleiro);
+		this.criaTabuleiro(props.tabuleiro);
 
 		for(let i = 0; i < this.numJogadores; i++) {
 			this.criaJanelaJogador(i);
@@ -363,10 +364,36 @@ class TicTacToe {
 		}, 500);
 	}
 
-	jogadaUsuario(i, j) {
+	realizaAtracaoGravitacional(linha, coluna) {
+		switch(this.gravidade) {
+			case 'cima':
+				for(let i = 0; i < this.linhas; i++)
+					if(this.tabuleiro[i][coluna] == 0) return [i, coluna];
+				break;
+			case 'direita':
+				for(let i = this.colunas - 1; i >= 0; i--)
+					if(this.tabuleiro[linha][i] == 0) return [linha, i];
+				break;
+			case 'baixo':
+				for(let i = this.linhas - 1; i >= 0; i--)
+					if(this.tabuleiro[i][coluna] == 0) return [i, coluna];
+				break;
+			case 'esquerda':
+				for(let i = 0; i < this.colunas; i++)
+					if(this.tabuleiro[linha][i] == 0) return [linha, i];
+				break;
+		}
+	}
+
+	jogadaUsuario(linha, coluna) {
 		if(this.jogadores[this.vez].tipo == 'usuario'
-		   && this.tabuleiro[i][j] == 0) {
-			this.preencheCasa([i, j]);
+		   && this.tabuleiro[linha][coluna] == 0) {
+
+		   	if(this.gravidade)
+		   		this.preencheCasa(this.realizaAtracaoGravitacional(linha, coluna));
+		   	else
+		   		this.preencheCasa([linha, coluna]);
+
 			this.fimJogada();
 		}
 	}

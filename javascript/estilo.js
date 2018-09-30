@@ -1,6 +1,6 @@
 $('.janela').hide();
 $('.janela').css('opacity', '1');
-function configuraElementos(jogadores) {
+function configuraElementos(jogadores, linhas, colunas) {
 	let larguraHTML = parseInt($('html').css('width'));
 	let alturaHTML = parseInt($('html').css('height'));
 
