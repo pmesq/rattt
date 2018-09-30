@@ -1,10 +1,18 @@
-const tab = 'tradicional', linhas = 3, colunas = 3, sequencia = 3, jogadores = 2;
-let ttt = new TicTacToe(tab, linhas, colunas, sequencia, jogadores);
+const props = {
+	tabuleiro: 'tradicional',
+	linhas: 3,
+	colunas: 3,
+	sequencia: 3,
+	gravidade: false,
+	jogadores: 2
+}
+
+let ttt = new TicTacToe(props);
 
 $('.casa').click(function() {
 	let indice = $('.casa').index($(this));
-	let i = Math.floor(indice / colunas);
-	let j = indice % colunas;
+	let i = Math.floor(indice / props.colunas);
+	let j = indice % props.colunas;
 	ttt.jogadaUsuario(i, j);
 });
 
@@ -24,4 +32,4 @@ $('.select-simbolo').change(function() {
 	ttt.atualizaSimboloJogador(indice, simbolo);
 });
 
-configuraElementos(jogadores);
+configuraElementos(props.jogadores, props.linhas, props.colunas);

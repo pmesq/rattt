@@ -9,7 +9,7 @@ class TicTacToe {
 		this.tradicional = (props.tabuleiro == 'tradicional');
 
 		this.simbolos = [
-			'Xis', 'Bolinha', 'Triângulo', 'Quadrado'
+			'Rato', 'Bolinha', 'Triângulo', 'Quadrado', 'Rato', 'Pizza'
 		];
 
 		this.jogadores = [{ tipo: 'n', simbolo:
