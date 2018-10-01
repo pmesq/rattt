@@ -83,13 +83,51 @@ class Simbolo {
 		ctx.lineTo(75, 125);
 		ctx.lineTo(20, 35);
 		ctx.arc(75, 125, 105, Math.PI * 1.35, Math.PI * 1.675);
-
-		ctx.moveTo(75, 125);
+		
+		ctx.fillStyle = '#999999';
+		ctx.fill();
 		ctx.stroke();
 
 		ctx.beginPath();
+		ctx.moveTo(75, 125);
 		ctx.arc(75, 125, 10, 0, Math.PI * 2);
 		ctx.fillStyle = 'black';
+		ctx.fill();
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(65, 50);
+		ctx.arc(55, 50, 10, 0, Math.PI * 2);
+		ctx.moveTo(105, 50);
+		ctx.arc(95, 50, 10, 0, Math.PI * 2);
+		ctx.fillStyle = 'white';
+		ctx.fill();
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(55, 50);
+		ctx.arc(55, 52.5, 1.5, 0, Math.PI * 2);
+		ctx.moveTo(95, 50);
+		ctx.arc(95, 52.5, 1.5, 0, Math.PI * 2);
+		ctx.fillStyle = 'black';
+		ctx.fill();
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(25, 45);
+		ctx.arc(25, 30, 15, Math.PI * 0.45, Math.PI * 1.95);
+		ctx.moveTo(110, 27.5);
+		ctx.arc(125, 30, 15, Math.PI * 1.1, Math.PI * 0.55);
+		ctx.fillStyle = '#999999';
+		ctx.fill();
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(33, 30);
+		ctx.arc(25, 30, 8, 0, Math.PI * 2);
+		ctx.moveTo(133, 30);
+		ctx.arc(125, 30, 8, 0, Math.PI * 2);
+		ctx.fillStyle = '#f9d1ac';
 		ctx.fill();
 		ctx.stroke();
 	}
