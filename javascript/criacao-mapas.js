@@ -19,20 +19,39 @@ for(let i = 0; i < linhas; i++) {
 	}
 }
 
-$('.casa').click(function() {
-	let indice = $('.casa').index($(this));
+function alternaCasa(casa) {
+	let indice = $('.casa').index(casa);
 	let i = Math.floor(indice / colunas);
 	let j = indice % colunas;
 	if(tabuleiro[i][j]) {
+		console.log('if');
 		tabuleiro[i][j] = 0;
 		lin[i]--;
 		col[j]--;
-		$(this).css('opacity', '.5');
+		casa.css('opacity', '.5');
 	} else {
+		console.log('else');
 		tabuleiro[i][j] = 1;
 		lin[i]++;
 		col[j]++;
-		$(this).css('opacity', '1');
+		casa.css('opacity', '1');
+	}
+}
+
+let isMouseDown = false;
+
+$('.casa').mousedown(function() {
+	isMouseDown = true;
+	alternaCasa($(this));
+});
+
+$('.casa').mouseup(function() {
+	isMouseDown = false;
+});
+
+$('.casa').mouseenter(function() {
+	if(isMouseDown) {
+		alternaCasa($(this));
 	}
 });
 

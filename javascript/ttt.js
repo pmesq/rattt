@@ -367,6 +367,7 @@ class TicTacToe {
 	realizaAtracaoGravitacional(linha, coluna) {
 		switch(this.gravidade) {
 			case 'cima':
+				
 				for(let i = 0; i < this.linhas; i++)
 					if(this.tabuleiro[i][coluna] == 0) return [i, coluna];
 				break;
