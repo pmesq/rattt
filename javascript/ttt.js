@@ -356,6 +356,8 @@ class TicTacToe {
 						that.preencheCasa(casa);
 					else if(casa = that.tradicional_defensivaCantoMedio())
 						that.preencheCasa(casa);
+					else if(casa = that.tradicional_canto())
+						that.preencheCasa(casa);
 					else
 						that.preencheCasa(that.casoAleatorio());
 					break;
