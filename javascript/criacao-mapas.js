@@ -1,5 +1,4 @@
-let linhas = 20;
-let colunas = 20;
+const linhas = 20, colunas = 20;
 
 let lin = new Array(linhas);
 let col = new Array(colunas);
@@ -19,28 +18,56 @@ for(let i = 0; i < linhas; i++) {
 	}
 }
 
-function alternaCasa(casa) {
+function marcaCasa(casa) {
 	let indice = $('.casa').index(casa);
 	let i = Math.floor(indice / colunas);
 	let j = indice % colunas;
-	if(tabuleiro[i][j]) {
-		tabuleiro[i][j] = 0;
-		lin[i]--;
-		col[j]--;
-		casa.css('opacity', '.5');
-	} else {
-		tabuleiro[i][j] = 1;
-		lin[i]++;
-		col[j]++;
-		casa.css('opacity', '1');
-	}
+	tabuleiro[i][j] = 1;
+	lin[i]++;
+	col[j]++;
+	casa.css('opacity', '1');
 }
+
+function desmarcaCasa(casa) {
+	let indice = $('.casa').index(casa);
+	let i = Math.floor(indice / colunas);
+	let j = indice % colunas;
+	tabuleiro[i][j] = 0;
+	lin[i]--;
+	col[j]--;
+	casa.css('opacity', '.5');
+}
+
+let marcar = true;
+
+$('#marcar').click(function() { marcar = true; });
+$('#desmarcar').click(function() { marcar = false; });
+
+$('#marcar-tudo').click(function() {
+	$('.casa').css('opacity', '1');
+	lin.fill(linhas);
+	col.fill(colunas);
+	for(let i = 0; i < linhas; i++)
+		for(let j = 0; j < colunas; j++)
+			tabuleiro[i][j] = 1;
+	marcar = false;
+});
+
+$('#desmarcar-tudo').click(function() {
+	$('.casa').css('opacity', '.5');
+	lin.fill(0);
+	col.fill(0);
+	for(let i = 0; i < linhas; i++)
+		for(let j = 0; j < colunas; j++)
+			tabuleiro[i][j] = 0;
+	marcar = true;
+});
 
 let isMouseDown = false;
 
 $('.casa').mousedown(function() {
 	isMouseDown = true;
-	alternaCasa($(this));
+	marcar ? marcaCasa($(this)) : desmarcaCasa($(this));
 });
 
 $('.casa').mouseup(function() {
@@ -49,7 +76,7 @@ $('.casa').mouseup(function() {
 
 $('.casa').mouseenter(function() {
 	if(isMouseDown) {
-		alternaCasa($(this));
+		marcar ? marcaCasa($(this)) : desmarcaCasa($(this));
 	}
 });
 
