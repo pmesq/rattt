@@ -28,7 +28,7 @@ class Simbolo {
 		ctx.beginPath();
 		
 		ctx.lineWidth = 3;
-		ctx.strokeStyle = '#6273a8';
+		ctx.strokeStyle = '#00a4dd';
 
 		ctx.moveTo(18.75, 18.75);
 		ctx.lineTo(131.75, 131.75);
@@ -44,7 +44,7 @@ class Simbolo {
 		ctx.beginPath();
 		
 		ctx.lineWidth = 3;
-		ctx.strokeStyle = '#cc3333';
+		ctx.strokeStyle = '#00a4dd';
 		
 		ctx.arc(75, 75, 56.25, 0, Math.PI * 2);
 		ctx.stroke();
@@ -56,7 +56,7 @@ class Simbolo {
 		ctx.beginPath();
 
 		ctx.lineWidth = 5;
-		ctx.strokeStyle = 'lightgreen';
+		ctx.strokeStyle = '#00a4dd';
 
 		ctx.moveTo(75, 18.75);
 		ctx.lineTo(139.95, 131.75);
@@ -72,7 +72,7 @@ class Simbolo {
 		ctx.beginPath();
 		
 		ctx.lineWidth = 5;
-		ctx.strokeStyle = 'pink';
+		ctx.strokeStyle = '#00a4dd';
 		
 		ctx.moveTo(18.75, 18.75);
 		ctx.lineTo(131.75, 18.75);
@@ -87,7 +87,7 @@ class Simbolo {
 		let ctx = this.canvas.getContext('2d');
 
 		ctx.lineWidth = 3;
-		
+
 		ctx.beginPath();
 
 		ctx.moveTo(130, 35);

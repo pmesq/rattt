@@ -13,9 +13,9 @@ for(let i = 0; i < linhas; i++) {
 	$('main').append('<div class="linha"></div>');
 	for(let j = 0; j < colunas; j++) {
 		tabuleiro[i][j] = 0;
-		let canvas = $('<canvas class="casa"></canvas>');
-		canvas.css('opacity', '.5');
-		$('.linha:eq(' + i + ')').append(canvas);
+		let casa = $('<div class="casa"></div>');
+		casa.css('opacity', '.5');
+		$('.linha:eq(' + i + ')').append(casa);
 	}
 }
 
@@ -24,13 +24,11 @@ function alternaCasa(casa) {
 	let i = Math.floor(indice / colunas);
 	let j = indice % colunas;
 	if(tabuleiro[i][j]) {
-		console.log('if');
 		tabuleiro[i][j] = 0;
 		lin[i]--;
 		col[j]--;
 		casa.css('opacity', '.5');
 	} else {
-		console.log('else');
 		tabuleiro[i][j] = 1;
 		lin[i]++;
 		col[j]++;
@@ -58,18 +56,17 @@ $('.casa').mouseenter(function() {
 let larguraHTML = parseInt($('html').css('width'));
 let alturaHTML = parseInt($('html').css('height'));
 
+let tamanho;
 
-if(larguraHTML > alturaHTML) {
-	let tamanho = (alturaHTML - 200) / linhas + 'px';
-	$('.linha').css('height', tamanho);
-	$('.casa').css('width', tamanho);
-	$('.casa').css('height', tamanho);
-} else {
-	let tamanho = (larguraHTML - 50) / linhas + 'px';
-	$('.linha').css('height', tamanho);
-	$('.casa').css('width', tamanho);
-	$('.casa').css('height', tamanho);
-}
+if(larguraHTML > alturaHTML)
+	tamanho = (alturaHTML - 200) / linhas;
+else
+	tamanho = (larguraHTML - 50) / linhas;
+
+$('main').css('width', tamanho * 20 + 'px');
+$('.linha').css('height', tamanho + 'px');
+$('.casa').css('width', tamanho + 'px');
+$('.casa').css('height', tamanho + 'px');
 
 $('#salvar').click(function() {
 	let mapas = JSON.parse(localStorage.getItem('mapas'));

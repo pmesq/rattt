@@ -3,18 +3,27 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Rattt</title>
+
+		<link rel="stylesheet" media="screen" href="../css/jogoDaVelha.css">
+		<link rel="stylesheet" media="screen" href="../css/estilo.css">
+		
 		<link rel="icon" href="../imgs/rat.png">
+
 		<link rel="stylesheet"
 			href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet"
 			href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-		<link rel="stylesheet" media="screen" href="../css/jogoDaVelha.css">
 	</head>
 	<body>
 		<header>
-			<h1>Rattt</h1>
-			<p id="log">Vez do Jogador 1</p>
+			<h1>Rattt.io</h1>
 		</header>
+		<aside>
+			<a href="tradicional.html">Tradicional</a>
+			<a href="personalizado.html">Personalizado</a>
+			<a href="criar-mapa.html">Criação de mapas</a>
+		</aside>
+		<p id="log">Vez do Jogador 1</p>
 		<nav>
 			<button type="button" class="botao botao-janela" id="botao-help">i</button>
 			<button type="button" class="botao" id="botao-reiniciar">↻</button>
@@ -66,6 +75,7 @@
 		<div id="janelas-jogador">
 		</div>
 		<script src="../javascript/jquery.js"></script>
+		<script src="../javascript/menu.js"></script>
 		<script src="../javascript/simbolos.js"></script>
 		<script src="../javascript/ttt.js"></script>
 		<script src="../javascript/estilo.js"></script>
