@@ -1,5 +1,5 @@
 * {
-    font-family: 'Roboto';
+    font-family: 'Quicksand', 'Roboto', 'Arial', sans-serif;
 }
 
 html, body {
@@ -42,4 +42,28 @@ aside > a {
 
 aside > a:hover {
     background-color: #303030;
+}
+
+#controles {
+    display: flex;
+    justify-content: center;
+    background: none;
+    margin-top: 10px;
+}
+
+.botao-controle {
+    cursor: pointer;
+    outline: none;
+    background: none;
+    border: 1px solid #00a4dd;
+    color: #00a4dd;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    transition: all .2s ease;
+}
+
+.botao-controle:hover {
+    color: white;
+    background: #00a4dd;
 }
