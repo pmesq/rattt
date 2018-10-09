@@ -1,2 +1,2 @@
 # Rattt
-[Link](https://pedrocesarmesquita.github.io/rattt/pages/tradicional.html)
+[Página inicial](https://pedrocesarmesquita.github.io/rattt/pages/)

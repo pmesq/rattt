@@ -16,7 +16,7 @@ $('.casa').click(function() {
 	ttt.jogadaUsuario(i, j);
 });
 
-$('#botao-reiniciar').click(function() {
+$('#reiniciar').click(function() {
 	ttt.reinicia();
 });
 

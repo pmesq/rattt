@@ -27,10 +27,6 @@
 		</aside>
 		
 		<p id="log">Vez do Jogador 1</p>
-		<nav>
-			<button type="button" class="botao botao-janela" id="botao-help">i</button>
-			<button type="button" class="botao" id="botao-reiniciar">↻</button>
-		</nav>
 		<main>
 			<label class="personalizacao">
 				Linhas<br>
@@ -57,24 +53,11 @@
 			<a href="criar-mapa.html">Criar mapa</a><br>
 			<div id="mapas"></div>
 		</main>
-		<div class="janela" id="janela-help">
-			<h2>Instruções</h2>
-			<p>
-				Jogo da velha tradicional.
-				Vence quem marcar primeiro 3 casas seguidas na horizontal,
-				vertical ou diagonal. Cada um joga alternadamente.
-				<ul>
-					<li>
-						Para marcar uma casa -> Clique sobre ela ou use os números
-						do teclado.
-					</li>
-					<li>
-						Para reiniciar -> Clique no botão Reiniciar ou aperte R.
-					</li>
-				</ul>
-			</p>
-			<button class="fechar-janela">X</button>
+
+		<div id="controles">
+			<button class="botao-controle" type="button" id="reiniciar">Reiniciar</button>
 		</div>
+			
 		<div id="janelas-jogador">
 		</div>
 		<script src="../javascript/jquery.js"></script>

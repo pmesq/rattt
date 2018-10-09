@@ -80,8 +80,8 @@ class TicTacToe {
 	}
 
 	criaJanelaJogador(i) {
-		$('nav').append('<button class="botao botao-janela botao-jogador">'+(i+1)+'</button>');
-		$('.botao-jogador:eq(' + i + ')').css('top', (160 + i * 70) + 'px');
+		$('#controles').append('<button class="botao-controle botao-jogador">Jogador '+(i+1)+'</button>');
+		
 
 		$('#janelas-jogador').append('<div class="janela janela-jogador"></div>');
 

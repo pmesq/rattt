@@ -11,8 +11,8 @@ function configuraElementos(jogadores, linhas, colunas) {
 		$('.janela:eq(' + i + ')').css('left', (larguraHTML - larguraJanela) / 2 + 'px');
 	}
 
-	$('.botao-janela').click(function() {
-		let i = $('.botao-janela').index($(this));
+	$('.botao-jogador').click(function() {
+		let i = $('.botao-jogador').index($(this));
 		for(let j = 0; j <= jogadores; j++) {
 			if(j != i) $('.janela:eq(' + j + ')').fadeOut(400);
 		}

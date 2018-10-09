@@ -9,12 +9,10 @@ $h1.click(function() {
 
 $menu.mouseenter(function() {
     $menu.css('left', '0');
-    console.log('enter');
 });
 
 $menu.mouseout(function() {
     if(!menuAberto)
         $menu.css('left', '-184px');
     $menu.mousemove(function() { $menu.css('left', '0'); });
-    console.log('out');
 });

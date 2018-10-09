@@ -1,7 +1,7 @@
 let ttt;
 let props = {};
 $('#log').hide();
-$('.botao').hide();
+$('.botao-controle').hide();
 
 $('#input-linhas').select();
 
@@ -52,9 +52,9 @@ function jogo() {
 
 
 	$('#log').show();
-	$('.botao').show();
+	$('.botao-controle').show();
 
-	$('#botao-reiniciar').click(function() {
+	$('#reiniciar').click(function() {
 		ttt.reinicia();
 	});
 
