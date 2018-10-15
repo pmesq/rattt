@@ -32,17 +32,26 @@ aside {
     background-color: #3b3b3b;
 }
 
-aside > a {
+aside a {
     color: #00a4dd;
     font-size: 20px;
     display: block;
     text-decoration: none;
     text-align: right;
     padding: 10px 16px;
+    cursor: pointer;
 }
 
-aside > a:hover {
+aside a:hover {
     background-color: #303030;
+}
+
+.submenu > a {
+	padding: 10px 32px;
+}
+
+aside > div {
+	display: hidden;
 }
 
 #controles {
@@ -67,17 +76,4 @@ aside > a:hover {
 .botao-controle:hover {
     color: white;
     background: #00a4dd;
-}
-
-.personalizacao{
-  padding: 30px;
-  font-size: 24px;
-}
-
-.personalizacao input{
-  margin-top: 10px;
-  height: 25px;
-  width: 40px;
-  font-size: 24px;
-  border-radius: 25%;
 }
