@@ -68,3 +68,16 @@ aside > a:hover {
     color: white;
     background: #00a4dd;
 }
+
+.personalizacao{
+  padding: 30px;
+  font-size: 24px;
+}
+
+.personalizacao input{
+  margin-top: 10px;
+  height: 25px;
+  width: 40px;
+  font-size: 24px;
+  border-radius: 25%;
+}
