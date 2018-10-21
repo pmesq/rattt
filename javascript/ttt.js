@@ -1,8 +1,8 @@
 class TicTacToe {
 	constructor(props) {
-		this.linhas = props.linhas;
-		this.colunas = props.colunas;
-		this.numJogadores = props.jogadores;
+		this.linhas = props.tabuleiro.length;
+		this.colunas = props.tabuleiro[0].length;
+		this.numJogadores = props.jogadores.length;
 		this.sequenciaNecessaria = props.sequencia;
 		this.gravidade = props.gravidade;
 
@@ -12,17 +12,10 @@ class TicTacToe {
 			'Xis', 'Bolinha', 'Triângulo', 'Quadrado', 'Rato', 'Pizza'
 		];
 
-		this.jogadores = [{ tipo: 'n', simbolo:
-			'Nenhum' }];
-		for(let i = 1; i <= this.numJogadores; i++) {
-			this.jogadores.push({
-				tipo: 'usuario',
-				simbolo: this.simbolos[(i - 1) % this.simbolos.length]
-			});
-		}
+		this.jogadores = [{ tipo: 'n', simbolo: 'Nenhum' }];
 
-		if(props.tabuleiro == 'tradicional')
-			props.tabuleiro = [[1, 1, 1], [1, 1, 1], [1, 1, 1]];
+		for(let i = 1; i <= this.numJogadores; i++)
+			this.jogadores.push(props.jogadores[i-1]);
 
 		this.casas = 0;
 		for(let i = 0; i < this.linhas; i++)
@@ -369,7 +362,6 @@ class TicTacToe {
 	realizaAtracaoGravitacional(linha, coluna) {
 		switch(this.gravidade) {
 			case 'cima':
-				
 				for(let i = 0; i < this.linhas; i++)
 					if(this.tabuleiro[i][coluna] == 0) return [i, coluna];
 				break;
