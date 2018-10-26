@@ -157,10 +157,8 @@ class TicTacToe {
 	}
 	
 	criaCartas(){
-		if(props.cartas){
-			$('body').html( '<aside id="cartas"><h2>Suas cartas</h2></aside>' + $('body').html() );
-			console.log('fiz otario');
-		}
+		if(props.cartas)
+			$('aside').after( '<aside id="cartas"><h2>Suas cartas</h2></aside>');
 	}
 
 	criaJanelaJogador(i) {
