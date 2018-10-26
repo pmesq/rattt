@@ -71,6 +71,8 @@ function jogo() {
 	});
 
 	configuraElementos(props.jogadores, props.linhas, props.colunas);
+	ttt.criaCartas();
+	ttt.adicionaCarta(ttt.cartas[0]);
 }
 
 $('#botao-jogar').click(function() {
@@ -80,6 +82,7 @@ $('#botao-jogar').click(function() {
 	props.sequencia = $('#input-sequencia').val();
 	props.gravidade = $('#input-gravidade').val();
 	props.jogadores = $('#input-jogadores').val();
+	props.cartas = $('#input-cartas').prop('checked');
 	props.tabuleiro = new Array(props.linhas);
 
 	if(props.gravidade == 0) props.gravidade = false;

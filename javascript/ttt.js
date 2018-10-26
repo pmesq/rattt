@@ -5,17 +5,96 @@ class TicTacToe {
 		this.numJogadores = props.jogadores.length;
 		this.sequenciaNecessaria = props.sequencia;
 		this.gravidade = props.gravidade;
+		this.cartasOn = props.cartas;
 
 		this.tradicional = (props.tabuleiro == 'tradicional');
+		
+		this.estadoCasas = new Array(this.linhas);
+		for (let i = 0; i < this.linhas; i++){
+			this.estadoCasas[i] = new Array(this.colunas);
+			for(let j = 0; j < this.colunas; j++){
+				this.estadoCasas[i][j] = 0; //0-Neutra; 1-Congelada; 2-Molhada; 3-petrificada;
+			}
+		}
 
 		this.simbolos = [
 			'Xis', 'Bolinha', 'Triângulo', 'Quadrado', 'Rato', 'Pizza'
 		];
+		this.cartas = [		
+			{
+				nome: "Ataque",
+				tipo: 0, //0-Neutro ou 1-Fogo.
+				descricao: "Marca uma casa <span class='neutra'>Neutra</span> ou <span class='molhada'>Molhada</span>.",
+				acao: function(that){
+					
+				}
+			},
+			{
+				nome: "Defesa",
+				tipo: 0,
+				descricao: "Desmarca uma casa <span class='neutra'>Neutra</span> ou <span class='molhada'>Molhada</span>.",
+				acao: function(that){
+					
+				}
+			},
+			{
+				nome: "Contra-ataque",
+				tipo: 0,
+				descricao: "Marca uma casa <span class='neutra'>Neutra</span> ou <span class='molhada'>Molhada</span>. Funciona para casas já marcadas.",
+				acao: function(that){
+					
+				}
+			},
+			{
+				nome: "Quione",
+				tipo: 0,
+				descricao: "Congela uma casa de modo que apenas cartas do tipo <span class='fogo'>Fogo</span> possam alterá-la.",
+				acao: function(that){
+					
+				}
+			},
+			{
+				nome: "Poseidon",
+				tipo: 0,
+				descricao: "Molha uma casa de modo que apenas cartas que NÃO são do tipo <span class='fogo'>Fogo</span> possam alterá-la.",
+				acao: function(that){
+					
+				}
+			},
+			{
+				nome: "Medusa",
+				tipo: 0,
+				descricao: "Petrifica uma casa e a torna inalterável até que Perseu seja invocado.",
+				acao: function(that){
+					
+				}
+			},
+			{
+				nome: "Perseu",
+				tipo: 0,
+				descricao: "Neutraliza todas as casas petrificadas do tabuleiro.",
+				acao: function(that){
+					
+				}
+			},
+			{
+				nome: "Zap",
+				tipo: 0,
+				descricao: "Vence o jogo imediatamente.",
+				acao: function(that){
+					$('#log').html('Jogador ' + that.vez + ' venceu usando Zap!');
+					$('.casa').css('cursor', 'default');
+					that.vez = 0;
+				}
+			}
+
+		];
 
 		this.jogadores = [{ tipo: 'n', simbolo: 'Nenhum' }];
 
-		for(let i = 1; i <= this.numJogadores; i++)
+		for(let i = 1; i <= this.numJogadores; i++){
 			this.jogadores.push(props.jogadores[i-1]);
+		}
 
 		this.casas = 0;
 		for(let i = 0; i < this.linhas; i++)
@@ -69,6 +148,18 @@ class TicTacToe {
 					);
 				}
 			}
+		}
+	}
+	
+	adicionaCarta(carta){
+		$('#cartas').append('<div class="carta"><h3>' + carta.nome + 
+			' <span class="tipo">' + carta.tipo + '</span></h3><p>'+ carta.descricao +'</p></div>');
+	}
+	
+	criaCartas(){
+		if(props.cartas){
+			$('body').html( '<aside id="cartas"><h2>Suas cartas</h2></aside>' + $('body').html() );
+			console.log('fiz otario');
 		}
 	}
 
