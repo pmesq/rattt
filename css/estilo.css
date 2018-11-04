@@ -30,6 +30,7 @@ aside {
     left: -184px;
     transition: all .5s ease;
     background-color: #3b3b3b;
+    height: calc(100% - 80px);
 }
 
 aside a {

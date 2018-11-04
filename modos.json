@@ -1,0 +1,32 @@
+{
+    "classic": {
+        "tabuleiro": {
+            "linhas": 3,
+            "colunas": 3,
+            "regular": true,
+            "mapa": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
+        },
+        "sequencia": {
+            "num": 3,
+            "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+        },
+        "gravidade": false,
+        "numJogadores": 2,
+        "jogadores": [
+            {
+                "nome": "Rato",
+                "tipo": "usuario",
+                "simbolo": "X",
+                "tipoEditavel": true,
+                "simboloEditavel": true
+            }, {
+                "nome": "Eduardo",
+                "tipo": "minnie",
+                "simbolo": "O",
+                "tipoEditavel": true,
+                "simboloEditavel": true
+            }
+        ],
+        "profundidadeMaxima": 9
+    }
+}
