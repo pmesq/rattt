@@ -42,7 +42,6 @@ class Game {
         console.log(barra);
     }
 
-
     reinicia(tabuleiro = this.tabuleiro) {
         clearTimeout(this.timeout);
         this.vez = 0; // Passa a vez para o jogador 1
@@ -335,6 +334,22 @@ class Game {
         return this.prideGanhar(jogador ? 0 : 1);
     }
 
+    prideMeio() {
+        if(this.tabuleiro.mapa[1][1] == '_') return { conclusao: true, posicao: { linha: 1, coluna: 1 } };
+        return { conclusao: false };
+    }
+
+    prideCanto() {
+        let cantosDisp = [];
+        if(this.tabuleiro.mapa[0][0] == '_') cantosDisp.push({ linha: 0, coluna: 0 });
+        if(this.tabuleiro.mapa[0][2] == '_') cantosDisp.push({ linha: 0, coluna: 2 });
+        if(this.tabuleiro.mapa[2][0] == '_') cantosDisp.push({ linha: 2, coluna: 0 });
+        if(this.tabuleiro.mapa[2][2] == '_') cantosDisp.push({ linha: 2, coluna: 2 });
+        if(cantosDisp.length)
+            return { conclusao: true, posicao: cantosDisp[Math.floor(Math.random() * cantosDisp.length)]};
+        return { conclusao: false };
+    }
+
     randomBotPlay() {
         let arrCasasDisponiveis = this.casasDisponiveis();
         return arrCasasDisponiveis[Math.floor(Math.random() * arrCasasDisponiveis.length)];
@@ -343,8 +358,16 @@ class Game {
     prideBotPlay() {
         let resultado = this.prideGanhar();
         if(resultado.conclusao) return resultado.posicao;
+
         resultado = this.pridePerder();
         if(resultado.conclusao) return resultado.posicao;
+
+        resultado = this.prideMeio();
+        if(resultado.conclusao) return resultado.posicao;
+
+        resultado = this.prideCanto();
+        if(resultado.conclusao) return resultado.posicao;
+
         return this.randomBotPlay();
     }
 
