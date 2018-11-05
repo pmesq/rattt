@@ -289,16 +289,10 @@ class Game {
             resultados[i] = this.minimax(novoTabuleiro, vez ? 0 : 1, profundidade + 1).pontos;
         }
 
-        let melhor = {
-            pontos: resultados[0],
-            posicao: arrCasasDisponiveis[0]
-        };
+        let melhor = { pontos: resultados[0], posicao: arrCasasDisponiveis[0] };
         for(let i = 1; i < arrCasasDisponiveis.length; i++) {
-            if((vez == IDminnie && resultados[i] > melhor.pontos) 
-              || (vez != IDminnie && resultados[i] < melhor.pontos)) {
-                melhor.pontos = resultados[i];
-                melhor.posicao = arrCasasDisponiveis[i];
-            }
+            if((vez == IDminnie && resultados[i] > melhor.pontos) || (vez != IDminnie && resultados[i] < melhor.pontos))
+                melhor = { pontos: resultados[i], posicao: arrCasasDisponiveis[i] };
         }
         return melhor;
     }
