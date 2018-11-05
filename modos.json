@@ -1,10 +1,10 @@
 {
     "classic": {
         "tabuleiro": {
-            "linhas": 3,
-            "colunas": 3,
+            "linhas": 4,
+            "colunas": 4,
             "regular": true,
-            "mapa": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
+            "mapa": [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]
         },
         "sequencia": {
             "num": 3,
