@@ -274,10 +274,10 @@ class Game {
         let gs = this.gameState(tabuleiro);
         if(gs.finalizado) {
             if(gs.vencedor == '_') return { posicao: null, pontos: 0 };
-            if(gs.vencedor == IDminnie) return { posicao: null, pontos: 10 };
-            return { posicao: null, pontos: -10 };
+            if(gs.vencedor == IDminnie) return { posicao: null, pontos: 100 - profundidade };
+            return { posicao: null, pontos: -100 + profundidade };
         }
-        //if(profundidade >= this.profundidadeMaxima) return { posicao: null, pontos: 0 };
+        if(profundidade >= this.profundidadeMaxima) return { posicao: null, pontos: 0 };
 
         let arrCasasDisponiveis = this.casasDisponiveis(tabuleiro);
 
@@ -304,7 +304,9 @@ class Game {
     }
 
     minnieBotPlay() {
-        return this.minimax().posicao;
+        let resultado = this.minimax();
+        console.log(resultado.pontos);
+        return resultado.posicao;
     }
 
     botPlay(bot = this.jogadores[this.vez].tipo) {
