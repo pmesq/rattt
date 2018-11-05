@@ -10,6 +10,8 @@ class Game {
         this.inicializaTabuleiro();
         this.alteraLog(this.geraFraseVez(this.jogadores[0].nome));
         this.casaOn();
+        this.reiniciarOn();
+        if(this.jogadores[0].tipo != 'usuario') this.botPlay();
     }
 
     alteraLog(frase) {
@@ -48,9 +50,10 @@ class Game {
         $('.casa').css('cursor', 'pointer');
         for(let i = 0; i < tabuleiro.linhas; i++) {
             for(let j = 0; j < tabuleiro.colunas; j++) {
-                this.limpaCasa($('casa:eq(' + (tabuleiro.colunas * i + j) + ')'), { linha: i, coluna: j });
+                this.limpaCasa({ linha: i, coluna: j });
             }
         }
+        if(this.jogadores[0].tipo != 'usuario') this.botPlay();
     }
 
     marcaCasaLogica(posicao, jogador = this.vez, tabuleiro = this.tabuleiro) {
@@ -67,8 +70,9 @@ class Game {
         $casa.css('cursor', 'default'); // Torna o cursor da casa marcada como padrão
     }
 
-    limpaCasa($casa, posicao, tabuleiro = this.tabuleiro) {
+    limpaCasa(posicao, tabuleiro = this.tabuleiro) {
         let linha = posicao.linha, coluna = posicao.coluna;
+        let $casa = $('.casa:eq(' + (linha * tabuleiro.colunas + coluna) + ')');
         tabuleiro.mapa[linha][coluna] = '_';
         let $span = $casa.children().first();
         $span.html('');
@@ -239,6 +243,13 @@ class Game {
         });
     }
 
+    reiniciarOn() {
+        let that = this;
+        $('#botao-reiniciar').click(function() {
+            that.reinicia();
+        });
+    }
+
     casasDisponiveis(tabuleiro = this.tabuleiro) { // Acha as casas disponíveis no tabuleiro e retorna um array com as posições das mesmas
         let arrCasasDisponiveis = []; // Cria o array que conterá as posições das casas disponíveis
         for(let i = 0; i < tabuleiro.linhas; i++)
@@ -265,11 +276,6 @@ class Game {
         return novoTabuleiro;
     }
 
-    randomBotPlay() {
-        let arrCasasDisponiveis = this.casasDisponiveis();
-        return arrCasasDisponiveis[Math.floor(Math.random() * arrCasasDisponiveis.length)];
-    }
-
     minimax(tabuleiro = this.tabuleiro, vez = this.vez, profundidade = 0, IDminnie = this.vez) {
         let gs = this.gameState(tabuleiro);
         if(gs.finalizado) {
@@ -277,24 +283,69 @@ class Game {
             if(gs.vencedor == IDminnie) return { posicao: null, pontos: 100 - profundidade };
             return { posicao: null, pontos: profundidade - 100 };
         }
-        if(profundidade >= this.profundidadeMaxima) return { posicao: null, pontos: 0 };
+        if(profundidade >= 10) return { posicao: null, pontos: 0 };
 
-        let arrCasasDisponiveis = this.casasDisponiveis(tabuleiro);
+        let casasDisp = this.casasDisponiveis(tabuleiro);
 
-        let resultados = new Array(arrCasasDisponiveis.length);
-        for(let i = 0; i < arrCasasDisponiveis.length; i++) {
+        let resultados = new Array(casasDisp.length);
+        for(let i = 0; i < casasDisp.length; i++) {
             let novoTabuleiro = this.copiaTabuleiro(tabuleiro);
-            let linha = arrCasasDisponiveis[i].linha, coluna = arrCasasDisponiveis[i].coluna;
-            novoTabuleiro.mapa[linha][coluna] = vez;
+            this.marcaCasaLogica(casasDisp[i], vez, novoTabuleiro);
             resultados[i] = this.minimax(novoTabuleiro, vez ? 0 : 1, profundidade + 1).pontos;
         }
 
-        let melhor = { pontos: resultados[0], posicao: arrCasasDisponiveis[0] };
-        for(let i = 1; i < arrCasasDisponiveis.length; i++) {
+        let melhor = { pontos: resultados[0], posicao: casasDisp[0] };
+        for(let i = 1; i < casasDisp.length; i++) {
             if((vez == IDminnie && resultados[i] > melhor.pontos) || (vez != IDminnie && resultados[i] < melhor.pontos))
-                melhor = { pontos: resultados[i], posicao: arrCasasDisponiveis[i] };
+                melhor = { pontos: resultados[i], posicao: casasDisp[i] };
         }
         return melhor;
+    }
+
+    analisaCasasConsecutivas(casas, jogador = this.vez) {
+        if(casas[0] == '_' && casas[1] == jogador && casas[2] == jogador)
+            return { conclusao: true, indice: 0 };
+        if(casas[0] == jogador && casas[1] == '_' && casas[2] == jogador)
+            return { conclusao: true, indice: 1 };
+        if(casas[0] == jogador && casas[1] == jogador && casas[2] == '_')
+            return { conclusao: true, indice: 2 };
+        return { conclusao: false };
+    }
+
+    prideGanhar(jogador = this.vez) {
+        let resultado;
+        for(let i = 0; i < 3; i++) {
+            resultado = this.analisaCasasConsecutivas(this.tabuleiro.mapa[i], jogador);
+            if(resultado.conclusao) 
+                return { conclusao: true, posicao: { linha: i, coluna: resultado.indice } };
+            resultado = this.analisaCasasConsecutivas([this.tabuleiro.mapa[0][i], this.tabuleiro.mapa[1][i], this.tabuleiro.mapa[2][i]], jogador);
+            if(resultado.conclusao) 
+                return { conclusao: true, posicao: { linha: resultado.indice, coluna: i } };
+        }
+        resultado = this.analisaCasasConsecutivas([this.tabuleiro.mapa[0][0], this.tabuleiro.mapa[1][1], this.tabuleiro.mapa[2][2]], jogador);
+        if(resultado.conclusao) 
+            return { conclusao: true, posicao: { linha: resultado.indice, coluna: resultado.indice } };
+        resultado = this.analisaCasasConsecutivas([this.tabuleiro.mapa[2][0], this.tabuleiro.mapa[1][1], this.tabuleiro.mapa[0][2]], jogador);
+        if(resultado.conclusao) 
+            return { conclusao: true, posicao: { linha: 2 - resultado.indice, coluna: resultado.indice } };
+        return { conclusao: false };
+    }
+
+    pridePerder(jogador = this.vez) {
+        return this.prideGanhar(jogador ? 0 : 1);
+    }
+
+    randomBotPlay() {
+        let arrCasasDisponiveis = this.casasDisponiveis();
+        return arrCasasDisponiveis[Math.floor(Math.random() * arrCasasDisponiveis.length)];
+    }
+
+    prideBotPlay() {
+        let resultado = this.prideGanhar();
+        if(resultado.conclusao) return resultado.posicao;
+        resultado = this.pridePerder();
+        if(resultado.conclusao) return resultado.posicao;
+        return this.randomBotPlay();
     }
 
     minnieBotPlay() {
@@ -305,6 +356,7 @@ class Game {
         let posicao;
         switch(bot) {
             case 'random': posicao = this.randomBotPlay(); break;
+            case 'pride':  posicao = this.prideBotPlay();  break;
             case 'minnie': posicao = this.minnieBotPlay(); break;
         }
         let that = this;

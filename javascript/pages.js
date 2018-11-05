@@ -48,6 +48,10 @@ function criaPagina(modo) {
         }
     }
     $main.append($tabuleiro);
+    let $reiniciar = $('<button type="button" class="botao-controle" id="botao-reiniciar">Reiniciar</button>');
+    let $controles = $('<div id="controles"></div>');
+    $controles.append($reiniciar);
+    $main.append($controles);
 
     game = new Game(modo);
 }

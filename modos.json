@@ -21,12 +21,11 @@
                 "simboloEditavel": true
             }, {
                 "nome": "Eduardo",
-                "tipo": "minnie",
+                "tipo": "pride",
                 "simbolo": "O",
                 "tipoEditavel": true,
                 "simboloEditavel": true
             }
-        ],
-        "profundidadeMaxima": 9
+        ]
     }
 }
