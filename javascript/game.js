@@ -275,7 +275,7 @@ class Game {
         if(gs.finalizado) {
             if(gs.vencedor == '_') return { posicao: null, pontos: 0 };
             if(gs.vencedor == IDminnie) return { posicao: null, pontos: 100 - profundidade };
-            return { posicao: null, pontos: -100 + profundidade };
+            return { posicao: null, pontos: profundidade - 100 };
         }
         if(profundidade >= this.profundidadeMaxima) return { posicao: null, pontos: 0 };
 
@@ -304,9 +304,7 @@ class Game {
     }
 
     minnieBotPlay() {
-        let resultado = this.minimax();
-        console.log(resultado.pontos);
-        return resultado.posicao;
+        return this.minimax().posicao;
     }
 
     botPlay(bot = this.jogadores[this.vez].tipo) {
