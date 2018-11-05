@@ -274,7 +274,7 @@ class Game {
         let gs = this.gameState(tabuleiro);
         if(gs.finalizado) {
             if(gs.vencedor == '_') return { posicao: null, pontos: 0 };
-            if(gs.vencedor == vez) return { posicao: null, pontos: 100 - profundidade };
+            if(gs.vencedor == IDminnie) return { posicao: null, pontos: 100 - profundidade };
             return { posicao: null, pontos: profundidade - 100 };
         }
         if(profundidade >= this.profundidadeMaxima) return { posicao: null, pontos: 0 };
