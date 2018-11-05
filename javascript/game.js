@@ -298,9 +298,7 @@ class Game {
     }
 
     minnieBotPlay() {
-        let resultado = this.minimax();
-        console.log(resultado.pontos);
-        return resultado.posicao;
+        return this.minimax().posicao;
     }
 
     botPlay(bot = this.jogadores[this.vez].tipo) {
