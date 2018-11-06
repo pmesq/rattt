@@ -135,9 +135,10 @@ h2 {
 .janela {
     position: absolute;
     background-color: #2b2b2b;
+    padding: 20px;
     color: white;
-    align-self: center;
-    justify-self: center;
+    border: 2px solid #00a4dd;
+    top: 300px;
 }
 
 #cartas{

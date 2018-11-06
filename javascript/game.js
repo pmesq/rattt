@@ -253,8 +253,13 @@ class Game {
         let arrCasasDisponiveis = []; // Cria o array que conterá as posições das casas disponíveis
         for(let i = 0; i < tabuleiro.linhas; i++)
             for(let j = 0; j < tabuleiro.colunas; j++) {
-                if(tabuleiro.mapa[i][j] == '_') // Testa se a casa está disponível
-                    arrCasasDisponiveis.push({ linha: i, coluna: j }); // Insere a posição da casa no array
+                if(!this.gravidade) {
+                    if(tabuleiro.mapa[i][j] == '_') // Testa se a casa está disponível
+                        arrCasasDisponiveis.push({ linha: i, coluna: j }); // Insere a posição da casa no array
+                } else {
+                    if(tabuleiro.mapa[i][j] == '_' && (i == tabuleiro.linhas - 1 || tabuleiro.mapa[i + 1][j] != '_')) // Testa se a casa está disponível e se a casa abaixo está preenchida
+                        arrCasasDisponiveis.push({ linha: i, coluna: j }); // Insere a posição da casa no array
+                }
             }
         return arrCasasDisponiveis; // Retorna o array com as posições das casas disponíveis
     }
