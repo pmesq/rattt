@@ -262,20 +262,3 @@ h3{
     font-size: 25px;
     margin: 5px 0px 5px 0px;
 }
-
-header > div{
-	float: right;
-	align-items: center;
-	color: white;
-}
-
-header img{
-	height: 45px;
-    margin-left: 15px;
-    cursor: pointer;
-}
-
-#crie:hover, #entre:hover{
-	color: #00a4dd;
-	cursor: pointer;
-}

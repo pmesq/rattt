@@ -1,20 +1,31 @@
 $('.botao-pagina').click(function() {
-    let destino = $(this).data('destino');
-    let modo;
-    $.ajax({
-        url: 'modos.json',
-        dataType: 'json',
-        success: function(res) {
-            criaPagina(res[destino]);
-        }
-    });
-});
-
-let game;
-function criaPagina(modo) {
     let $main = $('main');
     $main.html('');
-    if(!modo) return;
+    let destino = $(this).data('destino');
+    if(destino == 'home') paginaHome();
+    else if(destino == 'perfil') paginaPerfil();
+    else {
+        $.ajax({
+            url: 'modos.json',
+            dataType: 'json',
+            success: function(res) {
+                paginaJogo(res[destino]);
+            }
+        });
+    }
+});
+
+function paginaHome() {
+
+}
+
+function paginaPerfil() {
+
+}
+
+let game;
+function paginaJogo(modo) {
+    let $main = $('main');
     let $log = $('<p id="log">Vez do Usuário</p>');
     $main.append($log);
     let $tabuleiro = $('<div id="tabuleiro"></div>');
