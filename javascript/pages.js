@@ -33,18 +33,16 @@ function criaTabuleiro(modo) {
 
     let larguraMain = parseFloat($main.css('width' ));
     let alturaMain  = parseFloat($main.css('height'));
-    let tamTabuleiro, tamCasa;
+    let tamCasa;
     if(alturaMain * 0.75 <= larguraMain * 0.95) {
-        tamTabuleiro = alturaMain * 0.75 + 'px';
-        tamCasa = alturaMain * 0.75 / modo.tabuleiro.linhas + 'px';
+        tamCasa = alturaMain * 0.75 / modo.tabuleiro.linhas;
     } else {
-        tamTabuleiro = larguraMain * 0.95 + 'px';
-        tamCasa = larguraMain * 0.95 / modo.tabuleiro.linhas + 'px';
+        tamCasa = larguraMain * 0.95 / modo.tabuleiro.linhas;
     }
-    $tabuleiro.css('width' , tamTabuleiro);
-    $tabuleiro.css('height', tamTabuleiro);
-    $('.casa').css('width' , tamCasa);
-    $('.casa').css('height', tamCasa);
+    $tabuleiro.css('width' , (tamCasa + 1) * modo.tabuleiro.colunas + 'px');
+    $tabuleiro.css('height', (tamCasa) * modo.tabuleiro.linhas + 'px');
+    $('.casa').css('width' , tamCasa + 'px');
+    $('.casa').css('height', tamCasa + 'px');
     setTimeout(function() { $('.casa > span').css('font-size', tamCasa); }, 1);
     for(let i = 0; i < modo.tabuleiro.linhas; i++) {
         for(let j = 0; j < modo.tabuleiro.colunas; j++) {
@@ -80,13 +78,16 @@ function paginaJogo(modo) {
                     let $janela = $('<div class="janela" id="janela-jogador-' + i + '"></div>');
                     let $nomeJogador = $('<h2>' + modo.jogadores[i].nome + '</h2>');
                     let $selectTipo = $('<select id="select-tipo"></select>');
+                    for(let i = 0; i < modo.jogadores[i].tiposDisponiveis.length; i++) {
+                        let $option = $('<option>')
+                    }
                     $janela.append($nomeJogador);
                     $janela.hide();
                     let larguraMain   = parseFloat($main.css('width'));
                     let larguraJanela = parseFloat($janela.css('width'));
-                    $janela.css('left', (larguraMain - larguraJanela) / 2 + 'px');
                     $main.append($janela);
                     $janela.fadeIn(300);
+                    $janela.css('left', (larguraMain - larguraJanela) / 2 + 'px');
                 } else {
                     let $janela = $('#janela-jogador-' + i);
                     $janela.fadeOut(300);

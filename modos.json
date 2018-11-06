@@ -21,7 +21,7 @@
                 "tiposDisponiveis": ["usuario", "random", "pride", "minnie"]
             }, {
                 "nome": "P2",
-                "tipo": "pride",
+                "tipo": "usuario",
                 "simbolo": "O",
                 "editavel": true,
                 "tiposDisponiveis": ["usuario", "random", "pride", "minnie"]
@@ -76,13 +76,13 @@
                 "tipo": "usuario",
                 "simbolo": "X",
                 "editavel": true,
-                "tiposDisponiveis": ["usuario", "random", "minnie"]
+                "tiposDisponiveis": ["usuario", "random"]
             }, {
                 "nome": "P2",
                 "tipo": "usuario",
                 "simbolo": "O",
                 "editavel": true,
-                "tiposDisponiveis": ["usuario", "random", "minnie"]
+                "tiposDisponiveis": ["usuario", "random"]
             }
         ]
     }

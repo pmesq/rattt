@@ -22,7 +22,7 @@ class Game {
     inicializaTabuleiro(tabuleiro = this.tabuleiro) {
         for(let i = 0; i < tabuleiro.linhas; i++)
             for(let j = 0; j < tabuleiro.colunas; j++)
-                tabuleiro.mapa[i][j] = tabuleiro.mapa[i][j] ? '_' : '*';
+                tabuleiro.mapa[i][j] = '_';//tabuleiro.mapa[i][j] ? '_' : '*';
     }
 
     imprime(tabuleiro = this.tabuleiro) {
@@ -155,7 +155,7 @@ class Game {
                     }
                 }
             }
-        }
+        }/*
         if(sequencia.tipos.includes('diagonal-decrescente')) {
             for(let i = 0; i < tabuleiro.linhas; i++) {
                 let sequenciaAtual = 1;
@@ -203,7 +203,7 @@ class Game {
                     }
                 }
             }
-        }
+        }*/
 
         for(let i = 0; i < tabuleiro.linhas; i++) {
             if(tabuleiro.mapa[i].includes('_')) return { finalizado: false, vencedor: null, sentido: null };
@@ -211,32 +211,45 @@ class Game {
         return { finalizado: true, vencedor: null, sentido: null };
     }
 
+    atracaoGravitacional(posicao, tabuleiro = this.tabuleiro) {
+        if(tabuleiro.mapa[tabuleiro.linhas - 1][posicao.coluna] == '_') return { linha: tabuleiro.linhas - 1, coluna: posicao.coluna };
+        for(let i = posicao.linha + 1; i < tabuleiro.linhas; i++) {
+            if(tabuleiro.mapa[i][posicao.coluna] != '_') return { linha: i - 1, coluna: posicao.coluna };
+        }
+    }
+
     casaOn(tabuleiro = this.tabuleiro, jogadores = this.jogadores) {
         let that = this;
         $('.casa').mouseenter(function() {
             let linha = Math.floor($(this).index() / tabuleiro.colunas); // Pega a linha da casa sobrevoada
-            let coluna = $(this).index() % tabuleiro.linhas; // Pega a coluna da casa sobrevoada
+            let coluna = $(this).index() % tabuleiro.colunas; // Pega a coluna da casa sobrevoada
             if(tabuleiro.mapa[linha][coluna] == '_' && that.vez != null && jogadores[that.vez].tipo == 'usuario') {  // Testa se a casa está disponível e se é vez de algum usuário
-                let $span = $(this).children().first(); // Pega o span filho da casa
+                let posicao = { linha: linha, coluna: coluna };
+                if(that.gravidade) posicao = that.atracaoGravitacional(posicao, that.tabuleiro);
+                let $span = $('.casa:eq(' + (posicao.linha * tabuleiro.colunas + posicao.coluna) + ')').children().first(); // Pega o span filho da casa
                 $span.css('opacity', '.25'); // Torna o span transparente
                 $span.html(jogadores[that.vez].simbolo); // Altera o conteúdo do span para o símbolo a ser marcado (transparente)
             }
         });
         $('.casa').mouseout(function() {
             let linha = Math.floor($(this).index() / tabuleiro.colunas); // Pega a linha da casa
-            let coluna = $(this).index() % tabuleiro.linhas; // Pega a coluna da casa
+            let coluna = $(this).index() % tabuleiro.colunas; // Pega a coluna da casa
             if(tabuleiro.mapa[linha][coluna] == '_' && that.vez != null && jogadores[that.vez].tipo == 'usuario') {  // Testa se a casa está disponível e se é vez de algum usuário
-                let $span = $(this).children().first(); // Pega o span filho da casa
+                let posicao = { linha: linha, coluna: coluna };
+                if(that.gravidade) posicao = that.atracaoGravitacional(posicao, that.tabuleiro);
+                let $span = $('.casa:eq(' + (posicao.linha * tabuleiro.colunas + posicao.coluna) + ')').children().first(); // Pega o span filho da casa
                 $span.html(''); // Retira o conteúdo do span
                 $span.css('opacity', '0'); // Torna o span opaco novamente 
             }
         });
         $('.casa').click(function() {
             let linha = Math.floor($(this).index() / tabuleiro.colunas); // Pega a linha da casa clicada
-            let coluna = $(this).index() % tabuleiro.linhas; // Pega a coluna da casa clicada
+            let coluna = $(this).index() % tabuleiro.colunas; // Pega a coluna da casa clicada
             if(tabuleiro.mapa[linha][coluna] == '_' && that.vez != null && jogadores[that.vez].tipo == 'usuario') {  // Testa se a casa clicada está disponível e se é vez de algum usuário
-                that.marcaCasaLogica({ linha: linha, coluna: coluna });
-                that.marcaCasaGrafica({ linha: linha, coluna: coluna });
+                let posicao = { linha: linha, coluna: coluna };
+                if(that.gravidade) posicao = that.atracaoGravitacional(posicao, that.tabuleiro);
+                that.marcaCasaLogica(posicao);
+                that.marcaCasaGrafica(posicao);
                 that.fimJogada();
             }
         });
