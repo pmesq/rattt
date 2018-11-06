@@ -17,14 +17,14 @@
                 "nome": "Rato",
                 "tipo": "usuario",
                 "simbolo": "X",
-                "tipoEditavel": true,
-                "simboloEditavel": true
+                "editavel": true,
+                "tiposDisponiveis": ["usuario", "random", "pride", "minnie"]
             }, {
                 "nome": "Eduardo",
                 "tipo": "pride",
                 "simbolo": "O",
-                "tipoEditavel": true,
-                "simboloEditavel": true
+                "editavel": true,
+                "tiposDisponiveis": ["usuario", "random", "pride", "minnie"]
             }
         ]
     }

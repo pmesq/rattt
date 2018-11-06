@@ -132,6 +132,14 @@ h2 {
 	text-align: center;
 }
 
+.janela {
+    position: absolute;
+    background-color: #2b2b2b;
+    color: white;
+    align-self: center;
+    justify-self: center;
+}
+
 #cartas{
 	float: right;
 	width: 250px;

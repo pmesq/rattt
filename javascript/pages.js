@@ -23,11 +23,8 @@ function paginaPerfil() {
 
 }
 
-let game;
-function paginaJogo(modo) {
+function criaTabuleiro(modo) {
     let $main = $('main');
-    let $log = $('<p id="log">Vez do Usuário</p>');
-    $main.append($log);
     let $tabuleiro = $('<div id="tabuleiro"></div>');
     let gridTemplateColumns = "";
     for(let i = 0; i < modo.tabuleiro.colunas; i++)
@@ -59,10 +56,38 @@ function paginaJogo(modo) {
         }
     }
     $main.append($tabuleiro);
-    let $reiniciar = $('<button type="button" class="botao-controle" id="botao-reiniciar">Reiniciar</button>');
+}
+
+let game;
+function paginaJogo(modo) {
+    let $main = $('main');
+    let $log = $('<p id="log">Vez de <span>' + modo.jogadores[0].nome + '</span></p>');
+    $main.append($log);
+
+    criaTabuleiro(modo);
+
     let $controles = $('<div id="controles"></div>');
+    let $reiniciar = $('<button type="button" class="botao-controle" id="botao-reiniciar">Reiniciar</button>');
     $controles.append($reiniciar);
+
+    for(let i = 0; i < modo.jogadores.length; i++) {
+        if(modo.jogadores[i].editavel) {
+            let $botaoEditarJogador = $('<button type="button" class="botao-controle">' + modo.jogadores[i].nome + ' ⚙</button>');
+            $botaoEditarJogador.click(function() {
+                let $janela = $('<div class="janela"></div>');
+                let $nomeJogador = $('<h2>' + modo.jogador[i].nome + '</h2>');
+                $janela.append($nomeJogador);
+                $janela.hide(0);
+                $main.append($janela);
+                $janela.fadeIn(300);
+            });
+            $controles.append($botaoEditarJogador);
+        }
+    }
+
     $main.append($controles);
+
+
 
     game = new Game(modo);
 }
