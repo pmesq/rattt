@@ -23,6 +23,13 @@ h1 {
     display: inline-block;
 }
 
+main {
+	text-align: center;
+	padding: 0;
+	margin: 0 auto;
+	height: 85%;
+}
+
 aside {
     position: absolute;
     width: 200px;
@@ -78,31 +85,24 @@ aside > div {
     color: white;
     background: #00a4dd;
 }
+
 #log {
 	text-align: center;
 	color: #00a4dd;
 	font-size: 24px;
 }
+
 #log > span {
 	color: white;
 }
-main {
-	text-align: center;
-	padding: 0;
-	margin: 0 auto;
-	height: calc(100% - 80px);
-}
+
 #tabuleiro {
 	display: grid;
 	margin: auto;
 	width: 75%;
 	height: 75%;
 }
-.linha {
-	position: relative;
-	margin: 0 auto;
-	height: auto;
-}
+
 .casa {
 	border-style: solid;
 	border-color: #00a4dd;
@@ -119,6 +119,7 @@ main {
 	align-items: center;
 	justify-content: center;
 }
+
 .casa > span {
 	position: absolute;
 	color: #00a4dd;
@@ -126,91 +127,8 @@ main {
 	opacity: 0;
 	transition: opacity .2s ease;
 }
-.simbolo {
-	position: absolute;
-	box-sizing: border-box;
-	left: 0;
-	top: 0;
-}
+
 h2 {
-	text-align: center;
-}
-label {
-	display: block;
-	margin-bottom: 5px;
-	font-size: 18px;
-}
-select {
-	background-color: white;
-	outline: none;
-	cursor: pointer;
-	border: 1px solid white;
-	padding: 5px;
-	border-radius: 10px;
-	transition: all .25s ease;
-	width: 140px;
-	font-size: 18px;
-}
-#botao-jogar {
-	display: block;
-	margin: auto;
-	color: white;
-	outline: none;
-	background-color: #212121;
-	padding: 10px;
-	border-width: 0;
-	border-radius: 10px;
-	font-size: 24px;
-	cursor: pointer;
-	transition: all .25s ease;
-}
-#botao-help {
-	top: 20px;
-}
-.janela {
-	position: fixed;
-	background-color: #004b5e;
-	padding: 10px;
-	border-radius: 24px;
-	color: white;
-	top: 100px;
-	display: block;
-	opacity: 0;
-	z-index: 2;
-}
-.janela > p, .janela li {
-	text-align: justify;
-	font-size: 18px;
-}
-.fechar-janela {
-	cursor: pointer;
-	outline: none;
-	background-color: #004b5e;
-	color: white;
-	display: block;
-	margin: auto;
-	border: 1px solid white;
-	border-radius: 360px;
-	width: 32px;
-	height: 32px;
-	transition: all .25s ease;
-}
-
-.botao:hover,
-.fechar-janela:hover,
-#botao-jogar:hover {
-	background-color: white;
-	color: #004b5e;
-	border: 2px solid #004b5e;
-}
-
-.personalizacao {
-	display: inline-block;
-	color: white;
-	background-color: #212121;
-	padding: 10px;
-	border-radius: 10px;
-	width: 100px;
 	text-align: center;
 }
 
