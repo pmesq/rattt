@@ -56,34 +56,34 @@
                 "tiposDisponiveis": ["usuario", "random", "minnie"]
             }
         ],
-        "gravitrips": {
-            "tabuleiro": {
-                "linhas": 6,
-                "colunas": 7,
-                "regular": true,
-                "mapa": [[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1]]
-            },
-            "sequencia": {
-                "num": 4,
-                "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
-            },
-            "gravidade": true,
-            "numJogadores": 2,
-            "jogadores": [
-                {
-                    "nome": "P1",
-                    "tipo": "usuario",
-                    "simbolo": "X",
-                    "editavel": true,
-                    "tiposDisponiveis": ["usuario", "random", "minnie"]
-                }, {
-                    "nome": "P2",
-                    "tipo": "usuario",
-                    "simbolo": "O",
-                    "editavel": true,
-                    "tiposDisponiveis": ["usuario", "random", "minnie"]
-                }
-            ]
-        }
+    },
+    "gravitrips": {
+        "tabuleiro": {
+            "linhas": 6,
+            "colunas": 7,
+            "regular": true,
+            "mapa": [[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1]]
+        },
+        "sequencia": {
+            "num": 4,
+            "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+        },
+        "gravidade": true,
+        "numJogadores": 2,
+        "jogadores": [
+            {
+                "nome": "P1",
+                "tipo": "usuario",
+                "simbolo": "X",
+                "editavel": true,
+                "tiposDisponiveis": ["usuario", "random", "minnie"]
+            }, {
+                "nome": "P2",
+                "tipo": "usuario",
+                "simbolo": "O",
+                "editavel": true,
+                "tiposDisponiveis": ["usuario", "random", "minnie"]
+            }
+        ]
     }
 }
