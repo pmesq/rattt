@@ -4,104 +4,14 @@ $('.botao-pagina').click(function() {
     let destino = $(this).data('destino');
     if(destino == 'home') paginaHome();
     else if(destino == 'perfil') paginaPerfil();
-    else {/*
+    else {
         $.ajax({
             url: 'modos.json',
             dataType: 'json',
             success: function(res) {
                 paginaJogo(res[destino]);
             }
-        });*/
-		let res = {
-			"classic": {
-				"tabuleiro": {
-					"linhas": 3,
-					"colunas": 3,
-					"regular": true,
-					"mapa": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
-				},
-				"sequencia": {
-					"num": 3,
-					"tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
-				},
-				"gravidade": false,
-				"numJogadores": 2,
-				"jogadores": [
-					{
-						"nome": "P1",
-						"tipo": "usuario",
-						"simbolo": "X",
-						"editavel": true,
-						"tiposDisponiveis": ["usuario", "random", "pride", "minnie"]
-					}, {
-						"nome": "P2",
-						"tipo": "usuario",
-						"simbolo": "O",
-						"editavel": true,
-						"tiposDisponiveis": ["usuario", "random", "pride", "minnie"]
-					}
-				]
-			},
-			"4x4": {
-				"tabuleiro": {
-					"linhas": 4,
-					"colunas": 4,
-					"regular": true,
-					"mapa": [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]
-				},
-				"sequencia": {
-					"num": 3,
-					"tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
-				},
-				"gravidade": false,
-				"numJogadores": 2,
-				"jogadores": [
-					{
-						"nome": "P1",
-						"tipo": "usuario",
-						"simbolo": "X",
-						"editavel": true,
-						"tiposDisponiveis": ["usuario", "random", "minnie"]
-					}, {
-						"nome": "P2",
-						"tipo": "usuario",
-						"simbolo": "O",
-						"editavel": true,
-						"tiposDisponiveis": ["usuario", "random", "minnie"]
-					}
-				]
-			},
-			"gravitrips": {
-				"tabuleiro": {
-					"linhas": 6,
-					"colunas": 7,
-					"regular": true,
-					"mapa": [[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1]]
-				},
-				"sequencia": {
-					"num": 4,
-					"tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
-				},
-				"gravidade": true,
-				"numJogadores": 2,
-				"jogadores": [
-					{
-						"nome": "P1",
-						"tipo": "usuario",
-						"simbolo": "X",
-						"editavel": true,
-						"tiposDisponiveis": ["usuario", "random"]
-					}, {
-						"nome": "P2",
-						"tipo": "usuario",
-						"simbolo": "O",
-						"editavel": true,
-						"tiposDisponiveis": ["usuario", "random"]
-					}
-				]
-			}
-		}
-		paginaJogo(res[destino]);
+        });
     }
 });
 
@@ -109,8 +19,7 @@ $('header img').click(paginaPerfil);
 
 
 function paginaHome() {
-	let $main = $('main');
-	$main.html('<h1>Home</h1>'); /*tava tiltado com esse espaço vazio*/
+	
 }
 
 
@@ -131,7 +40,6 @@ function alteraHTML(){
 
 $('#exibicao p').click(alteraHTML);
 $('#exibicao h2').click(alteraHTML);
-/*}*/
 
 
 function criaTabuleiro(modo) {
