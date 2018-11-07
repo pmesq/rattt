@@ -20,6 +20,7 @@ $('header img').click(paginaPerfil);
 function paginaHome() {
 }
 
+function paginaPerfil() {
     let $main = $('main');
     $main.html('');
 	$main.append('<section id="exibicao"><div><img src="imgs/perfil.png"></div><h2>Username</h2><p></p></section>');
