@@ -35,6 +35,7 @@ aside {
     width: 200px;
     height: 100%;
     left: -184px;
+    z-index: 1;
     transition: all .5s ease;
     background-color: #3b3b3b;
     height: calc(100% - 80px);
@@ -201,15 +202,12 @@ header img{
     cursor: pointer;
 }
 
-#crie:hover, #entre:hover{
-	color: #00a4dd;
-	cursor: pointer;
-}
-
 #exibicao{
-    height: 50%;
+    height: 60%;
     position: relative;
     flex-direction: column;
+	z-index: 0;
+	height: 100%;
 }
 #exibicao img{
     height: 200px;
@@ -224,10 +222,11 @@ header img{
 	font-family: 'Times New Roman';
 	font-size: 40px;
 	font-style: italic;
+	cursor: text;
 }
 
 #exibicao p{
 	color: white;
-    width: 250px;
-    margin-left: 41%;
+    margin: 0 250px;
+	cursor: text;
 }
