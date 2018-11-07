@@ -1,10 +1,18 @@
 let $menu = $('aside');
 let $h1 = $('h1');
+let $spanH1 = $('h1 > span');
 
 let menuAberto = false;
 
 $h1.click(function() {
-    $menu.css('left', (menuAberto = !menuAberto) ? '0' : '-184px');
+	menuAberto = !menuAberto;
+	if(menuAberto) {
+		$spanH1.html('▲')
+		$menu.css('left', '0');
+	} else {
+		$spanH1.html('▼')
+		$menu.css('left', '-184px');
+	}
 });
 
 $menu.mouseenter(function() {
