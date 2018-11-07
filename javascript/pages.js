@@ -4,28 +4,135 @@ $('.botao-pagina').click(function() {
     let destino = $(this).data('destino');
     if(destino == 'home') paginaHome();
     else if(destino == 'perfil') paginaPerfil();
-    else {
+    else {/*
         $.ajax({
             url: 'modos.json',
             dataType: 'json',
             success: function(res) {
                 paginaJogo(res[destino]);
             }
-        });
+        });*/
+		let res = {
+			"classic": {
+				"tabuleiro": {
+					"linhas": 3,
+					"colunas": 3,
+					"regular": true,
+					"mapa": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
+				},
+				"sequencia": {
+					"num": 3,
+					"tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+				},
+				"gravidade": false,
+				"numJogadores": 2,
+				"jogadores": [
+					{
+						"nome": "P1",
+						"tipo": "usuario",
+						"simbolo": "X",
+						"editavel": true,
+						"tiposDisponiveis": ["usuario", "random", "pride", "minnie"]
+					}, {
+						"nome": "P2",
+						"tipo": "usuario",
+						"simbolo": "O",
+						"editavel": true,
+						"tiposDisponiveis": ["usuario", "random", "pride", "minnie"]
+					}
+				]
+			},
+			"4x4": {
+				"tabuleiro": {
+					"linhas": 4,
+					"colunas": 4,
+					"regular": true,
+					"mapa": [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]
+				},
+				"sequencia": {
+					"num": 3,
+					"tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+				},
+				"gravidade": false,
+				"numJogadores": 2,
+				"jogadores": [
+					{
+						"nome": "P1",
+						"tipo": "usuario",
+						"simbolo": "X",
+						"editavel": true,
+						"tiposDisponiveis": ["usuario", "random", "minnie"]
+					}, {
+						"nome": "P2",
+						"tipo": "usuario",
+						"simbolo": "O",
+						"editavel": true,
+						"tiposDisponiveis": ["usuario", "random", "minnie"]
+					}
+				]
+			},
+			"gravitrips": {
+				"tabuleiro": {
+					"linhas": 6,
+					"colunas": 7,
+					"regular": true,
+					"mapa": [[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1]]
+				},
+				"sequencia": {
+					"num": 4,
+					"tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+				},
+				"gravidade": true,
+				"numJogadores": 2,
+				"jogadores": [
+					{
+						"nome": "P1",
+						"tipo": "usuario",
+						"simbolo": "X",
+						"editavel": true,
+						"tiposDisponiveis": ["usuario", "random"]
+					}, {
+						"nome": "P2",
+						"tipo": "usuario",
+						"simbolo": "O",
+						"editavel": true,
+						"tiposDisponiveis": ["usuario", "random"]
+					}
+				]
+			}
+		}
+		paginaJogo(res[destino]);
     }
 });
 
 $('header img').click(paginaPerfil);
 
+
 function paginaHome() {
+	let $main = $('main');
+	$main.html('<h1>Home</h1>'); /*tava tiltado com esse espaço vazio*/
 }
 
+
+/*  PERFIL   {*/
 function paginaPerfil() {
     let $main = $('main');
     $main.html('');
 	$main.append('<section id="exibicao"><div><img src="imgs/perfil.png"></div><h2>Username</h2><p></p></section>');
-	$('#exibicao p').append("هذا النص. بينما تعمل جميع مولّدات نصوص لوريم إيبسوم على الإنترنت على إعادة تكرار مقاطع من نص لوريم إيبسوم نفسه عدة مرات بما تتطلبه الحاجة، يقوم مولّدنا هذا باستخدام كلمات من قاموس يحوي على أكثر من كلمة لا تينية، مضاف إليها مجموعة من الجمل النموذجية، لتكوين نص لوريم إيبسوم ذو شكل منطقي قريب إلى النص الحقيقي. وبالتالي يكون النص الناتح خالي من")
+	$('#exibicao p').append("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec sapien eu tellus malesuada tincidunt. Proin eu dignissim eros. Sed sagittis ipsum ac tellus blandit dapibus. Ut sem arcu, pulvinar ut laoreet a, mattis quis lacus. Donec malesuada velit sit.")
+	
 }
+
+function alteraHTML(){
+	let css = this.css;
+	this.hide();
+	this.parent()[0].append('<input><>');
+}
+
+$('#exibicao p').click(alteraHTML);
+$('#exibicao h2').click(alteraHTML);
+/*}*/
+
 
 function criaTabuleiro(modo) {
     let $main = $('main');
