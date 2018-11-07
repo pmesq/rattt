@@ -20,11 +20,10 @@ $('header img').click(paginaPerfil);
 function paginaHome() {
 }
 
-function paginaPerfil() {
     let $main = $('main');
     $main.html('');
 	$main.append('<section id="exibicao"><div><img src="imgs/perfil.png"></div><h2>Username</h2><p></p></section>');
-	$('#exibicao p').append("Vo arrumar esse trem ainda. Era pra ser a bio")
+	$('#exibicao p').append("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec sapien eu tellus malesuada tincidunt. Proin eu dignissim eros. Sed sagittis ipsum ac tellus blandit dapibus. Ut sem arcu, pulvinar ut laoreet a, mattis quis lacus. Donec malesuada velit sit.")
 }
 
 function criaTabuleiro(modo) {
