@@ -205,3 +205,28 @@ header img{
 	color: #00a4dd;
 	cursor: pointer;
 }
+
+#exibicao{
+    height: 50%;
+    position: relative;
+    flex-direction: column;
+}
+#exibicao img{
+    height: 200px;
+	
+}
+#exibicao * {
+    margin: 20px;
+}
+
+#exibicao h2{
+	color: #00a4dd;
+	font-family: 'Times New Roman';
+	font-size: 40px;
+	font-style: italic;
+}
+
+#exibicao p{
+	color: white;
+	width: 200px;
+}
