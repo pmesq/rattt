@@ -1,3 +1,8 @@
+let isEditing = {
+	h2: true,
+	p: true
+};
+
 $('.botao-pagina').click(function() {
     let $main = $('main');
     $main.html('');
@@ -12,6 +17,7 @@ $('.botao-pagina').click(function() {
                 paginaJogo(res[destino]);
             }
         });
+		paginaJogo(res[destino]);
     }
 });
 
@@ -24,22 +30,50 @@ function paginaHome() {
 
 
 /*  PERFIL   {*/
+
+function alteraHTML(El){
+	let tagName = (El.prop('tagName')).toLowerCase();
+	let botao = $('#edit'+tagName);
+	console.log(botao);
+	if(isEditing[tagName]){
+		El.hide();
+		El.after('<input id="'+ tagName +'Field"value="'+ El.text() +'"></input>');
+		botao.html('👌');
+		console.log('Inicio da edição de #'+tagName+'Field');
+	}
+	else{
+		let newValue = $('#'+ tagName + 'Field').val();
+		$('#' + tagName + 'Field').remove();
+		$('#exibicao '+tagName).html(newValue);
+		$('#exibicao '+tagName).show();
+		botao.html('🖉')
+		console.log('Fim da edição de #'+tagName+'Field');
+	}
+	isEditing[tagName] = !(isEditing[tagName]);
+}
+
 function paginaPerfil() {
     let $main = $('main');
-    $main.html('');
-	$main.append('<section id="exibicao"><div><img src="imgs/perfil.png"></div><h2>Username</h2><p></p></section>');
-	$('#exibicao p').append("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec sapien eu tellus malesuada tincidunt. Proin eu dignissim eros. Sed sagittis ipsum ac tellus blandit dapibus. Ut sem arcu, pulvinar ut laoreet a, mattis quis lacus. Donec malesuada velit sit.")
+    $main.html('<section id="exibicao">\
+		<div> \
+			<img src="imgs/perfil.png"> \
+		</div> \
+		<button id="editImage">🖉</button>\
+		<div> \
+			<h2>Username</h2>\
+			<button id="edith2">🖉</button>\
+		</div>\
+		<div>\
+			<p>Esta é sua descrição. (max: 300 caracteres)</p>\
+			<button id="editp">🖉</button>\
+		</div>\
+	</section>');
+	$('#edith2').click( function(){ alteraHTML( $('#exibicao h2') ) } );
+	$('#editp').click( function(){ alteraHTML( $('#exibicao p') ) } );
 	
 }
 
-function alteraHTML(){
-	let css = this.css;
-	this.hide();
-	this.parent()[0].append('<input><>');
-}
-
-$('#exibicao p').click(alteraHTML);
-$('#exibicao h2').click(alteraHTML);
+/*}*/
 
 
 function criaTabuleiro(modo) {
