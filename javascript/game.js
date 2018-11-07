@@ -156,55 +156,55 @@ class Game {
                     }
                 }
             }
-        }/*
+        }
         if(sequencia.tipos.includes('diagonal-decrescente')) {
             for(let i = 0; i < tabuleiro.linhas; i++) {
                 let sequenciaAtual = 1;
-                for(let j = 1; j < tabuleiro.colunas - i; j++) {
-                    if(tabuleiro.mapa[i + j][j] == tabuleiro.mapa[i + j - 1][j - 1] && tabuleiro.mapa[i + j][j] != '_' && tabuleiro.mapa[i + j][j] != '*')
+                for(let j = 1; j + i < tabuleiro.linhas && j < tabuleiro.colunas; j++) {
+                    if((tabuleiro.mapa[j + i][j] == tabuleiro.mapa[j + i - 1][j - 1]) && (tabuleiro.mapa[j + i][j] != '_') && (tabuleiro.mapa[j + i][j] != '*'))
                         sequenciaAtual++;
                     else sequenciaAtual = 1;
                     if(sequenciaAtual >= sequencia.num) {
-                        return { finalizado: true, vencedor: tabuleiro.mapa[i + j][j], sentido: 'diagonal-decrescente' };
+                        return { finalizado: true, vencedor: tabuleiro.mapa[j + i][j], sentido: 'diagonal-decrescente' };
                     }
                 }
             }
-            for(let i = 1; i < tabuleiro.colunas; i++) {
+            for(let i = 0; i < tabuleiro.colunas; i++) {
                 let sequenciaAtual = 1;
-                for(let j = 1; j < tabuleiro.linhas - i; j++) {
-                    if(tabuleiro.mapa[j][i + j] == tabuleiro.mapa[j - 1][i + j - 1] && tabuleiro.mapa[j][i + j] != '_' && tabuleiro.mapa[j][i + j] != '*')
+                for(let j = 1; j < tabuleiro.linhas && j + i < tabuleiro.colunas; j++) {
+                    if((tabuleiro.mapa[j][j + i] == tabuleiro.mapa[j - 1][j + i - 1]) && (tabuleiro.mapa[j][j + i] != '_') && (tabuleiro.mapa[j][j + i] != '*'))
                         sequenciaAtual++;
                     else sequenciaAtual = 1;
                     if(sequenciaAtual >= sequencia.num) {
-                        return { finalizado: true, vencedor: tabuleiro.mapa[j][i + j], sentido: 'diagonal-decrescente' };
+                        return { finalizado: true, vencedor: tabuleiro.mapa[j][j + i], sentido: 'diagonal-decrescente' };
                     }
                 }
             }
         }
         if(sequencia.tipos.includes('diagonal-crescente')) {
-            for(let i = tabuleiro.linhas - 1; i >= 0; i--) {
+            for(let i = 0; i < tabuleiro.linhas; i++) {
                 let sequenciaAtual = 1;
-                for(let j = 1; j < tabuleiro.colunas - tabuleiro.linhas + i + 1; j++) {
-                    if(tabuleiro.mapa[i - j][j] == tabuleiro.mapa[i - j + 1][j - 1] && tabuleiro.mapa[i - j][j] != '_' && tabuleiro.mapa[i - j][j] != '*')
+                for(let j = 1; j + i < tabuleiro.linhas && j < tabuleiro.colunas; j++) {
+                    if((tabuleiro.mapa[tabuleiro.linhas - i - j - 1][j] == tabuleiro.mapa[tabuleiro.linhas - i - j][j - 1]) && (tabuleiro.mapa[tabuleiro.linhas - i - j - 1][j] != '_') && (tabuleiro.mapa[tabuleiro.linhas - i - j - 1][j] != '*'))
                         sequenciaAtual++;
                     else sequenciaAtual = 1;
                     if(sequenciaAtual >= sequencia.num) {
-                        return { finalizado: true, vencedor: tabuleiro.mapa[i - j][j], sentido: 'diagonal-crescente' };
+                        return { finalizado: true, vencedor: tabuleiro.mapa[tabuleiro.linhas - i - j - 1][j], sentido: 'diagonal-crescente' };
                     }
                 }
             }
-            for(let i = 1; i < tabuleiro.colunas; i++) {
+            for(let i = 0; i < tabuleiro.colunas; i++) {
                 let sequenciaAtual = 1;
-                for(let j = 1; j < tabuleiro.linhas - i; j++) {
-                    if(tabuleiro.mapa[tabuleiro.linhas - j - 1][i + j] == tabuleiro.mapa[tabuleiro.linhas - j][i + j - 1] && tabuleiro.mapa[tabuleiro.linhas - j - 1][i + j] != '_' && tabuleiro.mapa[tabuleiro.linhas - j - 1][i + j] != '*')
+                for(let j = 1; j < tabuleiro.linhas && j + i < tabuleiro.colunas; j++) {
+                    if((tabuleiro.mapa[tabuleiro.linhas - j - 1][j + i] == tabuleiro.mapa[tabuleiro.linhas - j][j + i - 1]) && (tabuleiro.mapa[tabuleiro.linhas - j - 1][j + i] != '_') && (tabuleiro.mapa[tabuleiro.linhas - j - 1][j + i] != '*'))
                         sequenciaAtual++;
                     else sequenciaAtual = 1;
                     if(sequenciaAtual >= sequencia.num) {
-                        return { finalizado: true, vencedor: tabuleiro.mapa[tabuleiro.linhas - j - 1][i + j], sentido: 'diagonal-crescente' };
+                        return { finalizado: true, vencedor: tabuleiro.mapa[tabuleiro.linhas - j - 1][j + i], sentido: 'diagonal-crescente' };
                     }
                 }
             }
-        }*/
+        }
 
         for(let i = 0; i < tabuleiro.linhas; i++) {
             if(tabuleiro.mapa[i].includes('_')) return { finalizado: false, vencedor: null, sentido: null };
@@ -265,10 +265,8 @@ class Game {
 
     selectOn() {
         let that = this;
-        console.log('func');
         $('.botao-controle').click(function() {
             $('.select-tipo').change(function() {
-                console.log('onchange');
                 let i = $('.select-tipo').index($(this));
                 that.jogadores[i].tipo = $(this).val();
                 that.reinicia();
