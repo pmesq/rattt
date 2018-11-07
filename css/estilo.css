@@ -217,16 +217,53 @@ header img{
     margin: 20px;
 }
 
-#exibicao h2{
+#exibicao h2, #h2Field{
 	color: #00a4dd;
 	font-family: 'Times New Roman';
 	font-size: 40px;
 	font-style: italic;
 	cursor: text;
+    display: inline;
+	background-color: #2b2b2b;
+	border: none;
+	text-align: center;
+	font-weight: bold;
 }
 
-#exibicao p{
+#h2Field {
+    position: relative;
+    bottom: 21px;
+	width: 20%;
+}
+
+#exibicao p, #pField{
 	color: white;
     margin: 0 250px;
 	cursor: text;
+    display: inline;
+	background-color: #2b2b2b;
+	border: none;
+	text-align: center;
+	max-width: 15%;
+}
+
+#exibicao div{
+	position: relative;
+}
+
+#exibicao button {
+	position: absolute;
+    background-color: #2b2b2b;
+    border: none;
+    color: #00a4dd;
+}
+
+#editImage {
+    top: 180px;
+    left: 55%;
+}
+
+#editBio {
+    top: -18px;
+    right: 440px;
 }
