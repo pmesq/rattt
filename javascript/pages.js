@@ -1,8 +1,3 @@
-let isEditing = {
-	h2: true,
-	p: true
-};
-
 $('.botao-pagina').click(function() {
     let $main = $('main');
     $main.html('');
@@ -11,18 +6,14 @@ $('.botao-pagina').click(function() {
     else if(destino == 'perfil') paginaPerfil();
     else {
         $.ajax({
-            url: 'modos.json',
+            url: 'json/modos.json',
             dataType: 'json',
             success: function(res) {
                 paginaJogo(res[destino]);
             }
         });
-		paginaJogo(res[destino]);
     }
 });
-
-$('header img').click(paginaPerfil);
-
 
 function paginaHome() {
 	
@@ -31,6 +22,11 @@ function paginaHome() {
 
 /*  PERFIL   {*/
 
+let isEditing = {
+    h2: true,
+    p: true
+};
+$('header img').click(paginaPerfil);
 function alteraHTML(El){
 	let tagName = (El.prop('tagName')).toLowerCase();
 	let botao = $('#edit'+tagName);
@@ -110,6 +106,7 @@ function criaTabuleiro(modo) {
 }
 
 function criaJanela(i, modo) {
+    let $main = $('main');
     let $janela = $('<div class="janela" id="janela-jogador-' + i + '"></div>');
     let $nomeJogador = $('<h2>' + modo.jogadores[i].nome + '</h2>');
     let $selectTipo = $('<select class="select-tipo"></select>');
@@ -127,7 +124,7 @@ function criaJanela(i, modo) {
     $janela.css('left', (larguraMain - larguraJanela) / 2 + 'px');
 }
 
-function deletaJanela() {
+function deletaJanela(i) {
     let $janela = $('#janela-jogador-' + i);
     $janela.fadeOut(300);
     setTimeout(function() { $janela.detach() }, 300);
@@ -150,13 +147,23 @@ function paginaJogo(modo) {
     for(let i = 0; i < modo.jogadores.length; i++) {
         janelasAbertas.push(false);
         if(modo.jogadores[i].editavel) {
+            let $janela = $('<div class="janela-jogador"></div>');
+            let $nomeJogador = $('<h2>' + modo.jogadores[i].nome + '</h2>');
+            let $selectTipo = $('<select class="select-tipo"></select>');
+            for(let j = 0; j < modo.jogadores[i].tiposDisponiveis.length; j++) {
+                let $option = $('<option value="' +modo.jogadores[i].tiposDisponiveis[j]+ '">' + modo.jogadores[i].tiposDisponiveis[j] + '</option>');
+                $selectTipo.append($option);
+            }
+            $janela.append($nomeJogador);
+            $janela.append($selectTipo);
+            $janela.hide();
+            let larguraMain = parseFloat($main.css('width')), larguraJanela = parseFloat($janela.css('width'));
+            $main.append($janela);
+            $janela.css('left', (larguraMain - larguraJanela) / 2 + 'px');
             let $botaoEditarJogador = $('<button type="button" class="botao-controle">' + modo.jogadores[i].nome + ' ⚙</button>');
             $botaoEditarJogador.click(function() {
-                $('.select-tipo').change(function() {
-                    
-                });
-                (janelasAbertas[i] = !janelasAbertas[i]) ? criaJanela(i) : deletaJanela(i);
-            }); 
+                $janela.fadeToggle(300);
+;            });
             $controles.append($botaoEditarJogador);
         }
     }
