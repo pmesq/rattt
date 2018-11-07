@@ -23,7 +23,7 @@ function paginaHome() {
     let $main = $('main');
     $main.html('');
 	$main.append('<section id="exibicao"><div><img src="imgs/perfil.png"></div><h2>Username</h2><p></p></section>');
-	$('#exibicao p').append("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec sapien eu tellus malesuada tincidunt. Proin eu dignissim eros. Sed sagittis ipsum ac tellus blandit dapibus. Ut sem arcu, pulvinar ut laoreet a, mattis quis lacus. Donec malesuada velit sit.")
+	$('#exibicao p').append("هذا النص. بينما تعمل جميع مولّدات نصوص لوريم إيبسوم على الإنترنت على إعادة تكرار مقاطع من نص لوريم إيبسوم نفسه عدة مرات بما تتطلبه الحاجة، يقوم مولّدنا هذا باستخدام كلمات من قاموس يحوي على أكثر من كلمة لا تينية، مضاف إليها مجموعة من الجمل النموذجية، لتكوين نص لوريم إيبسوم ذو شكل منطقي قريب إلى النص الحقيقي. وبالتالي يكون النص الناتح خالي من")
 }
 
 function criaTabuleiro(modo) {
