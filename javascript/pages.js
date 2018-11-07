@@ -4,23 +4,27 @@ $('.botao-pagina').click(function() {
     let destino = $(this).data('destino');
     if(destino == 'home') paginaHome();
     else if(destino == 'perfil') paginaPerfil();
-    else {
+    else {/*
         $.ajax({
             url: 'modos.json',
             dataType: 'json',
             success: function(res) {
                 paginaJogo(res[destino]);
             }
-        });
+        });*/
     }
 });
 
-function paginaHome() {
+$('header img').click(paginaPerfil);
 
+function paginaHome() {
 }
 
 function paginaPerfil() {
-
+    let $main = $('main');
+    $main.html('');
+	$main.append('<section id="exibicao"><div><img src="imgs/perfil.png"></div><h2>Username</h2><p></p></section>');
+	$('#exibicao p').append("Vo arrumar esse trem ainda. Era pra ser a bio")
 }
 
 function criaTabuleiro(modo) {
