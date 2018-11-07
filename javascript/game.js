@@ -11,6 +11,7 @@ class Game {
         this.alteraLog(this.geraFraseVez(this.jogadores[0].nome));
         this.casaOn();
         this.reiniciarOn();
+        this.selectOn();
         if(this.jogadores[0].tipo != 'usuario') this.botPlay();
     }
 
@@ -259,6 +260,19 @@ class Game {
         let that = this;
         $('#botao-reiniciar').click(function() {
             that.reinicia();
+        });
+    }
+
+    selectOn() {
+        let that = this;
+        console.log('func');
+        $('.botao-controle').click(function() {
+            $('.select-tipo').change(function() {
+                console.log('onchange');
+                let i = $('.select-tipo').index($(this));
+                that.jogadores[i].tipo = $(this).val();
+                that.reinicia();
+            });
         });
     }
 
