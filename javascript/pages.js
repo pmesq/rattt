@@ -4,14 +4,14 @@ $('.botao-pagina').click(function() {
     let destino = $(this).data('destino');
     if(destino == 'home') paginaHome();
     else if(destino == 'perfil') paginaPerfil();
-    else {/*
+    else {
         $.ajax({
             url: 'modos.json',
             dataType: 'json',
             success: function(res) {
                 paginaJogo(res[destino]);
             }
-        });*/
+        });
     }
 });
 
