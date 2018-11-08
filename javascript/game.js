@@ -12,7 +12,7 @@ class Game {
         this.casaOn();
         this.reiniciarOn();
         this.selectOn();
-        if(this.jogadores[0].tipo != 'usuario') this.botPlay();
+        if(this.jogadores[0].tipo != 'Usuário') this.botPlay();
     }
 
     alteraLog(frase) {
@@ -53,7 +53,7 @@ class Game {
                 this.limpaCasa({ linha: i, coluna: j });
             }
         }
-        if(this.jogadores[0].tipo != 'usuario') this.botPlay();
+        if(this.jogadores[0].tipo != 'Usuário') this.botPlay();
     }
 
     marcaCasaLogica(posicao, jogador = this.vez, tabuleiro = this.tabuleiro) {
@@ -124,7 +124,7 @@ class Game {
         } else {
             this.vez = this.vez == this.numJogadores - 1 ? 0 : this.vez + 1;
             this.alteraLog(this.geraFraseVez(this.jogadores[this.vez].nome));
-            if(this.jogadores[this.vez].tipo != 'usuario') {
+            if(this.jogadores[this.vez].tipo != 'Usuário') {
                 this.botPlay();
             }
         }
@@ -224,7 +224,7 @@ class Game {
         $('.casa').mouseenter(function() {
             let linha = Math.floor($(this).index() / tabuleiro.colunas); // Pega a linha da casa sobrevoada
             let coluna = $(this).index() % tabuleiro.colunas; // Pega a coluna da casa sobrevoada
-            if(tabuleiro.mapa[linha][coluna] == '_' && that.vez != null && jogadores[that.vez].tipo == 'usuario') {  // Testa se a casa está disponível e se é vez de algum usuário
+            if(tabuleiro.mapa[linha][coluna] == '_' && that.vez != null && jogadores[that.vez].tipo == 'Usuário') {  // Testa se a casa está disponível e se é vez de algum usuário
                 let posicao = { linha: linha, coluna: coluna };
                 if(that.gravidade) posicao = that.atracaoGravitacional(posicao, that.tabuleiro);
                 let $span = $('.casa:eq(' + (posicao.linha * tabuleiro.colunas + posicao.coluna) + ')').children().first(); // Pega o span filho da casa
@@ -235,7 +235,7 @@ class Game {
         $('.casa').mouseout(function() {
             let linha = Math.floor($(this).index() / tabuleiro.colunas); // Pega a linha da casa
             let coluna = $(this).index() % tabuleiro.colunas; // Pega a coluna da casa
-            if(tabuleiro.mapa[linha][coluna] == '_' && that.vez != null && jogadores[that.vez].tipo == 'usuario') {  // Testa se a casa está disponível e se é vez de algum usuário
+            if(tabuleiro.mapa[linha][coluna] == '_' && that.vez != null && jogadores[that.vez].tipo == 'Usuário') {  // Testa se a casa está disponível e se é vez de algum usuário
                 let posicao = { linha: linha, coluna: coluna };
                 if(that.gravidade) posicao = that.atracaoGravitacional(posicao, that.tabuleiro);
                 let $span = $('.casa:eq(' + (posicao.linha * tabuleiro.colunas + posicao.coluna) + ')').children().first(); // Pega o span filho da casa
@@ -246,7 +246,7 @@ class Game {
         $('.casa').click(function() {
             let linha = Math.floor($(this).index() / tabuleiro.colunas); // Pega a linha da casa clicada
             let coluna = $(this).index() % tabuleiro.colunas; // Pega a coluna da casa clicada
-            if(tabuleiro.mapa[linha][coluna] == '_' && that.vez != null && jogadores[that.vez].tipo == 'usuario') {  // Testa se a casa clicada está disponível e se é vez de algum usuário
+            if(tabuleiro.mapa[linha][coluna] == '_' && that.vez != null && jogadores[that.vez].tipo == 'Usuário') {  // Testa se a casa clicada está disponível e se é vez de algum usuário
                 let posicao = { linha: linha, coluna: coluna };
                 if(that.gravidade) posicao = that.atracaoGravitacional(posicao, that.tabuleiro);
                 that.marcaCasaLogica(posicao);
@@ -408,9 +408,9 @@ class Game {
     botPlay(bot = this.jogadores[this.vez].tipo) {
         let posicao;
         switch(bot) {
-            case 'random': posicao = this.randomBotPlay(); break;
-            case 'pride':  posicao = this.prideBotPlay();  break;
-            case 'minnie': posicao = this.minnieBotPlay(); break;
+            case 'Brandon': posicao = this.randomBotPlay(); break;
+            case 'Pride':  posicao = this.prideBotPlay();  break;
+            case 'Minnie': posicao = this.minnieBotPlay(); break;
         }
         let that = this;
         this.timeout = setTimeout(function() {

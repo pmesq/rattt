@@ -15,16 +15,16 @@
         "jogadores": [
             {
                 "nome": "P1",
-                "tipo": "usuario",
+                "tipo": "Usuário",
                 "simbolo": "X",
                 "editavel": true,
-                "tiposDisponiveis": ["usuario", "random", "pride", "minnie"]
+                "tiposDisponiveis": ["Usuário", "Brandon", "Pride"]
             }, {
                 "nome": "P2",
-                "tipo": "usuario",
+                "tipo": "Usuário",
                 "simbolo": "O",
                 "editavel": true,
-                "tiposDisponiveis": ["usuario", "random", "pride", "minnie"]
+                "tiposDisponiveis": ["Usuário", "Brandon", "Pride"]
             }
         ]
     },
@@ -44,16 +44,16 @@
         "jogadores": [
             {
                 "nome": "P1",
-                "tipo": "usuario",
+                "tipo": "Usuário",
                 "simbolo": "X",
                 "editavel": true,
-                "tiposDisponiveis": ["usuario", "random", "minnie"]
+                "tiposDisponiveis": ["Usuário", "Brandon"]
             }, {
                 "nome": "P2",
-                "tipo": "usuario",
+                "tipo": "Usuário",
                 "simbolo": "O",
                 "editavel": true,
-                "tiposDisponiveis": ["usuario", "random", "minnie"]
+                "tiposDisponiveis": ["Usuário", "Brandon"]
             }
         ]
     },
@@ -73,16 +73,16 @@
         "jogadores": [
             {
                 "nome": "P1",
-                "tipo": "usuario",
+                "tipo": "Usuário",
                 "simbolo": "X",
                 "editavel": true,
-                "tiposDisponiveis": ["usuario", "random"]
+                "tiposDisponiveis": ["Usuário", "Brandon"]
             }, {
                 "nome": "P2",
-                "tipo": "usuario",
+                "tipo": "Usuário",
                 "simbolo": "O",
                 "editavel": true,
-                "tiposDisponiveis": ["usuario", "random"]
+                "tiposDisponiveis": ["Usuário", "Brandon"]
             }
         ]
     }

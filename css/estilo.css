@@ -146,6 +146,22 @@ h2 {
     top: 300px;
 }
 
+.janela-jogador > select {
+    background: none;
+    color: #00a4dd;
+    border: 2px solid #00a4dd;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.janela-jogador > select:hover {
+    background-color: #00a4dd;
+    color: white;
+}
+
 #cartas{
 	float: right;
 	width: 250px;
