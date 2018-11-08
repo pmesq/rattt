@@ -7,7 +7,7 @@ $('h1').click(() => {
 
 $('#menu').hover(() => { $('#menu').css('left', '0'); }, () => { if(!menuAberto) $('#menu').css('left', '-184px'); });
 
-function secaoBotoes(secao) {
+function configuraSecaoBotoes(secao) {
 	let $botao = $('#botao-' + secao), $seta = $('#botao-' + secao + ' > span');
 	let $div = $('#' + secao).slideUp(), divAberta = false;
 	
@@ -18,4 +18,4 @@ function secaoBotoes(secao) {
 }
 
 let secoes = ['jogar', 'campanha', 'personalizado'];
-secoes.forEach(function(secao) { secaoBotoes(secao); });
+secoes.forEach(secao => { configuraSecaoBotoes(secao); });
