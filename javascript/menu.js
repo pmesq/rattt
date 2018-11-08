@@ -1,19 +1,17 @@
-let $menu = $('aside'), $h1 = $('h1'), $spanH1 = $('h1 > span');
 let menuAberto = false;
 
-$h1.click(function() {
-	$spanH1.html((menuAberto = !menuAberto) ? '▲' : '▼');
-	$menu.css('left', menuAberto ? '0' : '-184px');
+$('h1').click(() => {
+	$('h1 > span').html((menuAberto = !menuAberto) ? '▲' : '▼');
+	$('#menu').css('left', menuAberto ? '0' : '-184px');
 });
 
-$menu.mouseover(function() { $menu.css('left', '0'); });
-$menu.mouseout(function() { if(!menuAberto) $menu.css('left', '-184px'); });
+$('#menu').hover(() => { $('#menu').css('left', '0'); }, () => { if(!menuAberto) $('#menu').css('left', '-184px'); });
 
 function secaoBotoes(secao) {
 	let $botao = $('#botao-' + secao), $seta = $('#botao-' + secao + ' > span');
 	let $div = $('#' + secao).slideUp(), divAberta = false;
 	
-	$botao.click(function() {
+	$botao.click(() => {
 		$seta.html((divAberta = !divAberta) ? '▲' : '▼');
 		$div.slideToggle();
 	});
