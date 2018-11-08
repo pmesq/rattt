@@ -20,7 +20,7 @@ function paginaHome() {
 }
 
 
-/*  PERFIL   {*/
+//PERFIL   {
 
 let isEditing = {
     h2: true,
@@ -50,7 +50,7 @@ function alteraHTML(El){
 
 function paginaPerfil() {
     let $main = $('main');
-    $main.html('<section id="exibicao">\
+    /*$main.html('<section id="exibicao">\
 		<div> \
 			<img src="imgs/perfil.png"> \
 		</div> \
@@ -63,13 +63,24 @@ function paginaPerfil() {
 			<p>Esta é sua descrição. (max: 300 caracteres)</p>\
 			<button id="editp">🖉</button>\
 		</div>\
-	</section>');
-	$('#edith2').click( function(){ alteraHTML( $('#exibicao h2') ) } );
-	$('#editp').click( function(){ alteraHTML( $('#exibicao p') ) } );
-	
+	</section>');*/
+	$main.html('');
+	$main.append('<section id="exibicao"></section>');
+	let $exibicao = $('#exibicao')
+	$exibicao.append('<div><img src="imgs/perfil.png"></div>');
+	$exibicao.append('<button id="editImage">🖉</button>');
+	$exibicao.append('<div id="divNome"></div>');
+	$exibicao.append('<div id="divBio"></div>');
+	$('#divNome').append('<h2>Username</h2>');
+	$('#divNome').append('<button id="edith2">🖉</button>');
+	$('#divBio').append('<p>Esta é sua descrição. max: 150 caracteres</p>');
+	$('#divBio').append('<button id="editp">🖉</button>');
+	$('#exibicao h2').mousedown( function(){ alteraHTML($(this)) } );
+	$('#edith2').click( function(){ alteraHTML($('#exibicao h2')) } );
+	$('#editp').click( function(){ alteraHTML($('#exibicao p')) } );
 }
 
-/*}*/
+//}
 
 
 function criaTabuleiro(modo) {
