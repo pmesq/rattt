@@ -6,12 +6,8 @@ $h1.click(function() {
 	$menu.css('left', menuAberto ? '0' : '-184px');
 });
 
-$menu.mouseenter(function() { $menu.css('left', '0'); });
-
-$menu.mouseout(function() {
-    if(!menuAberto) $menu.css('left', '-184px');
-    $menu.mousemove(function() { $menu.css('left', '0'); });
-});
+$menu.mouseover(function() { $menu.css('left', '0'); });
+$menu.mouseout(function() { if(!menuAberto) $menu.css('left', '-184px'); });
 
 function secaoBotoes(secao) {
 	let $botao = $('#botao-' + secao), $seta = $('#botao-' + secao + ' > span'), $div = $('#' + secao);
