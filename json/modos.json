@@ -112,5 +112,59 @@
                 "editavel": false
             }
         ]
-    } 
+    },
+    "level-2": {
+        "tabuleiro": {
+            "linhas": 4,
+            "colunas": 4,
+            "regular": true,
+            "mapa": [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]
+        },
+        "sequencia": {
+            "num": 4,
+            "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+        },
+        "gravidade": false,
+        "numJogadores": 2,
+        "jogadores": [
+            {
+                "nome": "P1",
+                "tipo": "Usuário",
+                "simbolo": "X",
+                "editavel": false
+            }, {
+                "nome": "P2",
+                "tipo": "Brandon",
+                "simbolo": "O",
+                "editavel": false
+            }
+        ]
+    },
+    "level-3": {
+        "tabuleiro": {
+            "linhas": 6,
+            "colunas": 7,
+            "regular": true,
+            "mapa": [[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1]]
+        },
+        "sequencia": {
+            "num": 4,
+            "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+        },
+        "gravidade": true,
+        "numJogadores": 2,
+        "jogadores": [
+            {
+                "nome": "P1",
+                "tipo": "Usuário",
+                "simbolo": "X",
+                "editavel": false
+            }, {
+                "nome": "P2",
+                "tipo": "Brandon",
+                "simbolo": "O",
+                "editavel": false
+            }
+        ]
+    }
 }
