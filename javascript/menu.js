@@ -10,11 +10,8 @@ $menu.mouseover(function() { $menu.css('left', '0'); });
 $menu.mouseout(function() { if(!menuAberto) $menu.css('left', '-184px'); });
 
 function secaoBotoes(secao) {
-	let $botao = $('#botao-' + secao), $seta = $('#botao-' + secao + ' > span'), $div = $('#' + secao);
-	let divAberta = false;
-	
-	$div.slideUp();
-	$div.css('display', 'auto');
+	let $botao = $('#botao-' + secao), $seta = $('#botao-' + secao + ' > span');
+	let $div = $('#' + secao).slideUp(), divAberta = false;
 	
 	$botao.click(function() {
 		$seta.html((divAberta = !divAberta) ? '▲' : '▼');
