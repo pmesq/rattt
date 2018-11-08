@@ -99,6 +99,10 @@ function criaTabuleiro(modo) {
             $casa.append($('<span></span>'));
             if(!i) $casa.css('border-top-width', '0');
             if(!j) $casa.css('border-left-width', '0');
+            if(modo.tabuleiro.mapa[i][j] == 0) {
+                $casa.css('background-color', '#2b2b2b');
+                $casa.css('cursor', 'default');
+            }
             $tabuleiro.append($casa);
         }
     }
@@ -142,10 +146,7 @@ function paginaJogo(modo) {
     let $reiniciar = $('<button type="button" class="botao-controle" id="botao-reiniciar">Reiniciar</button>');
     $controles.append($reiniciar);
 
-
-    let janelasAbertas = [];
     for(let i = 0; i < modo.jogadores.length; i++) {
-        janelasAbertas.push(false);
         if(modo.jogadores[i].editavel) {
             let $janela = $('<div class="janela-jogador"></div>');
             let $nomeJogador = $('<h2>' + modo.jogadores[i].nome + '</h2>');
@@ -161,9 +162,7 @@ function paginaJogo(modo) {
             $main.append($janela);
             $janela.css('left', (larguraMain - larguraJanela) / 2 + 'px');
             let $botaoEditarJogador = $('<button type="button" class="botao-controle">' + modo.jogadores[i].nome + ' ⚙</button>');
-            $botaoEditarJogador.click(function() {
-                $janela.fadeToggle(300);
-;            });
+            $botaoEditarJogador.click(function() { $janela.fadeToggle(300); });
             $controles.append($botaoEditarJogador);
         }
     }

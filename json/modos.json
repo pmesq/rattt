@@ -85,5 +85,32 @@
                 "tiposDisponiveis": ["Usuário", "Brandon"]
             }
         ]
-    }
+    },
+    "level-1": {
+        "tabuleiro": {
+            "linhas": 3,
+            "colunas": 3,
+            "regular": true,
+            "mapa": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
+        },
+        "sequencia": {
+            "num": 3,
+            "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+        },
+        "gravidade": false,
+        "numJogadores": 2,
+        "jogadores": [
+            {
+                "nome": "P1",
+                "tipo": "Usuário",
+                "simbolo": "X",
+                "editavel": false
+            }, {
+                "nome": "P2",
+                "tipo": "Brandon",
+                "simbolo": "O",
+                "editavel": false
+            }
+        ]
+    } 
 }

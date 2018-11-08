@@ -23,7 +23,7 @@ class Game {
     inicializaTabuleiro(tabuleiro = this.tabuleiro) {
         for(let i = 0; i < tabuleiro.linhas; i++)
             for(let j = 0; j < tabuleiro.colunas; j++)
-                tabuleiro.mapa[i][j] = '_';//tabuleiro.mapa[i][j] ? '_' : '*';
+                tabuleiro.mapa[i][j] = tabuleiro.mapa[i][j] ? '_' : '*';
     }
 
     imprime(tabuleiro = this.tabuleiro) {
@@ -47,7 +47,6 @@ class Game {
         clearTimeout(this.timeout);
         this.vez = 0; // Passa a vez para o jogador 1
         this.alteraLog(this.geraFraseVez(this.jogadores[0].nome));
-        $('.casa').css('cursor', 'pointer');
         for(let i = 0; i < tabuleiro.linhas; i++) {
             for(let j = 0; j < tabuleiro.colunas; j++) {
                 this.limpaCasa({ linha: i, coluna: j });
@@ -73,7 +72,10 @@ class Game {
     limpaCasa(posicao, tabuleiro = this.tabuleiro) {
         let linha = posicao.linha, coluna = posicao.coluna;
         let $casa = $('.casa:eq(' + (linha * tabuleiro.colunas + coluna) + ')');
-        tabuleiro.mapa[linha][coluna] = '_';
+        if(tabuleiro.mapa[linha][coluna] != '*') {
+            $casa.css('cursor', 'pointer');
+            tabuleiro.mapa[linha][coluna] = '_';
+        }
         let $span = $casa.children().first();
         $span.html('');
         $span.css('opacity', '0');
