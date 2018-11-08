@@ -34,7 +34,7 @@ main {
 	height: 85%;
 }
 
-aside {
+#menu {
     position: absolute;
     width: 200px;
     height: 100%;
@@ -45,7 +45,7 @@ aside {
     height: calc(100% - 80px);
 }
 
-aside a {
+#menu a {
     color: #00a4dd;
     font-size: 20px;
     display: block;
@@ -55,7 +55,7 @@ aside a {
     cursor: pointer;
 }
 
-aside a:hover {
+#menu a:hover {
     background-color: #303030;
 }
 
@@ -63,7 +63,7 @@ aside a:hover {
 	padding: 10px 32px;
 }
 
-aside > div {
+#menu > div {
 	display: hidden;
 }
 

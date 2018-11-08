@@ -18,13 +18,13 @@
                 "tipo": "Usuário",
                 "simbolo": "X",
                 "editavel": true,
-                "tiposDisponiveis": ["Usuário", "Brandon", "Pride"]
+                "tiposDisponiveis": ["Usuário", "Brandon", "Pride", "Minnie"]
             }, {
                 "nome": "P2",
                 "tipo": "Usuário",
                 "simbolo": "O",
                 "editavel": true,
-                "tiposDisponiveis": ["Usuário", "Brandon", "Pride"]
+                "tiposDisponiveis": ["Usuário", "Brandon", "Pride", "Minnie"]
             }
         ]
     },
