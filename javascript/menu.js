@@ -1,64 +1,30 @@
-let $menu = $('aside');
-let $h1 = $('h1');
-let $spanH1 = $('h1 > span');
-
+let $menu = $('aside'), $h1 = $('h1'), $spanH1 = $('h1 > span');
 let menuAberto = false;
 
 $h1.click(function() {
-	menuAberto = !menuAberto;
-	if(menuAberto) {
-		$spanH1.html('▲')
-		$menu.css('left', '0');
-	} else {
-		$spanH1.html('▼')
-		$menu.css('left', '-184px');
-	}
+	$spanH1.html((menuAberto = !menuAberto) ? '▲' : '▼');
+	$menu.css('left', menuAberto ? '0' : '-184px');
 });
 
-$menu.mouseenter(function() {
-    $menu.css('left', '0');
-});
+$menu.mouseenter(function() { $menu.css('left', '0'); });
 
 $menu.mouseout(function() {
-    if(!menuAberto)
-        $menu.css('left', '-184px');
+    if(!menuAberto) $menu.css('left', '-184px');
     $menu.mousemove(function() { $menu.css('left', '0'); });
 });
 
-let $botaoCampanha = $('#a-campanha');
-let $setaCampanha = $('#a-campanha > span');
-let $campanha = $('#campanha');
-let campanhaAberta = false;
+function secaoBotoes(secao) {
+	let $botao = $('#botao-' + secao), $seta = $('#botao-' + secao + ' > span'), $div = $('#' + secao);
+	let divAberta = false;
+	
+	$div.slideUp();
+	$div.css('display', 'auto');
+	
+	$botao.click(function() {
+		$seta.html((divAberta = !divAberta) ? '▲' : '▼');
+		$div.slideToggle();
+	});
+}
 
-$campanha.slideUp();
-$campanha.css('display', 'auto');
-
-$botaoCampanha.click(function() {
-	campanhaAberta = !campanhaAberta;
-	if(campanhaAberta) {
-		$setaCampanha.html('▲');
-		$campanha.slideDown();
-	} else {
-		$setaCampanha.html('▼');
-		$campanha.slideUp();
-	}
-});
-
-let $botaoJogar = $('#a-jogar');
-let $setaJogar = $('#a-jogar > span');
-let $jogar = $('#jogar');
-let jogarAberto = false;
-
-$jogar.slideUp();
-$jogar.css('display', 'auto');
-
-$botaoJogar.click(function() {
-	jogarAberto = !jogarAberto;
-	if(jogarAberto) {
-		$setaJogar.html('▲');
-		$jogar.slideDown();
-	} else {
-		$setaJogar.html('▼');
-		$jogar.slideUp();
-	}
-});
+let secoes = ['jogar', 'campanha', 'personalizado'];
+secoes.forEach(function(secao) { secaoBotoes(secao); });
