@@ -307,18 +307,18 @@ class Game {
         return novoTabuleiro;
     }
 
-    minimax(tabuleiro = this.tabuleiro, jogador = this.vez, minnieId = this.vez) {
+    minimax(profundidade, tabuleiro = this.tabuleiro, jogador = this.vez, minnieId = this.vez) {
         let gs = this.gameState(tabuleiro);
         if(gs.finalizado && gs.vencedor == minnieId) return { pontos: 10 };
-        if(gs.finalizado && gs.vencedor == null) return { pontos: 0 };
-        if(gs.finalizado) return { pontos: -10 };
+        if(gs.finalizado && gs.vencedor != null) return { pontos: -10 };
+        if(gs.finalizado || profundidade == 0) return { pontos: 0 };
 
         let casasDisp = this.casasDisponiveis(tabuleiro);
         let melhor = { pontos: jogador == minnieId ? -1000 : 1000 };
         for(let i = 0; i < casasDisp.length; i++) {
             let novoTabuleiro = this.copiaTabuleiro(tabuleiro);
             this.marcaCasaLogica(casasDisp[i], jogador, novoTabuleiro);
-            let resultado = this.minimax(novoTabuleiro, jogador ? 0 : 1).pontos;
+            let resultado = this.minimax(profundidade - 1, novoTabuleiro, jogador ? 0 : 1).pontos;
             if((jogador == minnieId && resultado > melhor.pontos) || (jogador != minnieId && resultado < melhor.pontos))
                 melhor = { pontos: resultado, posicao: casasDisp[i] };
         }
@@ -335,7 +335,7 @@ class Game {
         return { conclusao: false };
     }
 
-    prideGanhar(jogador = this.vez) {
+    classicGanhar(jogador = this.vez) {
         let resultado;
         for(let i = 0; i < 3; i++) {
             resultado = this.analisaCasasConsecutivas(this.tabuleiro.mapa[i], jogador);
@@ -354,16 +354,47 @@ class Game {
         return { conclusao: false };
     }
 
-    pridePerder(jogador = this.vez) {
-        return this.prideGanhar(jogador ? 0 : 1);
+    classicPerder(jogador = this.vez) {
+        return this.classicGanhar(jogador ? 0 : 1);
     }
 
-    prideMeio() {
+    classicTriangulacao(oponente = this.vez ? 0 : 1) {
+        if((this.tabuleiro.mapa[0][0] == oponente && this.tabuleiro.mapa[2][2] == oponente)
+          || (this.tabuleiro.mapa[0][2] == oponente && this.tabuleiro.mapa[2][0] == oponente))
+            return this.classicLado();
+        if(this.tabuleiro.mapa[0][1] == oponente && this.tabuleiro.mapa[0][0] == '_'
+          && (this.tabuleiro.mapa[1][0] == oponente || this.tabuleiro.mapa[2][0] == oponente))
+            return { conclusao: true, posicao: { linha: 0, coluna: 0 } };
+        if(this.tabuleiro.mapa[0][1] == oponente && this.tabuleiro.mapa[0][2] == '_'
+          && (this.tabuleiro.mapa[1][2] == oponente || this.tabuleiro.mapa[2][2] == oponente))
+            return { conclusao: true, posicao: { linha: 0, coluna: 2 } };
+        if(this.tabuleiro.mapa[2][1] == oponente && this.tabuleiro.mapa[2][0] == '_'
+          && (this.tabuleiro.mapa[1][0] == oponente || this.tabuleiro.mapa[0][0] == oponente))
+            return { conclusao: true, posicao: { linha: 2, coluna: 0 } };
+        if(this.tabuleiro.mapa[2][1] == oponente && this.tabuleiro.mapa[2][2] == '_'
+          && (this.tabuleiro.mapa[1][2] == oponente || this.tabuleiro.mapa[0][2] == oponente))
+            return { conclusao: true, posicao: { linha: 2, coluna: 2 } };
+        if(this.tabuleiro.mapa[1][0] == oponente && this.tabuleiro.mapa[0][0] == '_'
+          && this.tabuleiro.mapa[0][2] == oponente)
+            return { conclusao: true, posicao: { linha: 0, coluna: 0 } };
+        if(this.tabuleiro.mapa[1][0] == oponente && this.tabuleiro.mapa[2][0] == '_'
+          && this.tabuleiro.mapa[2][2] == oponente)
+            return { conclusao: true, posicao: { linha: 2, coluna: 0 } };
+        if(this.tabuleiro.mapa[1][2] == oponente && this.tabuleiro.mapa[0][2] == '_'
+          && this.tabuleiro.mapa[0][0] == oponente)
+            return { conclusao: true, posicao: { linha: 0, coluna: 2 } };
+        if(this.tabuleiro.mapa[1][2] == oponente && this.tabuleiro.mapa[2][2] == '_'
+          && this.tabuleiro.mapa[2][0] == oponente)
+            return { conclusao: true, posicao: { linha: 2, coluna: 2 } };
+        return { conclusao: false };
+    }
+
+    classicMeio() {
         if(this.tabuleiro.mapa[1][1] == '_') return { conclusao: true, posicao: { linha: 1, coluna: 1 } };
         return { conclusao: false };
     }
 
-    prideCanto() {
+    classicCanto() {
         let cantosDisp = [];
         if(this.tabuleiro.mapa[0][0] == '_') cantosDisp.push({ linha: 0, coluna: 0 });
         if(this.tabuleiro.mapa[0][2] == '_') cantosDisp.push({ linha: 0, coluna: 2 });
@@ -374,37 +405,73 @@ class Game {
         return { conclusao: false };
     }
 
+    classicLado() {
+        let cantosDisp = [];
+        if(this.tabuleiro.mapa[0][1] == '_') cantosDisp.push({ linha: 0, coluna: 1 });
+        if(this.tabuleiro.mapa[1][0] == '_') cantosDisp.push({ linha: 1, coluna: 0 });
+        if(this.tabuleiro.mapa[1][2] == '_') cantosDisp.push({ linha: 1, coluna: 2 });
+        if(this.tabuleiro.mapa[2][1] == '_') cantosDisp.push({ linha: 2, coluna: 1 });
+        if(cantosDisp.length)
+            return { conclusao: true, posicao: cantosDisp[Math.floor(Math.random() * cantosDisp.length)]};
+        return { conclusao: false };
+    }
+
     randomBotPlay() {
         let arrCasasDisponiveis = this.casasDisponiveis();
         return arrCasasDisponiveis[Math.floor(Math.random() * arrCasasDisponiveis.length)];
     }
 
+    greedBotPlay() {
+        let resultado = this.classicGanhar();
+        if(resultado.conclusao) return resultado.posicao;
+
+        resultado = this.classicPerder();
+        if(resultado.conclusao) return resultado.posicao;
+
+        resultado = this.classicCanto();
+        if(resultado.conclusao) return resultado.posicao;
+
+        resultado = this.classicMeio();
+        if(resultado.conclusao) return resultado.posicao;
+
+        return this.randomBotPlay();
+    }
+
     prideBotPlay() {
-        let resultado = this.prideGanhar();
+        let resultado = this.classicGanhar();
         if(resultado.conclusao) return resultado.posicao;
 
-        resultado = this.pridePerder();
+        resultado = this.classicPerder();
         if(resultado.conclusao) return resultado.posicao;
 
-        resultado = this.prideMeio();
+        resultado = this.classicTriangulacao();
         if(resultado.conclusao) return resultado.posicao;
 
-        resultado = this.prideCanto();
+        resultado = this.classicMeio();
+        if(resultado.conclusao) return resultado.posicao;
+
+        resultado = this.classicCanto();
         if(resultado.conclusao) return resultado.posicao;
 
         return this.randomBotPlay();
     }
 
     minnieBotPlay() {
-        return this.minimax().posicao;
+        return this.minimax(3).posicao;
+    }
+
+    maxBotPlay() {
+        return this.minimax(8).posicao;
     }
 
     botPlay(bot = this.jogadores[this.vez].tipo) {
         let posicao;
         switch(bot) {
             case 'Brandon': posicao = this.randomBotPlay(); break;
-            case 'Pride':  posicao = this.prideBotPlay();  break;
+            case 'Greed':  posicao = this.greedBotPlay(); break;
+            case 'Pride':  posicao = this.prideBotPlay(); break;
             case 'Minnie': posicao = this.minnieBotPlay(); break;
+            case 'Max': posicao = this.maxBotPlay(); break;
         }
         let that = this;
         this.timeout = setTimeout(function() {
