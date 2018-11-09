@@ -17,7 +17,7 @@ Rattt tem foco no jogo da velha, e em jogos semelhantes, e por isso conta com di
 Existem modos predefinidos, como o modo clássico do jogo da velha e outros modos alternativos, onde o usuário pode jogar contra outro jogador local, ou contra bots.
 
 ## Campanha
-Há um modo de campanha, em que o usuário joga partidas contra bots, e vai desbloqueando os níveis em sequência.
+Há um modo de campanha, onde o usuário joga partidas contra bots, e vai desbloqueando os níveis em sequência.
 
 ## Personalização
 O usuário pode criar e jogar modos personalizados por ele mesmo. A personalização permite variar tamanho, formato e gravidade do tabuleiro, sequência necessária para vitória e número de jogadores. Assim como nos modos padrões, o usuário pode jogar contra outro jogador local e/ou contra bots.
@@ -30,4 +30,4 @@ Brandon: bot que faz jogadas completamente aleatórias, independente do modo. Ga
 
 Pride: bot programado especificamente para o modo clássico, é um estrategista de jogadas rápidas, um verdadeiro orgulho.
 
-Minnie: bot programada com o algoritmo minimax. não chega a ser tão rápida como Pride, pois é extremamente calculista e prevê o máximo de jogadas possíveis, o que na verdade também é motivo de se orgulhar.
+Minnie: bot programada com o algoritmo minimax. Não chega a ser tão rápida como Pride, justamente por ser extremamente calculista e prever o máximo de jogadas possíveis, o que também é motivo de se orgulhar.
