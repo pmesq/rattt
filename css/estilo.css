@@ -229,11 +229,11 @@ header img{
 	z-index: 0;
 	height: 100%;
 }
-#exibicao img{
+#perfilImg {
     height: 200px;
 	
 }
-#exibicao * {
+#exibicao > *,#exibicao > * > *  {
     margin: 20px;
 }
 
@@ -258,7 +258,7 @@ header img{
 
 #exibicao p, #pField{
 	color: white;
-    margin: 0 250px;
+    margin: 0 50px;
 	cursor: text;
     display: inline;
 	background-color: #2b2b2b;
@@ -272,18 +272,18 @@ header img{
 }
 
 #exibicao button {
-	position: absolute;
+	position: relative;
     background-color: #2b2b2b;
     border: none;
     color: #00a4dd;
+	font-size: 30px;
+	outline: none;
 }
 
-#editImage {
-    top: 180px;
-    left: 55%;
-}
-
-#editBio {
-    top: -18px;
-    right: 440px;
+.pencil {
+	height: 23px;
+	margin: 2px;
+	border: 2px solid #00a4dd;
+	padding: 5px;
+	border-radius: 5px;
 }
