@@ -18,13 +18,13 @@
                 "tipo": "Usuário",
                 "simbolo": "X",
                 "editavel": true,
-                "tiposDisponiveis": ["Usuário", "Brandon", "Pride", "Minnie"]
+                "tiposDisponiveis": ["Usuário", "Brandon", "Greed", "Pride", "Minnie", "Max"]
             }, {
                 "nome": "P2",
                 "tipo": "Usuário",
                 "simbolo": "O",
                 "editavel": true,
-                "tiposDisponiveis": ["Usuário", "Brandon", "Pride", "Minnie"]
+                "tiposDisponiveis": ["Usuário", "Brandon", "Greed", "Pride", "Minnie", "Max"]
             }
         ]
     },
@@ -47,13 +47,13 @@
                 "tipo": "Usuário",
                 "simbolo": "X",
                 "editavel": true,
-                "tiposDisponiveis": ["Usuário", "Brandon"]
+                "tiposDisponiveis": ["Usuário", "Brandon", "Minnie"]
             }, {
                 "nome": "P2",
                 "tipo": "Usuário",
                 "simbolo": "O",
                 "editavel": true,
-                "tiposDisponiveis": ["Usuário", "Brandon"]
+                "tiposDisponiveis": ["Usuário", "Brandon", "Minnie"]
             }
         ]
     },
@@ -76,13 +76,13 @@
                 "tipo": "Usuário",
                 "simbolo": "X",
                 "editavel": true,
-                "tiposDisponiveis": ["Usuário", "Brandon"]
+                "tiposDisponiveis": ["Usuário", "Brandon", "Minnie"]
             }, {
                 "nome": "P2",
                 "tipo": "Usuário",
                 "simbolo": "O",
                 "editavel": true,
-                "tiposDisponiveis": ["Usuário", "Brandon"]
+                "tiposDisponiveis": ["Usuário", "Brandon", "Minnie"]
             }
         ]
     },
