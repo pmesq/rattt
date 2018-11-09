@@ -1,5 +1,5 @@
 * {
-    font-family: 'Quicksand', 'Roboto', 'Arial', sans-serif;
+    font-family: 'Roboto', 'Arial', sans-serif;
     -webkit-user-select: none;
 }
 
@@ -286,5 +286,6 @@ header img{
 	margin: 2px;
 	border: 2px solid #00a4dd;
 	padding: 5px;
-	border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
 }
