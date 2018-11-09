@@ -86,6 +86,77 @@
             }
         ]
     },
+    "10x10": {
+        "tabuleiro": {
+            "linhas": 10,
+            "colunas": 10,
+            "regular": true,
+            "mapa": [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+        },
+        "sequencia": {
+            "num": 5,
+            "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+        },
+        "gravidade": false,
+        "numJogadores": 2,
+        "jogadores": [
+            {
+                "nome": "P1",
+                "tipo": "Usuário",
+                "simbolo": "X",
+                "editavel": true,
+                "tiposDisponiveis": ["Usuário", "Brandon"]
+            }, {
+                "nome": "P2",
+                "tipo": "Usuário",
+                "simbolo": "O",
+                "editavel": true,
+                "tiposDisponiveis": ["Usuário", "Brandon"]
+            }
+        ]
+    },
+    "big-party": {
+        "tabuleiro": {
+            "linhas": 16,
+            "colunas": 16,
+            "regular": true,
+            "mapa": [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+        },
+        "sequencia": {
+            "num": 5,
+            "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+        },
+        "gravidade": false,
+        "numJogadores": 4,
+        "jogadores": [
+            {
+                "nome": "P1",
+                "tipo": "Usuário",
+                "simbolo": "X",
+                "editavel": true,
+                "tiposDisponiveis": ["Usuário", "Brandon"]
+            }, {
+                "nome": "P2",
+                "tipo": "Usuário",
+                "simbolo": "O",
+                "editavel": true,
+                "tiposDisponiveis": ["Usuário", "Brandon"]
+            },
+            {
+                "nome": "P3",
+                "tipo": "Usuário",
+                "simbolo": "△",
+                "editavel": true,
+                "tiposDisponiveis": ["Usuário", "Brandon"]
+            }, {
+                "nome": "P4",
+                "tipo": "Usuário",
+                "simbolo": "◊",
+                "editavel": true,
+                "tiposDisponiveis": ["Usuário", "Brandon"]
+            }
+        ]
+    },
     "level-1": {
         "tabuleiro": {
             "linhas": 3,
