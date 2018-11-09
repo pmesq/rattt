@@ -3,8 +3,13 @@ _Rat Advanced Tic Tac Toe_
 
 [Página inicial](https://pedrocesarmesquita.github.io/rattt/)
 
-Site em desenvolvimento para a disciplina de Programação Web, do curso de Informática do CEFET-MG
+## Introdução
+Site em desenvolvimento para a disciplina de Programação Web, do curso de Informática do CEFET-MG.
+Rattt tem foco no jogo da velha, e em jogos semelhantes, e por isso conta com diversos modos, dos
+mais comuns aos mais alternativos e personalizáveis.
 
-Contribuidores: [Pedro César](https://github.com/PedroCesarMesquita), [Jônata](https://github.com/Jonatanc05), [Daniel Lelis](https://github.com/yMegaM) e [Samuel](https://github.com/spfa13)
-
-Rattt é um site voltado para jogo da velha e jogos semelhantes, e contém modos de jogo alternativos e personalizáveis.
+## Desenvolvedores
+*[Pedro César](https://github.com/PedroCesarMesquita)
+*[Daniel Lelis](https://github.com/yMegaM)
+*[Jônata Novais](https://github.com/Jonatanc05)
+*[Samuel Pedro](https://github.com/spfa13)
