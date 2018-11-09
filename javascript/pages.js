@@ -26,58 +26,76 @@ let isEditing = {
     h2: true,
     p: true
 };
+let maxLength = {
+	h2: 16,
+	p: 128
+};
+let $pencilImg = '<img src="imgs/pencil.png" class="pencil">';
+let conteudoSalvo = '';
+let h2Limite = 22;
+let pLimite = 150;
+
 $('header img').click(paginaPerfil);
+
 function alteraHTML(El){
 	let tagName = (El.prop('tagName')).toLowerCase();
+	let inputID = '#' + tagName + 'Field';
 	let botao = $('#edit'+tagName);
-	console.log(botao);
 	if(isEditing[tagName]){
 		El.hide();
-		El.after('<input id="'+ tagName +'Field"value="'+ El.text() +'"></input>');
+		El.after('<input maxlength="' + maxLength[tagName] + '"id="'+ tagName + 'Field"value="'+ El.text() +'"></input>');
 		botao.html('👌');
-		console.log('Inicio da edição de #'+tagName+'Field');
+		$(inputID).select();
+		console.log('Inicio da edição de ' + inputID);
+		$(inputID).keydown( function(event){
+			if(event.which == 13)
+				alteraHTML($('#exibicao '+tagName))
+		});
 	}
 	else{
-		let newValue = $('#'+ tagName + 'Field').val();
-		$('#' + tagName + 'Field').remove();
+		let newValue = $(inputID).val();
+		$(inputID).remove();
 		$('#exibicao '+tagName).html(newValue);
 		$('#exibicao '+tagName).show();
-		botao.html('🖉')
-		console.log('Fim da edição de #'+tagName+'Field');
+		botao.html($pencilImg)
+		console.log('Fim da edição de '+inputID);
 	}
 	isEditing[tagName] = !(isEditing[tagName]);
+	atribuiEventos();
+}
+
+function atribuiEventos(){
+	$('button img')
+	.mouseenter(function(){ 
+		this.src = 'imgs/pencilHover.png';
+		this.style.borderColor = '#41f4ff';
+	})
+	.mouseout(function(){ 
+		this.src = 'imgs/pencil.png';
+		this.style.borderColor = '#00a4dd';
+	});
 }
 
 function paginaPerfil() {
     let $main = $('main');
-    /*$main.html('<section id="exibicao">\
-		<div> \
-			<img src="imgs/perfil.png"> \
-		</div> \
-		<button id="editImage">🖉</button>\
-		<div> \
-			<h2>Username</h2>\
-			<button id="edith2">🖉</button>\
-		</div>\
-		<div>\
-			<p>Esta é sua descrição. (max: 300 caracteres)</p>\
-			<button id="editp">🖉</button>\
-		</div>\
-	</section>');*/
 	$main.html('');
 	$main.append('<section id="exibicao"></section>');
 	let $exibicao = $('#exibicao')
-	$exibicao.append('<div><img src="imgs/perfil.png"></div>');
-	$exibicao.append('<button id="editImage">🖉</button>');
+	$exibicao.append('<div id="divImg"><img src="imgs/perfil.png" id="perfilImg"></div>');
 	$exibicao.append('<div id="divNome"></div>');
 	$exibicao.append('<div id="divBio"></div>');
+	$('#divImg').append('<button id="editImage"></button>');
 	$('#divNome').append('<h2>Username</h2>');
-	$('#divNome').append('<button id="edith2">🖉</button>');
+	$('#divNome').append('<button id="edith2"></button>');
 	$('#divBio').append('<p>Esta é sua descrição. max: 150 caracteres</p>');
-	$('#divBio').append('<button id="editp">🖉</button>');
-	$('#exibicao h2').mousedown( function(){ alteraHTML($(this)) } );
-	$('#edith2').click( function(){ alteraHTML($('#exibicao h2')) } );
-	$('#editp').click( function(){ alteraHTML($('#exibicao p')) } );
+	$('#divBio').append('<button id="editp"></button>');
+	
+	$('#exibicao button').append($pencilImg);
+	$('#divNome button').click( function(){ alteraHTML($('#exibicao h2')); } );
+	$('#divNome h2').click( function(){ alteraHTML($(this)); } );
+	$('#divBio button').click( function(){ alteraHTML($('#exibicao p')) } );
+	$('#divBio p').click( function(){ alteraHTML($(this)); } );
+	atribuiEventos();
 }
 
 //}
