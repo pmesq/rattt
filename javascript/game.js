@@ -117,6 +117,9 @@ class Game {
     fimJogada() {
         let gs = this.gameState();
         if(gs.finalizado) {
+            let partidasJogadas = parseInt(localStorage.getItem('partidas-jogadas') || 0) + 1;
+            localStorage.setItem('partidas-jogadas', partidasJogadas);
+            verificaConquistas(partidasJogadas, this);
             if(gs.vencedor != null) {
                 this.alteraLog(this.geraFraseVitoria(this.jogadores[this.vez].nome));
                 if(this.tipo == 'campanha' && gs.vencedor == 0) {

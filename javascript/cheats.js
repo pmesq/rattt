@@ -1,15 +1,13 @@
-const maxLetras = 5;
+const maxLetras = 10;
 
 let letras = new Array(maxLetras).fill(' ');
 
 let cheats = [
 	{
-		nome: 'cheat',
-		func: function() {
-			console.log('cheat ativado');
-		}
+		nome: 'conquista',
+		func: function() { console.log('a'); conquistaAlcancada(8); }
 	}
-]
+];
 
 function atualizaLetras(novaLetra) {
 	for(let i = 0; i < maxLetras - 1; i++)
@@ -39,4 +37,4 @@ $('body').keyup(function(event) {
 		atualizaLetras(event.key);
 		verificaCheats();
 	}
-})
+});

@@ -112,7 +112,6 @@ function paginaPerfil() {
 function paginaJogarPersonalizado() {
     let $main = $('main');
     let modosPersonalizados = JSON.parse(localStorage.getItem('modos-personalizados') || '[]');
-    console.log(modosPersonalizados);
     let $divModosPersonalizados = $('<div id="modos-personalizados"></div>');
     for(let i = 0; i < modosPersonalizados.length; i++) {
         let $modo = $('<div class="botao-modo-personalizado"></div>');

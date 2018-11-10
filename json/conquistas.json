@@ -1,0 +1,38 @@
+[
+    {
+        "nome": "Iniciante",
+        "descricao": "Jogue sua primeira partida"
+    },
+    {
+        "nome": "Entusiasta",
+        "descricao": "Jogue 30 partidas"
+    },
+    {
+        "nome": "Experiente",
+        "descricao": "Jogue 250 partidas"
+    },
+    {
+        "nome": "Era uma vez",
+        "descricao": "Vença o primeiro nível da campanha"
+    },
+    {
+        "nome": "Ficando difícil",
+        "descricao": "Vença o terceiro nível da campanha"
+    },
+    {
+        "nome": "Ez Bot",
+        "descricao": "Conclua a campanha"
+    },
+    {
+        "nome": "Sandbox",
+        "descricao": "Crie e jogue um modo personalizado"
+    },
+    {
+        "nome": "Perfil",
+        "descricao": "Altere seu nome e sua descrição no perfil"
+    },
+    {
+        "nome": "Cheat",
+        "descricao": "???????"
+    }
+]
