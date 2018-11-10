@@ -84,11 +84,11 @@ main {
     cursor: pointer;
     outline: none;
     background: none;
-    border: 1px solid #00a4dd;
+    border: 2px solid #00a4dd;
+    margin-right: 10px;
     color: #00a4dd;
     padding: 10px;
     font-size: 18px;
-    border-radius: 10px;
     transition: all .2s ease;
 }
 
@@ -137,6 +137,44 @@ main {
 	pointer-events: none;
 	opacity: 0;
 	transition: opacity .2s ease;
+}
+
+#modos-personalizados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botao-modo-personalizado {
+    margin-top: 10px;
+}
+
+.jogar-modo-personalizado {
+    padding: 10px;
+    width: 250px;
+    font-size: 16px;
+    text-align: left;
+    background: none;
+    outline: none;
+    color: #00a4dd;
+    border: 2px solid #00a4dd;
+    cursor: pointer;
+}
+
+.apagar-modo-personalizado {
+    padding: 10px;
+    font-size: 16px;
+    color: #00a4dd;
+    background: none;
+    border-width: 2px 2px 2px 0;
+    border-style: solid;
+    border-color: #00a4dd;
+    cursor: pointer;
+}
+
+.jogar-modo-personalizado:hover, .apagar-modo-personalizado:hover {
+    color: white;
+    background-color: #00a4dd;
 }
 
 #configuracoes-modo-personalizado {

@@ -23,6 +23,7 @@ $('.botao-pagina').click(function() {
     } else {
         if(destino == 'Home') paginaHome();
         else if(destino == 'Perfil') paginaPerfil();
+        else if(destino == 'Jogar Personalizado') paginaJogarPersonalizado();
         else if(destino == 'Criar Personalizado') paginaCriarPersonalizado();
     }    
 });
@@ -37,34 +38,27 @@ function paginaHome() {
 
 //PERFIL   {
 
-let isEditing = {
-    h2: true,
-    p: true
-};
-let maxLength = {
-	h2: 16,
-	p: 128
-};
+let isEditing = { h2: true, p: true };
+let maxLength = { h2: 16, p: 128 };
 let $pencilImg = '<img src="imgs/pencil.png" class="pencil">';
 let conteudoSalvo = '';
-let h2Limite = 22;
-let pLimite = 150;
+let h2Limite = 22, pLimite = 150;
 
 $('header img').click(paginaPerfil);
 
 function alteraHTML(El){
 	let tagName = (El.prop('tagName')).toLowerCase();
 	let inputID = '#' + tagName + 'Field';
-	let botao = $('#edit'+tagName);
-	if(isEditing[tagName]){
+	let botao = $('#edit' + tagName);
+	if(isEditing[tagName]) {
 		El.hide();
-		El.after('<input maxlength="' + maxLength[tagName] + '"id="'+ tagName + 'Field"value="'+ El.text() +'"></input>');
+		El.after('<input maxlength="' + maxLength[tagName] + '"id="'+ tagName + 'Field"value="' + El.text() +'"></input>');
 		botao.html('👌');
 		$(inputID).select();
 		console.log('Inicio da edição de ' + inputID);
-		$(inputID).keydown( function(event){
+		$(inputID).keydown(function(event) {
 			if(event.which == 13)
-				alteraHTML($('#exibicao '+tagName))
+				alteraHTML($('#exibicao '+tagName));
 		});
 	}
 	else{
@@ -72,7 +66,7 @@ function alteraHTML(El){
 		$(inputID).remove();
 		$('#exibicao '+tagName).html(newValue);
 		$('#exibicao '+tagName).show();
-		botao.html($pencilImg)
+		botao.html($pencilImg);
 		console.log('Fim da edição de '+inputID);
 	}
 	isEditing[tagName] = !(isEditing[tagName]);
@@ -81,11 +75,11 @@ function alteraHTML(El){
 
 function atribuiEventos(){
 	$('button img')
-	.mouseenter(function(){ 
+	.mouseenter(function() { 
 		this.src = 'imgs/pencilHover.png';
 		this.style.borderColor = '#41f4ff';
 	})
-	.mouseout(function(){ 
+	.mouseout(function() { 
 		this.src = 'imgs/pencil.png';
 		this.style.borderColor = '#00a4dd';
 	});
@@ -95,7 +89,7 @@ function paginaPerfil() {
     let $main = $('main');
 	$main.html('');
 	$main.append('<section id="exibicao"></section>');
-	let $exibicao = $('#exibicao')
+	let $exibicao = $('#exibicao');
 	$exibicao.append('<div id="divImg"><img src="imgs/perfil.png" id="perfilImg"></div>');
 	$exibicao.append('<div id="divNome"></div>');
 	$exibicao.append('<div id="divBio"></div>');
@@ -106,14 +100,44 @@ function paginaPerfil() {
 	$('#divBio').append('<button id="editp"></button>');
 	
 	$('#exibicao button').append($pencilImg);
-	$('#divNome button').click( function(){ alteraHTML($('#exibicao h2')); } );
-	$('#divNome h2').click( function(){ alteraHTML($(this)); } );
-	$('#divBio button').click( function(){ alteraHTML($('#exibicao p')) } );
-	$('#divBio p').click( function(){ alteraHTML($(this)); } );
+	$('#divNome button').click(function() { alteraHTML($('#exibicao h2'));});
+	$('#divNome h2').click(function() { alteraHTML($(this)); });
+	$('#divBio button').click(function() { alteraHTML($('#exibicao p')) });
+	$('#divBio p').click(function() { alteraHTML($(this)); });
 	atribuiEventos();
 }
 
 //}
+
+function paginaJogarPersonalizado() {
+    let $main = $('main');
+    let modosPersonalizados = JSON.parse(localStorage.getItem('modos-personalizados') || '[]');
+    console.log(modosPersonalizados);
+    let $divModosPersonalizados = $('<div id="modos-personalizados"></div>');
+    for(let i = 0; i < modosPersonalizados.length; i++) {
+        let $modo = $('<div class="botao-modo-personalizado"></div>');
+        let $jogar = $('<button class="jogar-modo-personalizado">' + modosPersonalizados[i].nome + '</button>');
+        let $apagar = $('<button class="apagar-modo-personalizado">X</button>');
+        $modo.append($jogar);
+        $modo.append($apagar);
+        $divModosPersonalizados.append($modo);
+
+        $jogar.click(function() {
+            $main.html('');
+            $('header > h2').html(modosPersonalizados[i].nome);
+            paginaJogo(modosPersonalizados[i]);
+        });
+
+        $apagar.click(function() {
+            modosPersonalizados.splice(i, 1);
+            localStorage.setItem('modos-personalizados', JSON.stringify(modosPersonalizados));
+            $main.html('');
+            paginaJogarPersonalizado();
+            return;
+        });
+    }
+    $main.append($divModosPersonalizados);
+}
 
 function paginaCriarPersonalizado() {
     let $main = $('main');
@@ -150,9 +174,7 @@ function paginaCriarPersonalizado() {
             $casa.mousedown(function() {
                 $casa.css('background-color', (marcarCasa = mapa[i][j] = mapa[i][j] ? 0 : 1) ? '#343a40' : '#2b2b2b');
             });
-            $casa.mouseup(function() {
-                marcarCasa = null;
-            });
+            $casa.mouseup(function() { marcarCasa = null; });
             $casa.mouseenter(function() {
                 if(marcarCasa != null)
                     $casa.css('background-color', (mapa[i][j] = marcarCasa) ? '#343a40' : '#2b2b2b');
@@ -174,8 +196,8 @@ function paginaCriarPersonalizado() {
 
     let $labelGravidade = $('<label id="label-personalizado-gravidade">Gravidade </label>');
     let $selectGravidade = $('<select id="select-personalizado-gravidade"></select>');
-    $selectGravidade.append($('<option value="false">Não</option>'));
-    $selectGravidade.append($('<option value="true">Sim</option>'));
+    $selectGravidade.append($('<option value="Não">Não</option>'));
+    $selectGravidade.append($('<option value="Sim">Sim</option>'));
     $labelGravidade.append($selectGravidade);
     $configuracoesModo.append($labelGravidade);
 
@@ -227,13 +249,15 @@ function paginaCriarPersonalizado() {
             }
         }
 
-        let jogadores = new Array($inputSequencia.val());
-        for(let i = 0; i < jogadores.length; i++) {
-            jogadores[i] = {
-                "nome": "P" + (i + 1), "tipo": "Usuário",
+        let jogadores = [];
+        for(let i = 0; i < $inputJogadores.val(); i++) {
+            jogadores.push({
+                "nome": "P" + (i + 1), 
+                "tipo": "Usuário",
                 "simbolo": (i == 0) ? "X" : ((i == 1) ? "O" : ((i == 2) ? "△" : "◊")),
-                "editavel": true
-            }
+                "editavel": true,
+                "tiposDisponiveis": ["Usuário", "Brandon"]
+            });
         }
         let novoModo = {
             "tipo": "personalizado",
@@ -243,7 +267,7 @@ function paginaCriarPersonalizado() {
                 "num": $inputSequencia.val(),
                 "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
             },
-            "gravidade": $selectGravidade.val(),
+            "gravidade": $selectGravidade.val() == "Sim",
             "numJogadores": $inputJogadores.val(),
             "jogadores": jogadores
         };
