@@ -28,6 +28,10 @@ Conheça os bots:
 
 Brandon: bot que faz jogadas completamente aleatórias, independente do modo. Ganhou este nome pela semelhança com random (ótimo trocadilho!).
 
-Pride: bot programado especificamente para o modo clássico, é um estrategista de jogadas rápidas, um verdadeiro orgulho.
+Greed: bot programado especificamente para o modo clássico, é rápido e ganancioso, possui boas estratégias mas também possui aberturas.
 
-Minnie: bot programada com o algoritmo minimax. Não chega a ser tão rápida como Pride, justamente por ser extremamente calculista e prever o máximo de jogadas possíveis, o que também é motivo de se orgulhar.
+Pride: bot programado especificamente para o modo clássico, é um estrategista de pensamentos rápidas e joga com calma para garantir o melhor resultado, um verdadeiro orgulho.
+
+Minnie: bot programada com o algoritmo minimax. É uma boa calculista, prevê algumas jogadas à frente para ter um bom resultado.
+
+Max: bot programado com o algoritmo minimax. Não chega a ser tão rápido como os outros, justamente por ser extremamente calculista e prever o máximo de jogadas possíveis, o que lhe faz invencível no modo clássico.
