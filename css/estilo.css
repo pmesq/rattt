@@ -261,10 +261,6 @@ h3{
     margin: 5px 0px 5px 0px;
 }
 
-#editImage, #edith2, #editp {
-    cursor: pointer;
-}
-
 #exibicao{
     height: 60%;
     position: relative;
@@ -317,16 +313,17 @@ h3{
 #exibicao button {
 	position: relative;
     background-color: #2b2b2b;
-    border: none;
     color: #00a4dd;
+    border: none;
 	font-size: 30px;
-	outline: none;
+    outline: none;
+    cursor: pointer;
 }
 
 .pencil {
 	height: 23px;
-	margin: 2px;
-	border: 2px solid #00a4dd;
+    margin: 2px;
+    border: 2px solid #00a4dd;
 	padding: 5px;
     border-radius: 5px;
 }
