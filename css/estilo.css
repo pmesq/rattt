@@ -109,9 +109,9 @@ main {
 
 #tabuleiro {
 	display: grid;
-	margin: auto;
-	width: 75%;
-	height: 75%;
+    margin: auto;
+    width: 75%;
+    height: 75%;
 }
 
 .casa {
@@ -139,6 +139,52 @@ main {
 	transition: opacity .2s ease;
 }
 
+#configuracoes-modo-personalizado {
+    margin-top: 10px;
+}
+
+#configuracoes-modo-personalizado > label {
+    color: #00a4dd;
+    border: 2px solid #00a4dd;
+    padding-left: 5px;;
+    border-radius: 0px;
+    display: inline-block;
+    transition: all .2s ease;
+    cursor: pointer;
+    margin: 10px 10px 0 0;
+    font-size: 16px;
+}
+
+#configuracoes-modo-personalizado input, #configuracoes-modo-personalizado select {
+    outline: none;
+    background: none;
+    border-color: #00a4dd;
+    border-style: solid;
+    border-width: 0 0 0 2px;
+    color: #00a4dd;
+    padding: 10px;
+    cursor: default;
+    font-size: 16px;
+}
+
+#configuracoes-modo-personalizado button {
+    outline: none;
+    background: none;
+    border: 2px solid #00a4dd;
+    color: #00a4dd;
+    padding: 10px;
+    cursor: default;
+    margin-top: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+#configuracoes-modo-personalizado button:hover {
+    background-color: #00a4dd;
+    color: white;
+}
+
 h2 {
     text-align: center;
     color: #00a4dd;
@@ -151,6 +197,8 @@ h2 {
     color: white;
     border: 2px solid #00a4dd;
     top: 300px;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 .janela-jogador > select {

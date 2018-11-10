@@ -23,6 +23,7 @@ $('.botao-pagina').click(function() {
     } else {
         if(destino == 'Home') paginaHome();
         else if(destino == 'Perfil') paginaPerfil();
+        else if(destino == 'Criar Personalizado') paginaCriarPersonalizado();
     }    
 });
 
@@ -33,7 +34,6 @@ function paginaNivelBloqueado() {
 function paginaHome() {
 	
 }
-
 
 //PERFIL   {
 
@@ -115,6 +115,145 @@ function paginaPerfil() {
 
 //}
 
+function paginaCriarPersonalizado() {
+    let $main = $('main');
+    let $log = $('<p id="log">Mapa</p>');
+    $main.append($log);
+    let $mapa = $('<div id="tabuleiro"></div>');
+    $mapa.css('grid-template-columns', 'auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto');
+    $main.append($mapa);
+    let larguraMain = parseFloat($main.css('width')), alturaMain = parseFloat($main.css('height'));
+    let tamCasa;
+    if(alturaMain * 0.75 <= larguraMain * 0.95)
+        tamCasa = alturaMain * 0.75 / 16;
+    else
+        tamCasa = larguraMain * 0.95 / 16;
+    $mapa.css('width' , (tamCasa + 1) * 16 + 'px');
+    $mapa.css('height', (tamCasa) * 16 + 'px');
+    $('.casa').css('width' , tamCasa + 'px');
+    $('.casa').css('height', tamCasa + 'px');
+
+    let mapa = new Array(16);
+    let marcarCasa = null;
+    for(let i = 0; i < 16; i++) {
+        mapa[i] = new Array(16);
+        for(let j = 0; j < 16; j++) {
+            mapa[i][j] = 0;
+            let $casa = $('<div class="casa"></div>');
+            $casa.append($('<span></span>'));
+            if(i == 0) $casa.css('border-top-width', '0');
+            if(j == 0) $casa.css('border-left-width', '0');
+            $casa.css('box-sizing', 'border-box');
+            $casa.css('background-color', '#2b2b2b');
+            $mapa.append($casa);
+
+            $casa.mousedown(function() {
+                $casa.css('background-color', (marcarCasa = mapa[i][j] = mapa[i][j] ? 0 : 1) ? '#343a40' : '#2b2b2b');
+            });
+            $casa.mouseup(function() {
+                marcarCasa = null;
+            });
+            $casa.mouseenter(function() {
+                if(marcarCasa != null)
+                    $casa.css('background-color', (mapa[i][j] = marcarCasa) ? '#343a40' : '#2b2b2b');
+            });
+        }
+    }
+
+    let $configuracoesModo = $('<div id="configuracoes-modo-personalizado"></div>');
+
+    let $labelNome = $('<label id="label-personalizado-nome">Nome </label>');
+    let $inputNome = $('<input type="text" maxlength="16" id="input-personalizado-nome" value="Meu Modo">');
+    $labelNome.append($inputNome);
+    $configuracoesModo.append($labelNome);
+
+    let $labelSequencia = $('<label id="label-personalizado-sequencia">Sequência </label>');
+    let $inputSequencia = $('<input type="number" min="2" max="16" id="input-personalizado-sequencia" value="3">');
+    $labelSequencia.append($inputSequencia);
+    $configuracoesModo.append($labelSequencia);
+
+    let $labelGravidade = $('<label id="label-personalizado-gravidade">Gravidade </label>');
+    let $selectGravidade = $('<select id="select-personalizado-gravidade"></select>');
+    $selectGravidade.append($('<option value="false">Não</option>'));
+    $selectGravidade.append($('<option value="true">Sim</option>'));
+    $labelGravidade.append($selectGravidade);
+    $configuracoesModo.append($labelGravidade);
+
+    let $labelJogadores = $('<label id="label-personalizado-jogadores">Jogadores </label>');
+    let $inputJogadores = $('<input type="number" min="2" max="4" id="input-personalizado-jogadores" value="2">');
+    $labelJogadores.append($inputJogadores);
+    $configuracoesModo.append($labelJogadores);
+
+    let $salvar = $('<button id="personalizado-salvar" type="button">Salvar</button>');
+    $configuracoesModo.append($salvar);
+
+    $inputSequencia.change(function()  {
+        if($(this).val() < 2) $(this).val(2);
+        else if($(this).val() > 16) $(this).val(16);
+    });
+
+    $inputJogadores.change(function() {
+        if($(this).val() < 2) $(this).val(2);
+        else if($(this).val() > 4) $(this).val(4);
+    });
+
+    $salvar.click(function() {
+        let primeiraLinha = null, ultimaLinha = null, primeiraColuna = null, ultimaColuna = null;
+        for(let i = 0; i < 16; i++) {
+            for(let j = 0; j < 16; j++) {
+                if(mapa[i][j]) ultimaLinha = i;
+            }
+            for(let j = 0; j < 16; j++) {
+                if(mapa[j][i]) ultimaColuna = i;
+            }
+        }
+        for(let i = 15; i >= 0; i--) {
+            for(let j = 0; j < 16; j++) {
+                if(mapa[i][j]) primeiraLinha = i;
+            }
+            for(let j = 0; j < 16; j++) {
+                if(mapa[j][i]) primeiraColuna = i;
+            }
+        }
+        
+        if(!primeiraLinha || !primeiraColuna) return;
+        let linhas = ultimaLinha - primeiraLinha + 1;
+        let colunas = ultimaColuna - primeiraColuna + 1;
+        let mapaFinal = new Array(linhas);
+        for(let i = 0; i < linhas; i++) {
+            mapaFinal[i] = new Array(colunas);
+            for(let j = 0; j < colunas; j++) {
+                mapaFinal[i][j] = mapa[i + primeiraLinha][j + primeiraColuna];
+            }
+        }
+
+        let jogadores = new Array($inputSequencia.val());
+        for(let i = 0; i < jogadores.length; i++) {
+            jogadores[i] = {
+                "nome": "P" + (i + 1), "tipo": "Usuário",
+                "simbolo": (i == 0) ? "X" : ((i == 1) ? "O" : ((i == 2) ? "△" : "◊")),
+                "editavel": true
+            }
+        }
+        let novoModo = {
+            "tipo": "personalizado",
+            "nome": $inputNome.val(),
+            "tabuleiro": { "linhas": linhas, "colunas": colunas, "mapa": mapaFinal },
+            "sequencia": {
+                "num": $inputSequencia.val(),
+                "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+            },
+            "gravidade": $selectGravidade.val(),
+            "numJogadores": $inputJogadores.val(),
+            "jogadores": jogadores
+        };
+        let modosPersonalizados = JSON.parse(localStorage.getItem('modos-personalizados') || '[]');
+        modosPersonalizados.push(novoModo);
+        localStorage.setItem('modos-personalizados', JSON.stringify(modosPersonalizados));
+    });
+
+    $main.append($configuracoesModo);
+}
 
 function criaTabuleiro(modo) {
     let $main = $('main');
@@ -124,19 +263,17 @@ function criaTabuleiro(modo) {
         gridTemplateColumns += 'auto ';
     $tabuleiro.css('grid-template-columns', gridTemplateColumns);
 
-    let larguraMain = parseFloat($main.css('width' ));
-    let alturaMain  = parseFloat($main.css('height'));
+    let larguraMain = parseFloat($main.css('width')), alturaMain = parseFloat($main.css('height'));
     let tamCasa;
-    if(alturaMain * 0.75 <= larguraMain * 0.95) {
+    if(alturaMain * 0.75 <= larguraMain * 0.95)
         tamCasa = alturaMain * 0.75 / modo.tabuleiro.linhas;
-    } else {
+    else
         tamCasa = larguraMain * 0.95 / modo.tabuleiro.linhas;
-    }
     $tabuleiro.css('width' , (tamCasa + 1) * modo.tabuleiro.colunas + 'px');
     $tabuleiro.css('height', (tamCasa) * modo.tabuleiro.linhas + 'px');
     $('.casa').css('width' , tamCasa + 'px');
     $('.casa').css('height', tamCasa + 'px');
-    setTimeout(function() { $('.casa > span').css('font-size', tamCasa); }, 1);
+    setTimeout(function() { $('.casa > span').css('font-size', tamCasa + 'px'); }, 1);
     for(let i = 0; i < modo.tabuleiro.linhas; i++) {
         for(let j = 0; j < modo.tabuleiro.colunas; j++) {
             let $casa = $('<div class="casa"></div>');
@@ -151,31 +288,6 @@ function criaTabuleiro(modo) {
         }
     }
     $main.append($tabuleiro);
-}
-
-function criaJanela(i, modo) {
-    let $main = $('main');
-    let $janela = $('<div class="janela" id="janela-jogador-' + i + '"></div>');
-    let $nomeJogador = $('<h2>' + modo.jogadores[i].nome + '</h2>');
-    let $selectTipo = $('<select class="select-tipo"></select>');
-    for(let j = 0; j < modo.jogadores[i].tiposDisponiveis.length; j++) {
-        let $option = $('<option value="' +modo.jogadores[i].tiposDisponiveis[j]+ '">' + modo.jogadores[i].tiposDisponiveis[j] + '</option>');
-        $selectTipo.append($option);
-    }
-    $janela.append($nomeJogador);
-    $janela.append($selectTipo);
-    $janela.hide();
-    let larguraMain   = parseFloat($main.css('width'));
-    let larguraJanela = parseFloat($janela.css('width'));
-    $main.append($janela);
-    $janela.fadeIn(300);
-    $janela.css('left', (larguraMain - larguraJanela) / 2 + 'px');
-}
-
-function deletaJanela(i) {
-    let $janela = $('#janela-jogador-' + i);
-    $janela.fadeOut(300);
-    setTimeout(function() { $janela.detach() }, 300);
 }
 
 let game;
@@ -202,8 +314,9 @@ function paginaJogo(modo) {
             $janela.append($nomeJogador);
             $janela.append($selectTipo);
             $janela.hide();
-            let larguraMain = parseFloat($main.css('width')), larguraJanela = parseFloat($janela.css('width'));
+            let larguraMain = parseFloat($main.css('width'));
             $main.append($janela);
+            let larguraJanela = parseFloat($janela.css('width'));
             $janela.css('left', (larguraMain - larguraJanela) / 2 + 'px');
             let $botaoEditarJogador = $('<button type="button" class="botao-controle">' + modo.jogadores[i].nome + ' ⚙</button>');
             $botaoEditarJogador.click(function() { $janela.fadeToggle(300); });
