@@ -13,18 +13,24 @@ html, body {
 header {
     background-color: #343a40;
     padding: 16px;
+    display: flex;
+    justify-content: space-between;
 }
 
 h1 {
     color: #00a4dd;
     font-size: 42px;
-    margin: 0 auto;
+    margin: 0;
     cursor: pointer;
-    display: inline-block;
 }
 
 h1 > span {
     font-size: 24px;
+}
+
+header > h2 {
+    margin: 0;
+    align-self: flex-end;
 }
 
 main {
@@ -134,7 +140,8 @@ main {
 }
 
 h2 {
-	text-align: center;
+    text-align: center;
+    color: #00a4dd;
 }
 
 .janela-jogador {

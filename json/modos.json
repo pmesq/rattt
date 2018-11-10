@@ -1,5 +1,6 @@
 {
-    "classic": {
+    "Classic": {
+        "tipo": "padrao",
         "tabuleiro": {
             "linhas": 3,
             "colunas": 3,
@@ -29,6 +30,7 @@
         ]
     },
     "4x4": {
+        "tipo": "padrao",
         "tabuleiro": {
             "linhas": 4,
             "colunas": 4,
@@ -57,7 +59,8 @@
             }
         ]
     },
-    "gravitrips": {
+    "Gravitrips": {
+        "tipo": "padrao",
         "tabuleiro": {
             "linhas": 6,
             "colunas": 7,
@@ -86,7 +89,38 @@
             }
         ]
     },
-    "10x10": {
+    "Losango": {
+        "tipo": "padrao",
+        "tabuleiro": {
+            "linhas": 7,
+            "colunas": 7,
+            "regular": false,
+            "mapa": [[0, 0, 0, 1, 0, 0, 0], [0, 0, 1, 1, 1, 0, 0], [0, 1, 1, 1, 1, 1, 0], [1, 1, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 1, 0], [0, 0, 1, 1, 1, 0, 0], [0, 0, 0, 1, 0, 0, 0]]
+        },
+        "sequencia": {
+            "num": 4,
+            "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+        },
+        "gravidade": false,
+        "numJogadores": 2,
+        "jogadores": [
+            {
+                "nome": "P1",
+                "tipo": "Usuário",
+                "simbolo": "X",
+                "editavel": true,
+                "tiposDisponiveis": ["Usuário", "Brandon"]
+            }, {
+                "nome": "P2",
+                "tipo": "Usuário",
+                "simbolo": "O",
+                "editavel": true,
+                "tiposDisponiveis": ["Usuário", "Brandon"]
+            }
+        ]
+    },
+    "Dez Passitos": {
+        "tipo": "padrao",
         "tabuleiro": {
             "linhas": 10,
             "colunas": 10,
@@ -115,7 +149,8 @@
             }
         ]
     },
-    "big-party": {
+    "Big Party": {
+        "tipo": "padrao",
         "tabuleiro": {
             "linhas": 16,
             "colunas": 16,
@@ -157,7 +192,9 @@
             }
         ]
     },
-    "level-1": {
+    "Nível 1": {
+        "tipo": "campanha",
+        "nivel": 1,
         "tabuleiro": {
             "linhas": 3,
             "colunas": 3,
@@ -184,7 +221,9 @@
             }
         ]
     },
-    "level-2": {
+    "Nível 2": {
+        "tipo": "campanha",
+        "nivel": 2,
         "tabuleiro": {
             "linhas": 4,
             "colunas": 4,
@@ -211,7 +250,9 @@
             }
         ]
     },
-    "level-3": {
+    "Nível 3": {
+        "tipo": "campanha",
+        "nivel": 3,
         "tabuleiro": {
             "linhas": 6,
             "colunas": 7,
@@ -233,6 +274,64 @@
             }, {
                 "nome": "P2",
                 "tipo": "Brandon",
+                "simbolo": "O",
+                "editavel": false
+            }
+        ]
+    },
+    "Nível 4": {
+        "tipo": "campanha",
+        "nivel": 4,
+        "tabuleiro": {
+            "linhas": 3,
+            "colunas": 3,
+            "regular": true,
+            "mapa": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
+        },
+        "sequencia": {
+            "num": 3,
+            "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+        },
+        "gravidade": false,
+        "numJogadores": 2,
+        "jogadores": [
+            {
+                "nome": "P1",
+                "tipo": "Usuário",
+                "simbolo": "X",
+                "editavel": false
+            }, {
+                "nome": "P2",
+                "tipo": "Greed",
+                "simbolo": "O",
+                "editavel": false
+            }
+        ]
+    },
+    "Nível 5": {
+        "tipo": "campanha",
+        "nivel": 5,
+        "tabuleiro": {
+            "linhas": 4,
+            "colunas": 4,
+            "regular": true,
+            "mapa": [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]
+        },
+        "sequencia": {
+            "num": 4,
+            "tipos": ["horizontal", "vertical", "diagonal-crescente", "diagonal-decrescente"]
+        },
+        "gravidade": false,
+        "numJogadores": 2,
+        "jogadores": [
+            {
+                "nome": "P1",
+                "tipo": "Usuário",
+                "simbolo": "X",
+                "editavel": false
+            }, {
+                "nome": "P2",
+                "tipo": "Minnie",
                 "simbolo": "O",
                 "editavel": false
             }

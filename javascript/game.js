@@ -5,7 +5,8 @@ class Game {
         this.numJogadores = modo.numJogadores;
         this.sequencia = modo.sequencia;
         this.gravidade = modo.gravidade;
-        this.profundidadeMaxima = modo.profundidadeMaxima;
+        this.tipo = modo.tipo;
+        if(this.tipo == 'campanha') this.nivel = modo.nivel;
         this.vez = 0;
         this.inicializaTabuleiro();
         this.alteraLog(this.geraFraseVez(this.jogadores[0].nome));
@@ -118,17 +119,20 @@ class Game {
         if(gs.finalizado) {
             if(gs.vencedor != null) {
                 this.alteraLog(this.geraFraseVitoria(this.jogadores[this.vez].nome));
-            } else {
+                if(this.tipo == 'campanha' && gs.vencedor == 0) {
+                    let nivelProgresso = parseInt(localStorage.getItem('campanha') || 1);
+                    let nivelAtual = this.nivel;
+                    if(nivelAtual == nivelProgresso) localStorage.setItem('campanha', nivelAtual + 1);
+                }
+            } else
                 this.alteraLog(this.geraFraseEmpate());
-            }
             $('.casa').css('cursor', 'default');
             this.vez = null;
         } else {
             this.vez = this.vez == this.numJogadores - 1 ? 0 : this.vez + 1;
             this.alteraLog(this.geraFraseVez(this.jogadores[this.vez].nome));
-            if(this.jogadores[this.vez].tipo != 'Usuário') {
+            if(this.jogadores[this.vez].tipo != 'Usuário')
                 this.botPlay();
-            }
         }
     }
 
@@ -428,10 +432,10 @@ class Game {
         resultado = this.classicPerder();
         if(resultado.conclusao) return resultado.posicao;
 
-        resultado = this.classicCanto();
+        resultado = this.classicMeio();
         if(resultado.conclusao) return resultado.posicao;
 
-        resultado = this.classicMeio();
+        resultado = this.classicCanto();
         if(resultado.conclusao) return resultado.posicao;
 
         return this.randomBotPlay();

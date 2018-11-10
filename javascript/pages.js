@@ -1,19 +1,34 @@
+function requisicaoAjax(destino) {
+    $.ajax({
+        url: 'json/modos.json',
+        dataType: 'json',
+        success: function(res) {
+            paginaJogo(res[destino]);
+        }
+    });
+}
+
 $('.botao-pagina').click(function() {
     let $main = $('main');
     $main.html('');
-    let destino = $(this).data('destino');
-    if(destino == 'home') paginaHome();
-    else if(destino == 'perfil') paginaPerfil();
-    else {
-        $.ajax({
-            url: 'json/modos.json',
-            dataType: 'json',
-            success: function(res) {
-                paginaJogo(res[destino]);
-            }
-        });
-    }
+    let tipoDestino = $(this).data('tipo-destino'), destino = $(this).data('destino');
+    $('header > h2').html(destino);
+    if(tipoDestino == 'modo-padrao')
+        requisicaoAjax(destino);
+    else if(tipoDestino == 'campanha') {
+        let nivelProgresso = parseInt(localStorage.getItem('campanha') || 1);
+        let nivelDestino = parseInt(destino.charAt(6));
+        if(nivelDestino <= nivelProgresso) requisicaoAjax(destino);
+        else paginaNivelBloqueado();
+    } else {
+        if(destino == 'Home') paginaHome();
+        else if(destino == 'Perfil') paginaPerfil();
+    }    
 });
+
+function paginaNivelBloqueado() {
+    $('main').append($('<h2>Este nível está bloqueado. Conclua os níveis anteriores para desbloqueá-lo.</h2>'));
+}
 
 function paginaHome() {
 	
