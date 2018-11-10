@@ -77,7 +77,6 @@ main {
     display: flex;
     justify-content: center;
     background: none;
-    margin-top: 10px;
 }
 
 .botao-controle {
@@ -85,7 +84,7 @@ main {
     outline: none;
     background: none;
     border: 2px solid #00a4dd;
-    margin-right: 10px;
+    margin: 10px 10px 0 0;
     color: #00a4dd;
     padding: 10px;
     font-size: 18px;
@@ -146,7 +145,7 @@ main {
 }
 
 .botao-modo-personalizado {
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .jogar-modo-personalizado {
@@ -255,48 +254,6 @@ h2 {
     color: white;
 }
 
-#cartas{
-	float: right;
-	width: 250px;
-	display: flex;
-    position: relative;
-    left: 0px;
-	flex-direction: column;
-}
-
-.carta{
-	width: 250px;
-	height: 20%;
-	/*border: 1px solid blue;*/
-	background-color: #44557c;
-	margin-bottom: 2px;
-}
-
-.neutra{
-	color: white;
-	font-weight: bold;
-}
-
-.molhada{
-	color: #42b0f4;
-	font-weight: bold;
-}
-
-.fogo{
-	color: #e80000;
-	font-weight: bold;
-}
-
-#cartas > h2{
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 5px;
-    color: #00a4dd;
-    font-family: 'Roboto', 'Arial', sans-serif;
-    height: 30px;
-	width: 100%;
-}
-
 h3{
     text-align: center;
     font-family: 'Times New Roman', sans-serif;
@@ -304,14 +261,7 @@ h3{
     margin: 5px 0px 5px 0px;
 }
 
-header > div{
-	float: right;
-	color: white;
-}
-
-header img{
-	height: 45px;
-    margin-left: 15px;
+#editImage, #edith2, #editp {
     cursor: pointer;
 }
 
@@ -356,7 +306,6 @@ header img{
 	background-color: #2b2b2b;
 	border: none;
 	text-align: center;
-	width: 350px;
 	font-size: 15px;
 	outline: none;
 }
@@ -380,5 +329,4 @@ header img{
 	border: 2px solid #00a4dd;
 	padding: 5px;
     border-radius: 5px;
-    cursor: pointer;
 }

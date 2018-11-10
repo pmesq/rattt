@@ -111,7 +111,10 @@ function paginaPerfil() {
 
 function paginaJogarPersonalizado() {
     let $main = $('main');
+    let $log = $('<p id="log">Seus modos</p>');
+    $main.append($log);
     let modosPersonalizados = JSON.parse(localStorage.getItem('modos-personalizados') || '[]');
+    if(modosPersonalizados.length == 0) $log.html('Você não possui modos personalizados.');
     let $divModosPersonalizados = $('<div id="modos-personalizados"></div>');
     for(let i = 0; i < modosPersonalizados.length; i++) {
         let $modo = $('<div class="botao-modo-personalizado"></div>');
@@ -136,6 +139,12 @@ function paginaJogarPersonalizado() {
         });
     }
     $main.append($divModosPersonalizados);
+    let $criar = $('<button class="botao-controle">Criar novo modo</button>');
+    $main.append($criar);
+    $criar.click(function() {
+        $main.html('');
+        paginaCriarPersonalizado();
+    });
 }
 
 function paginaCriarPersonalizado() {

@@ -26,7 +26,7 @@ O usuário pode criar e jogar modos personalizados por ele mesmo. A personaliza�
 Para garantir a diversão do jogador quando está sozinho, ou para desafiá-lo mesmo na presença de amigos, foram criados os bots! Existem bots de dificuldades variadas, desde os aleatórios até os invencíveis, dependendo do modo.\
 Conheça os bots:
 
-Brandon: bot que faz jogadas completamente aleatórias, independente do modo. Ganhou este nome pela semelhança com random (ótimo trocadilho!).
+Brandon: bot que faz jogadas completamente aleatórias, independente do modo. B-random não gosta muito de pensar, eu diria.
 
 Greed: bot programado especificamente para o modo clássico, é rápido e ganancioso. Possui boas estratégias mas também possui aberturas.
 
