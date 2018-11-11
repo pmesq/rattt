@@ -38,11 +38,10 @@ function paginaHome() {
 
 //PERFIL   {
 
-let isEditing = { h2: true, p: true };
-let maxLength = { h2: 16, p: 128 };
+let isEditing = { h2: false, p: false, img: false };
+let maxLength = { h2: 16, p: 128, img: 120 };
 let $pencilImg = '<img src="imgs/pencil.png" class="pencil">';
 let conteudoSalvo = '';
-let h2Limite = 22, pLimite = 150;
 
 $('header img').click(paginaPerfil);
 
@@ -50,7 +49,7 @@ function alteraHTML(El){
 	let tagName = (El.prop('tagName')).toLowerCase();
 	let inputID = '#' + tagName + 'Field';
 	let botao = $('#edit' + tagName);
-	if(isEditing[tagName]) {
+	if( !(isEditing[tagName]) ) {
 		El.hide();
 		El.after('<input maxlength="' + maxLength[tagName] + '"id="'+ tagName + 'Field"value="' + El.text() +'"></input>');
 		botao.html('👌');
@@ -61,13 +60,27 @@ function alteraHTML(El){
 				alteraHTML($('#exibicao '+tagName));
 		});
 	}
-	else{
+	else if(tagName != 'img'){
 		let newValue = $(inputID).val();
 		$(inputID).remove();
 		$('#exibicao '+tagName).html(newValue);
 		$('#exibicao '+tagName).show();
 		botao.html($pencilImg);
 		console.log('Fim da edição de '+inputID);
+	}
+	else{
+		if( $(inputID).val() != '' ){
+			El.attr('src',$(inputID).val())
+			  .attr('id', 'newPerfilImg');
+			  console.log('if');
+		}
+		else {
+			El.attr('id', 'perfilImg');
+			console.log('else')
+		}			
+		$(inputID).remove();
+		El.show();
+		botao.html($pencilImg);
 	}
 	isEditing[tagName] = !(isEditing[tagName]);
 	atribuiEventos();
@@ -77,7 +90,7 @@ function atribuiEventos(){
 	$('button img')
 	.mouseenter(function() { 
 		this.src = 'imgs/pencilHover.png';
-		this.style.borderColor = '#41f4ff';
+		this.style.borderColor = '#fff';
 	})
 	.mouseout(function() { 
 		this.src = 'imgs/pencil.png';
@@ -86,6 +99,7 @@ function atribuiEventos(){
 }
 
 function paginaPerfil() {
+	isEditing = { h2: false, p: false, img: false };
     let $main = $('main');
 	$main.html('');
 	$main.append('<section id="exibicao"></section>');
@@ -93,7 +107,7 @@ function paginaPerfil() {
 	$exibicao.append('<div id="divImg"><img src="imgs/perfil.png" id="perfilImg"></div>');
 	$exibicao.append('<div id="divNome"></div>');
 	$exibicao.append('<div id="divBio"></div>');
-	$('#divImg').append('<button id="editImage"></button>');
+	$('#divImg').append('<button id="editimg"></button>');
 	$('#divNome').append('<h2>Username</h2>');
 	$('#divNome').append('<button id="edith2"></button>');
 	$('#divBio').append('<p>Esta é sua descrição. max: 150 caracteres</p>');
@@ -104,8 +118,10 @@ function paginaPerfil() {
 	$('#divNome h2').click(function() { alteraHTML($(this)); });
 	$('#divBio button').click(function() { alteraHTML($('#exibicao p')) });
 	$('#divBio p').click(function() { alteraHTML($(this)); });
+	$('#divImg button').click(function() { alteraHTML($('#perfilImg')) } );
 	atribuiEventos();
 }
+
 
 //}
 
@@ -138,12 +154,12 @@ function paginaJogarPersonalizado() {
             return;
         });
     }
-    $main.append($divModosPersonalizados);
-    let $criar = $('<button class="botao-controle">Criar novo modo</button>');
-    $main.append($criar);
-    $criar.click(function() {
-        $main.html('');
-        paginaCriarPersonalizado();
+	$main.append($divModosPersonalizados);
+	let $criar = $('<button class="botao-controle">Criar novo modo</button>');
+	$main.append($criar);
+	$criar.click(function() {
+		$main.html('');
+		paginaCriarPersonalizado();
     });
 }
 
