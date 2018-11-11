@@ -315,23 +315,24 @@ h3{
 }
 
 #exibicao div{
-	position: relative;
+    position: relative;
 }
 
 #exibicao button {
-	position: relative;
+    position: relative;
     background-color: #2b2b2b;
     color: #00a4dd;
-	font-size: 30px;
-	outline: none;
-	cursor: pointer;
+    border: none;
+    font-size: 30px;
+    outline: none;
+    cursor: pointer;
 }
 
 .pencil {
-	height: 23px;
-	margin: 2px;
-	border: 2px solid #00a4dd;
-	padding: 5px;
+    height: 23px;
+    margin: 2px;
+    border: 2px solid #00a4dd;
+    padding: 5px;
     border-radius: 5px;
 }
 
