@@ -54,7 +54,6 @@ function alteraHTML(El){
 		El.after('<input maxlength="' + maxLength[tagName] + '"id="'+ tagName + 'Field"value="' + El.text() +'"></input>');
 		botao.html('👌');
 		$(inputID).select();
-		console.log('Inicio da edição de ' + inputID);
 		$(inputID).keydown(function(event) {
 			if(event.which == 13)
 				alteraHTML($( (tagName == 'img') ? '#perfilImg' : ('#exibicao '+tagName) ));
@@ -67,7 +66,6 @@ function alteraHTML(El){
 		$('#exibicao '+tagName).html(newValue);
 		$('#exibicao '+tagName).show();
 		botao.html($pencilImg);
-		console.log('Fim da edição de '+inputID);
 	}
 	else{
 		let newValue = $(inputID).val();
@@ -76,7 +74,6 @@ function alteraHTML(El){
 			  .attr('class', 'custom');
 			localStorage.setItem('imgUrl', newValue);
 			localStorage.setItem('classe', true);
-			  console.log('if');
 		}
 		$(inputID).remove();
 		El.show();
@@ -109,6 +106,7 @@ function paginaPerfil() {
     let $main = $('main');
 	
 	$main.html('');
+	
 	$main.append('<section id="exibicao"></section>');
 	let $exibicao = $('#exibicao');
 	$exibicao.append('<div id="divImg"><img src="'+imgUrl+'" id="perfilImg" '+ classe +' ></div>');console.log(classe+'e'+classeOn);
@@ -119,6 +117,15 @@ function paginaPerfil() {
 	$('#divNome').append('<button id="edith2"></button>');
 	$('#divBio').append('<p>'+pContent+'</p>');
 	$('#divBio').append('<button id="editp"></button>');
+	
+	$main.append('<section id="stats"></section>');
+	let $stats = $('#stats');
+	$stats.append('<div class="statGroup" id="sg1"></div>');
+	$stats.append('<div class="statGroup" id="sg2"></div>');
+	$('#sg1').append('<div class="stat" id="stat1">');
+	$('#sg1').append('<div class="stat" id="stat2">');
+	$('#sg2').append('<div class="stat" id="stat3">');
+	$('#sg2').append('<div class="stat" id="stat4">');
 	
 	$('#exibicao button').append($pencilImg);
 	$('#divNome button').click(function() { alteraHTML($('#exibicao h2'));});
