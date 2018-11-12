@@ -62,6 +62,7 @@ function alteraHTML(El){
 	}
 	else if(tagName != 'img'){
 		let newValue = $(inputID).val();
+		localStorage.setItem( (tagName + 'Content'), newValue)
 		$(inputID).remove();
 		$('#exibicao '+tagName).html(newValue);
 		$('#exibicao '+tagName).show();
@@ -69,15 +70,14 @@ function alteraHTML(El){
 		console.log('Fim da edição de '+inputID);
 	}
 	else{
-		if( $(inputID).val() != '' ){
-			El.attr('src',$(inputID).val())
+		let newValue = $(inputID).val();
+		if( newValue != '' ){
+			El.attr('src', newValue)
 			  .attr('class', 'custom');
+			localStorage.setItem('imgUrl', newValue);
+			localStorage.setItem('classe', true);
 			  console.log('if');
 		}
-		else {
-			El.attr('id', 'perfilImg');
-			console.log('else')
-		}			
 		$(inputID).remove();
 		El.show();
 		botao.html($pencilImg);
@@ -99,18 +99,25 @@ function atribuiEventos(){
 }
 
 function paginaPerfil() {
+
+	let imgUrl = localStorage.getItem('imgUrl') || 'imgs/perfil.png';
+	let h2Content = localStorage.getItem('h2Content') || 'Username';
+	let pContent = localStorage.getItem('pContent') || 'Esta é sua descrição. max: 150 caracteres.';
+	let classeOn = localStorage.getItem('classe') || 'false';
+	let classe = JSON.parse(classeOn) ? 'class="custom"' : '' ;
 	isEditing = { h2: false, p: false, img: false };
     let $main = $('main');
+	
 	$main.html('');
 	$main.append('<section id="exibicao"></section>');
 	let $exibicao = $('#exibicao');
-	$exibicao.append('<div id="divImg"><img src="imgs/perfil.png" id="perfilImg"></div>');
+	$exibicao.append('<div id="divImg"><img src="'+imgUrl+'" id="perfilImg" '+ classe +' ></div>');console.log(classe+'e'+classeOn);
 	$exibicao.append('<div id="divNome"></div>');
 	$exibicao.append('<div id="divBio"></div>');
 	$('#divImg').append('<button id="editimg"></button>');
-	$('#divNome').append('<h2>Username</h2>');
+	$('#divNome').append('<h2>'+h2Content+'</h2>');
 	$('#divNome').append('<button id="edith2"></button>');
-	$('#divBio').append('<p>Esta é sua descrição. max: 150 caracteres</p>');
+	$('#divBio').append('<p>'+pContent+'</p>');
 	$('#divBio').append('<button id="editp"></button>');
 	
 	$('#exibicao button').append($pencilImg);
