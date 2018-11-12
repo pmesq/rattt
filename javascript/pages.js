@@ -39,7 +39,7 @@ function paginaHome() {
 //PERFIL   {
 
 let isEditing = { h2: false, p: false, img: false };
-let maxLength = { h2: 16, p: 128, img: 120 };
+let maxLength = { h2: 16, p: 128, img: 200 };
 let $pencilImg = '<img src="imgs/pencil.png" class="pencil">';
 let conteudoSalvo = '';
 
@@ -57,7 +57,7 @@ function alteraHTML(El){
 		console.log('Inicio da edição de ' + inputID);
 		$(inputID).keydown(function(event) {
 			if(event.which == 13)
-				alteraHTML($('#exibicao '+tagName));
+				alteraHTML($( (tagName == 'img') ? '#perfilImg' : ('#exibicao '+tagName) ));
 		});
 	}
 	else if(tagName != 'img'){
@@ -71,7 +71,7 @@ function alteraHTML(El){
 	else{
 		if( $(inputID).val() != '' ){
 			El.attr('src',$(inputID).val())
-			  .attr('id', 'newPerfilImg');
+			  .attr('class', 'custom');
 			  console.log('if');
 		}
 		else {
