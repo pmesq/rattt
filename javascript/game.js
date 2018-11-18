@@ -316,20 +316,22 @@ class Game {
 
     minimax(profundidade, tabuleiro = this.tabuleiro, jogador = this.vez, minnieId = this.vez) {
         let gs = this.gameState(tabuleiro);
-        if(gs.finalizado && gs.vencedor == minnieId) return { pontos: 10 };
-        if(gs.finalizado && gs.vencedor != null) return { pontos: -10 };
+        if(gs.finalizado && gs.vencedor == minnieId) return { pontos: 100 + profundidade };
+        if(gs.finalizado && gs.vencedor != null) return { pontos: -100 - profundidade };
         if(gs.finalizado || profundidade == 0) return { pontos: 0 };
 
         let casasDisp = this.casasDisponiveis(tabuleiro);
-        let melhor = { pontos: jogador == minnieId ? -1000 : 1000 };
+        let melhorPontuacao = (jogador == minnieId ? -1000 : 1000), melhoresPosicoes = [];
         for(let i = 0; i < casasDisp.length; i++) {
             let novoTabuleiro = this.copiaTabuleiro(tabuleiro);
             this.marcaCasaLogica(casasDisp[i], jogador, novoTabuleiro);
             let resultado = this.minimax(profundidade - 1, novoTabuleiro, jogador ? 0 : 1).pontos;
-            if((jogador == minnieId && resultado > melhor.pontos) || (jogador != minnieId && resultado < melhor.pontos))
-                melhor = { pontos: resultado, posicao: casasDisp[i] };
+            if((jogador == minnieId && resultado > melhorPontuacao) || (jogador != minnieId && resultado < melhorPontuacao)) {
+                melhorPontuacao = resultado;
+                melhoresPosicoes = [casasDisp[i]];
+            } else if(resultado == melhorPontuacao) melhoresPosicoes.push(casasDisp[i]);
         }
-        return melhor;
+        return { pontos: melhorPontuacao, posicao: melhoresPosicoes[Math.floor(Math.random() * melhoresPosicoes.length)]};
     }
 
     analisaCasasConsecutivas(casas, jogador = this.vez) {
