@@ -26,7 +26,8 @@
                 "editavel": true,
                 "tiposDisponiveis": ["Usuário", "Brandon", "Greed", "Pride", "Minnie", "Max"]
             }
-        ]
+        ],
+        "cartas": false
     },
     "4x4": {
         "tipo": "padrao",
@@ -55,7 +56,8 @@
                 "editavel": true,
                 "tiposDisponiveis": ["Usuário", "Brandon", "Minnie"]
             }
-        ]
+        ],
+        "cartas": false
     },
     "Gravitrips": {
         "tipo": "padrao",
@@ -84,7 +86,8 @@
                 "editavel": true,
                 "tiposDisponiveis": ["Usuário", "Brandon", "Minnie"]
             }
-        ]
+        ],
+        "cartas": false
     },
     "Losango": {
         "tipo": "padrao",
@@ -113,7 +116,8 @@
                 "editavel": true,
                 "tiposDisponiveis": ["Usuário", "Brandon"]
             }
-        ]
+        ],
+        "cartas": false
     },
     "Dez Passitos": {
         "tipo": "padrao",
@@ -142,7 +146,8 @@
                 "editavel": true,
                 "tiposDisponiveis": ["Usuário", "Brandon"]
             }
-        ]
+        ],
+        "cartas": true
     },
     "Big Party": {
         "tipo": "padrao",
@@ -184,7 +189,8 @@
                 "editavel": true,
                 "tiposDisponiveis": ["Usuário", "Brandon"]
             }
-        ]
+        ],
+        "cartas": false
     },
     "Nível 1": {
         "tipo": "campanha",
@@ -212,7 +218,8 @@
                 "simbolo": "O",
                 "editavel": false
             }
-        ]
+        ],
+        "cartas": false
     },
     "Nível 2": {
         "tipo": "campanha",
@@ -240,7 +247,8 @@
                 "simbolo": "O",
                 "editavel": false
             }
-        ]
+        ],
+        "cartas": false
     },
     "Nível 3": {
         "tipo": "campanha",
@@ -268,7 +276,8 @@
                 "simbolo": "O",
                 "editavel": false
             }
-        ]
+        ],
+        "cartas": false
     },
     "Nível 4": {
         "tipo": "campanha",
@@ -296,7 +305,8 @@
                 "simbolo": "O",
                 "editavel": false
             }
-        ]
+        ],
+        "cartas": false
     },
     "Nível 5": {
         "tipo": "campanha",
@@ -324,6 +334,7 @@
                 "simbolo": "O",
                 "editavel": false
             }
-        ]
+        ],
+        "cartas": false
     }
 }
