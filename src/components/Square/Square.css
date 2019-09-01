@@ -1,0 +1,7 @@
+.Square {
+    font-size: 150px;
+    border: 1px solid #00aaff;
+    cursor: pointer;
+    color: #00aaff;
+    text-align: center;
+}

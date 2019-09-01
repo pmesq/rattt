@@ -1,37 +1,68 @@
-# Rattt
-_Rat Advanced Tic Tac Toe_
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[Página inicial](https://pedrocesarmesquita.github.io/rattt/)
+## Available Scripts
 
-## Introdução
-Site em desenvolvimento para a disciplina de Programação Web, do curso de Informática do CEFET-MG.\
-Rattt tem foco no jogo da velha, e em jogos semelhantes, e por isso conta com diversos modos, dos mais comuns aos mais alternativos e personalizáveis.
+In the project directory, you can run:
 
-## Desenvolvedores
-[Pedro César](https://github.com/PedroCesarMesquita)\
-[Daniel Lelis](https://github.com/yMegaM)\
-[Jônata Novais](https://github.com/Jonatanc05)\
-[Samuel Pedro](https://github.com/spfa13)
+### `npm start`
 
-## Modos padrões
-Existem modos predefinidos, como o modo clássico do jogo da velha e outros modos alternativos, onde o usuário pode jogar contra outro jogador local, ou contra bots.
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Campanha
-Há um modo de campanha, onde o usuário joga partidas contra bots, e vai desbloqueando os níveis em sequência.
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-## Personalização
-O usuário pode criar e jogar modos personalizados por ele mesmo. A personalização permite variar tamanho, formato e gravidade do tabuleiro, sequência necessária para vitória e número de jogadores. Assim como nos modos padrões, o usuário pode jogar contra outro jogador local e/ou contra bots.
+### `npm test`
 
-## Bots
-Para garantir a diversão do jogador quando está sozinho, ou para desafiá-lo mesmo na presença de amigos, foram criados os bots! Existem bots de dificuldades variadas, desde os aleatórios até os invencíveis, dependendo do modo.\
-Conheça os bots:
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Brandon: bot que faz jogadas completamente aleatórias, independente do modo. B-random não gosta muito de pensar, eu diria.
+### `npm run build`
 
-Greed: bot programado especificamente para o modo clássico, é rápido e ganancioso. Possui boas estratégias mas também possui aberturas.
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Pride: bot programado especificamente para o modo clássico, é um estrategista de pensamentos rápidos e joga com calma para garantir o melhor resultado e se garantir invencível. Um verdadeiro orgulho.
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-Minnie: bot programada com o algoritmo minimax. É uma boa calculista, prevê algumas jogadas à frente para ter um bom resultado.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Max: bot programado com o algoritmo minimax. Não chega a ser tão rápido como os outros, justamente por ser extremamente calculista e prever o máximo de jogadas possíveis, o que lhe faz invencível no modo clássico.
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

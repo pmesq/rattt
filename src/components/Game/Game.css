@@ -1,0 +1,30 @@
+.Game {
+    margin-top: 10px;
+}
+
+.Board {
+    display: grid;
+    margin: auto;
+}
+
+.PlayersPanel, .ControlPanel {
+    margin: 10px auto;
+    display: block;
+    text-align: center;
+}
+
+.Game button {
+    border: 1px solid #00aaff;
+    color: #00aaff;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    transition: all .1s linear;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.Game button:hover {
+    background: #00aaff;
+    color: white;
+}
