@@ -33,8 +33,10 @@ function paginaNivelBloqueado() {
 }
 
 function paginaHome() {
-	
+	requisicaoAjax('Classic');
 }
+
+paginaHome();
 
 //PERFIL   {
 
