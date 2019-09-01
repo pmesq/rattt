@@ -8,10 +8,10 @@ function requisicaoAjax(destino) {
     });
 }
 
-$('.botao-pagina').click(function() {
-    let $main = $('main');
-    $main.html('');
-    let tipoDestino = $(this).data('tipo-destino'), destino = $(this).data('destino');
+requisicaoAjax('Classic');
+
+function pagina(tipoDestino, destino) {
+    $('main').html('');
     $('header > h2').html(destino);
     if(tipoDestino == 'modo-padrao')
         requisicaoAjax(destino);
@@ -19,127 +19,26 @@ $('.botao-pagina').click(function() {
         let nivelProgresso = parseInt(localStorage.getItem('campanha') || 1);
         let nivelDestino = parseInt(destino.charAt(6));
         if(nivelDestino <= nivelProgresso) requisicaoAjax(destino);
-        else paginaNivelBloqueado();
+        else paginaNivelBloqueado(nivelProgresso);
     } else {
-        if(destino == 'Home') paginaHome();
-        else if(destino == 'Perfil') paginaPerfil();
-        else if(destino == 'Jogar Personalizado') paginaJogarPersonalizado();
+        if(destino == 'Jogar Personalizado') paginaJogarPersonalizado();
         else if(destino == 'Criar Personalizado') paginaCriarPersonalizado();
-    }    
+    }
+}
+
+$('.botao-pagina').click(function() {
+    pagina($(this).data('tipo-destino'), $(this).data('destino'))   
 });
 
-function paginaNivelBloqueado() {
-    $('main').append($('<h2>Este nível está bloqueado. Conclua os níveis anteriores para desbloqueá-lo.</h2>'));
+function paginaNivelBloqueado(nivelProgresso) {
+    $div = $('<div id="div-nivel-bloqueado"></div>');
+    $titulo = $('<h2>Este nível está bloqueado.<br>Conclua os níveis anteriores para desbloqueá-lo.</h2>');
+    $botao = $('<button>Ir para nível ' + nivelProgresso + '</button>');
+    $botao.click(() => pagina('campanha', 'Nível ' + nivelProgresso));
+    $div.append($titulo);
+    $div.append($botao);
+    $('main').append($div);
 }
-
-function paginaHome() {
-	requisicaoAjax('Classic');
-}
-
-paginaHome();
-
-//PERFIL   {
-
-let isEditing = { h2: false, p: false, img: false };
-let maxLength = { h2: 16, p: 128, img: 200 };
-let $pencilImg = '<img src="imgs/pencil.png" class="pencil">';
-let conteudoSalvo = '';
-
-$('header img').click(paginaPerfil);
-
-function alteraHTML(El){
-	let tagName = (El.prop('tagName')).toLowerCase();
-	let inputID = '#' + tagName + 'Field';
-	let botao = $('#edit' + tagName);
-	if( !(isEditing[tagName]) ) {
-		El.hide();
-		El.after('<input maxlength="' + maxLength[tagName] + '"id="'+ tagName + 'Field"value="' + El.text() +'"></input>');
-		botao.html('👌');
-		$(inputID).select();
-		$(inputID).keydown(function(event) {
-			if(event.which == 13)
-				alteraHTML($( (tagName == 'img') ? '#perfilImg' : ('#exibicao '+tagName) ));
-		});
-	}
-	else if(tagName != 'img'){
-		let newValue = $(inputID).val();
-		localStorage.setItem( (tagName + 'Content'), newValue)
-		$(inputID).remove();
-		$('#exibicao '+tagName).html(newValue);
-		$('#exibicao '+tagName).show();
-		botao.html($pencilImg);
-	}
-	else{
-		let newValue = $(inputID).val();
-		if( newValue != '' ){
-			El.attr('src', newValue)
-			  .attr('class', 'custom');
-			localStorage.setItem('imgUrl', newValue);
-			localStorage.setItem('classe', true);
-		}
-		$(inputID).remove();
-		El.show();
-		botao.html($pencilImg);
-	}
-	isEditing[tagName] = !(isEditing[tagName]);
-	atribuiEventos();
-}
-
-function atribuiEventos(){
-	$('button img')
-	.mouseenter(function() { 
-		this.src = 'imgs/pencilHover.png';
-		this.style.borderColor = '#fff';
-	})
-	.mouseout(function() { 
-		this.src = 'imgs/pencil.png';
-		this.style.borderColor = '#00a4dd';
-	});
-}
-
-function paginaPerfil() {
-
-	let imgUrl = localStorage.getItem('imgUrl') || 'imgs/perfil.png';
-	let h2Content = localStorage.getItem('h2Content') || 'Username';
-	let pContent = localStorage.getItem('pContent') || 'Esta é sua descrição. max: 150 caracteres.';
-	let classeOn = localStorage.getItem('classe') || 'false';
-	let classe = JSON.parse(classeOn) ? 'class="custom"' : '' ;
-	isEditing = { h2: false, p: false, img: false };
-    let $main = $('main');
-	
-	$main.html('');
-	
-	$main.append('<section id="exibicao"></section>');
-	let $exibicao = $('#exibicao');
-	$exibicao.append('<div id="divImg"><img src="'+imgUrl+'" id="perfilImg" '+ classe +' ></div>');console.log(classe+'e'+classeOn);
-	$exibicao.append('<div id="divNome"></div>');
-	$exibicao.append('<div id="divBio"></div>');
-	$('#divImg').append('<button id="editimg"></button>');
-	$('#divNome').append('<h2>'+h2Content+'</h2>');
-	$('#divNome').append('<button id="edith2"></button>');
-	$('#divBio').append('<p>'+pContent+'</p>');
-	$('#divBio').append('<button id="editp"></button>');
-	
-	$main.append('<section id="stats"></section>');
-	let $stats = $('#stats');
-	$stats.append('<div class="statGroup" id="sg1"></div>');
-	$stats.append('<div class="statGroup" id="sg2"></div>');
-	$('#sg1').append('<div class="stat" id="stat1">');
-	$('#sg1').append('<div class="stat" id="stat2">');
-	$('#sg2').append('<div class="stat" id="stat3">');
-	$('#sg2').append('<div class="stat" id="stat4">');
-	
-	$('#exibicao button').append($pencilImg);
-	$('#divNome button').click(function() { alteraHTML($('#exibicao h2'));});
-	$('#divNome h2').click(function() { alteraHTML($(this)); });
-	$('#divBio button').click(function() { alteraHTML($('#exibicao p')) });
-	$('#divBio p').click(function() { alteraHTML($(this)); });
-	$('#divImg button').click(function() { alteraHTML($('#perfilImg')) } );
-	atribuiEventos();
-}
-
-
-//}
 
 function paginaJogarPersonalizado() {
     let $main = $('main');
@@ -389,8 +288,6 @@ function paginaJogo(modo) {
     }
 
     $main.append($controles);
-
-
 
     game = new Game(modo);
 }

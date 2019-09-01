@@ -206,7 +206,7 @@ aside {
     font-size: 16px;
 }
 
-#configuracoes-modo-personalizado button {
+#configuracoes-modo-personalizado button, #div-nivel-bloqueado button {
     outline: none;
     background: none;
     border: 2px solid #00a4dd;
@@ -219,7 +219,7 @@ aside {
     transition: all .2s ease;
 }
 
-#configuracoes-modo-personalizado button:hover {
+#configuracoes-modo-personalizado button:hover, #div-nivel-bloqueado button:hover {
     background-color: #00a4dd;
     color: white;
 }
