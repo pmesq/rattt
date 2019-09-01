@@ -2,6 +2,7 @@
   "name": "rattt",
   "version": "2.0.0",
   "private": true,
+  "homepage": "https://pedrocesarmesquita.github.io/rattt",
   "dependencies": {
     "gh-pages": "^2.1.1",
     "react": "^16.9.0",

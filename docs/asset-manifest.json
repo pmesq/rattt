@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/rattt/static/css/main.007a0c74.chunk.css",
+    "main.js": "/rattt/static/js/main.24380743.chunk.js",
+    "main.js.map": "/rattt/static/js/main.24380743.chunk.js.map",
+    "runtime~main.js": "/rattt/static/js/runtime~main.100848bc.js",
+    "runtime~main.js.map": "/rattt/static/js/runtime~main.100848bc.js.map",
+    "static/js/2.5ca244a9.chunk.js": "/rattt/static/js/2.5ca244a9.chunk.js",
+    "static/js/2.5ca244a9.chunk.js.map": "/rattt/static/js/2.5ca244a9.chunk.js.map",
+    "index.html": "/rattt/index.html",
+    "precache-manifest.504dcfd414cee822369463c9c398e37a.js": "/rattt/precache-manifest.504dcfd414cee822369463c9c398e37a.js",
+    "service-worker.js": "/rattt/service-worker.js",
+    "static/css/main.007a0c74.chunk.css.map": "/rattt/static/css/main.007a0c74.chunk.css.map"
+  }
+}
