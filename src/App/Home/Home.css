@@ -1,0 +1,18 @@
+.Home a {
+    color: white;
+    border: 2px solid #00aaff;
+    font-size: 28px;
+    padding: 10px 50px;
+    display: block;
+    width: 300px;
+    text-align: center;
+    margin: 20px auto;
+    background: none;
+    text-decoration: none;
+    transition: all .1s linear;
+}
+
+.Home a:hover {
+    color: white;
+    background-color: #00aaff;
+}

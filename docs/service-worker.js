@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/rattt/precache-manifest.504dcfd414cee822369463c9c398e37a.js"
+  "/rattt/precache-manifest.b366237e812fcb5e6e649f258fb1ae5b.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -1,8 +1,9 @@
 import React from 'react';
-import Square from '../Square/Square';
 import './Game.css';
-import Player from '../../utils/Player';
-import Brandom from '../../utils/bots/Brandom';
+import Modal from '../Modal/Modal';
+import Square from './Square/Square';
+import Player from './Player/Player';
+import Brandom from './Player/bots/Brandom';
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ export default class Game extends React.Component {
         this.sequence = parseInt(this.props.sequence) || Math.max(this.rows, this.cols);
 
         const playersObj = JSON.parse(this.props.players);
-        if(playersObj.length > 1) {
+        if(playersObj && playersObj.length > 1) {
             this.players = [];
 
             for(const [i, playerObj] of playersObj.entries()) {
@@ -28,7 +29,7 @@ export default class Game extends React.Component {
 
         const squares = this.getMatrix();
 
-        this.state = { squares, running: true, hasWinner: false, winner: null, turn: 0 };
+        this.state = { squares, running: true, hasWinner: false, winner: null, turn: 0, showModal: false };
 
         if(this.players[0].isBot()) {
             setTimeout(() => {
@@ -146,6 +147,16 @@ export default class Game extends React.Component {
         return { running: false, hasWinner: false };
     }
 
+    getGameStateMessage() {
+        if(this.state.running) {
+            return this.players[this.state.turn].name + " plays";
+        } else if(this.state.hasWinner) {
+            return this.players[this.state.winner].name + " wins!";
+        } else {
+            return "Draw!";
+        }
+    }
+
     markSquare(i, j) {
         if(!this.state.running || this.state.squares[i][j] !== -1) return;
 
@@ -160,6 +171,7 @@ export default class Game extends React.Component {
             turn = -1;
 
         this.setState({ squares, turn, ...gameState });
+        this.setState({ showModal: !gameState.running });
 
         if(gameState.running && this.players[turn].isBot()) {
             setTimeout(() => {
@@ -219,7 +231,7 @@ export default class Game extends React.Component {
                 <div className="Board"
                     style={{
                         gridTemplateColumns: "repeat(" + this.cols + ", auto)",
-                        width: this.cols < this.rows ? this.cols/this.rows * 400 + "px": "400px"
+                        width: this.cols < this.rows ? this.cols / this.rows * 400 + "px": "400px"
                     }}>
                     { this.renderAllSquares() }
                 </div>
@@ -229,6 +241,11 @@ export default class Game extends React.Component {
                 <div className="ControlPanel">
                     <button className="Reset" onClick={ () => this.reset() }>Reset</button>
                 </div>
+                <Modal display={this.state.showModal}>
+                    {this.getGameStateMessage()}
+                    <br /><br />
+                    <button onClick={ () => this.setState({showModal: false}) }>Ok</button>
+                </Modal>
             </div>
         );
     }

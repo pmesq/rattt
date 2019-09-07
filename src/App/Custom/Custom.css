@@ -1,24 +1,24 @@
-.Home {
+.Custom {
     text-align: center;
     color: #00aaff;
 }
 
-.Home h2 {
+.Custom h2 {
     font-size: 32px;
     margin: 5px;
 }
 
-.Home h3 {
+.Custom h3 {
     font-size: 28px;
     margin: 5px;
 }
 
-.Home form {
+.Custom form {
     display: inline-block;
     margin: 10px;
 }
 
-.Home label {
+.Custom label {
     display: block;
     padding: 10px;
     width: 320px;
@@ -28,11 +28,12 @@
     box-shadow: 1px 1px 5px black;
 }
 
-.Home label:hover {
+.Custom label:hover {
     box-shadow: 1px 1px 10px black;
 }
 
-.Home input, .Home select {
+.Custom input,
+.Custom select {
     font-size: 24px;
     background: none;
     color: white;
@@ -45,19 +46,19 @@
     border-color: #00aaff;
 }
 
-.Home select option {
+.Custom select option {
     direction: rtl;
     color: white;
     background-color: #202020;
 }
 
-.Home input::-webkit-inner-spin-button, 
-.Home input::-webkit-outer-spin-button { 
+.Custom input::-webkit-inner-spin-button, 
+.Custom input::-webkit-outer-spin-button { 
     -webkit-appearance: none; 
     margin: 0; 
 }
 
-.Home a {
+.Custom a {
     color: #00aaff;
     border: 2px solid #00aaff;
     font-size: 24px;
@@ -68,7 +69,7 @@
     transition: all .1s linear;
 }
 
-.Home a:hover {
+.Custom a:hover {
     color: white;
     background-color: #00aaff;
 }

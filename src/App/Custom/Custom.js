@@ -1,7 +1,7 @@
 import React from 'react';
-import './Home.css';
+import './Custom.css';
 
-export default class Home extends React.Component {
+export default class Custom extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,8 +25,8 @@ export default class Home extends React.Component {
     render() {
         const that = this;
         return (
-            <div className="Home">
-                <h2>New game</h2>
+            <div className="Custom">
+                <h2>Custom game</h2>
                 <form>
                     <h3>{this.state.players[0].name || "Player 1"}</h3>
                     <label>Name: <input type="name" maxLength="16" value={this.state.players[0].name} onChange={e => { const players = that.state.players; players[0].name = e.target.value; that.setState({players}); }} /></label>
