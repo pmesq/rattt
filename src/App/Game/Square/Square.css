@@ -1,5 +1,6 @@
 .Square {
-    font-size: 150px;
+    width: 100%;
+    font-size: 100%;
     border: 1px solid #00aaff;
     cursor: pointer;
     color: #00aaff;

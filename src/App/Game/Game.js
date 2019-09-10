@@ -13,6 +13,11 @@ export default class Game extends React.Component {
         this.cols = parseInt(this.props.cols) || this.rows;
         this.sequence = parseInt(this.props.sequence) || Math.max(this.rows, this.cols);
 
+        document.documentElement.style.setProperty("--rows", this.rows);
+        document.documentElement.style.setProperty("--cols", this.rows);
+        document.documentElement.style.setProperty("--rows-relation", Math.min(1, this.rows / this.cols));
+        document.documentElement.style.setProperty("--cols-relation", Math.min(1, this.cols / this.rows));
+
         const playersObj = JSON.parse(this.props.players);
         if(playersObj && playersObj.length > 1) {
             this.players = [];
@@ -193,7 +198,6 @@ export default class Game extends React.Component {
                 onClick={() => this.handleSquareClick(i, j)}
                 value={this.state.squares[i][j] !== -1 ? this.players[this.state.squares[i][j]].getSymbol() : ""}
                 cursor={!this.state.running || this.state.squares[i][j] !== -1 ? "default" : "pointer"}
-                size={400 / Math.max(this.rows, this.cols)}
             />
         );
     }
@@ -228,11 +232,7 @@ export default class Game extends React.Component {
     render() {
         return (
             <div className="Game">
-                <div className="Board"
-                    style={{
-                        gridTemplateColumns: "repeat(" + this.cols + ", auto)",
-                        width: this.cols < this.rows ? this.cols / this.rows * 400 + "px": "400px"
-                    }}>
+                <div className="Board">
                     { this.renderAllSquares() }
                 </div>
                 <div className="PlayersPanel">
@@ -242,9 +242,9 @@ export default class Game extends React.Component {
                     <button className="Reset" onClick={ () => this.reset() }>Reset</button>
                 </div>
                 <Modal display={this.state.showModal}>
-                    {this.getGameStateMessage()}
+                    { this.getGameStateMessage() }
                     <br /><br />
-                    <button onClick={ () => this.setState({showModal: false}) }>Ok</button>
+                    <button onClick={ () => this.setState({ showModal: false }) }>Ok</button>
                 </Modal>
             </div>
         );

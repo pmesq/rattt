@@ -2,12 +2,27 @@
     margin-top: 10px;
 }
 
-.Board {
+.Game .Board {
     display: grid;
+    grid-template-columns: repeat(var(--cols), auto);
     margin: auto;
 }
 
-.PlayersPanel, .ControlPanel {
+@media (min-width: 450px) {
+    .Board {
+        width: calc(405px * var(--rows-relation));
+        height: calc(405px * var(--cols-relation));
+    }
+}
+@media (max-width: 450px) {
+    .Board {
+        width: calc(95vw * var(--rows-relation));
+        height: calc(95vw * var(--cols-relation));
+    }
+}
+
+.Game .PlayersPanel,
+.Game .ControlPanel {
     margin: 10px auto;
     display: block;
     text-align: center;

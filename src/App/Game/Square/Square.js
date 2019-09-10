@@ -7,12 +7,7 @@ export default class Square extends React.Component {
             <div
                 className="Square"
                 onClick={() => this.props.onClick()}
-                style={{
-                    cursor: this.props.cursor,
-                    width: this.props.size + "px",
-                    height: this.props.size + "px",
-                    fontSize: this.props.size + "px"
-                }}>
+                style={{ cursor: this.props.cursor }}>
 
                 {this.props.value}
             </div>
