@@ -29,25 +29,25 @@ export default class Custom extends React.Component {
                 <h2>Custom game</h2>
                 <form>
                     <h3>{this.state.players[0].name || "Player 1"}</h3>
-                    <label>Name: <input type="name" maxLength="16" value={this.state.players[0].name} onChange={e => { const players = that.state.players; players[0].name = e.target.value; that.setState({players}); }} /></label>
+                    <label>Name: <input type="name" maxLength="16" value={this.state.players[0].name} onChange={e => { const players = that.state.players; players[0].name = e.target.value.replace('&', ''); that.setState({players}); }} /></label>
                     <label>Type: 
                         <select value={this.state.players[0].type} onChange={e => { const players = that.state.players; players[0].type = e.target.value; that.setState({players}); }}>
                             <option value="Human">Human</option>
                             <option value="Brandom">Brandom</option>
                         </select>
                     </label>
-                    <label>Symbol: <input type="name" maxLength="1" value={this.state.players[0].symbol} onChange={e => { const players = that.state.players; players[0].symbol = e.target.value; that.setState({players}); }} /></label>
+                    <label>Symbol: <input type="name" maxLength="1" value={this.state.players[0].symbol} onChange={e => { const players = that.state.players; players[0].symbol = e.target.value.replace('&', ''); that.setState({players}); }} /></label>
                 </form>
                 <form>
                 <h3>{this.state.players[1].name || "Player 2"}</h3>
-                    <label>Name: <input type="name" maxLength="16" value={this.state.players[1].name} onChange={e => { const players = that.state.players; players[1].name = e.target.value; that.setState({players}); }} /></label>
+                    <label>Name: <input type="name" maxLength="16" value={this.state.players[1].name} onChange={e => { const players = that.state.players; players[1].name = e.target.value.replace('&', ''); that.setState({players}); }} /></label>
                     <label>Type: 
                         <select value={this.state.players[1].type} onChange={e => { const players = that.state.players; players[1].type = e.target.value; that.setState({players}); }}>
                             <option value="Human">Human</option>
                             <option value="Brandom">Brandom</option>
                         </select>
                     </label>
-                    <label>Symbol: <input type="name" maxLength="1" value={this.state.players[1].symbol} onChange={e => { const players = that.state.players; players[1].symbol = e.target.value; that.setState({players}); }} /></label>
+                    <label>Symbol: <input type="name" maxLength="1" value={this.state.players[1].symbol} onChange={e => { const players = that.state.players; players[1].symbol = e.target.value.replace('&', ''); that.setState({players}); }} /></label>
                 </form>
                 <form>
                     <h3>Board</h3>
