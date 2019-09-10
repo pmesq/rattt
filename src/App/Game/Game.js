@@ -240,12 +240,18 @@ export default class Game extends React.Component {
                     { this.renderAllPlayerButtons() }
                 </div>
                 <div className="ControlPanel">
-                    <button className="Reset" onClick={ () => this.reset() }>Reset</button>
+                    <button onClick={ () => this.reset() }>Reset</button>
                 </div>
                 <Modal display={this.state.showModal}>
                     { this.getGameStateMessage() }
                     <br /><br />
                     <button onClick={ () => this.setState({ showModal: false }) }>Ok</button>
+                    <button onClick={ () => {
+                                this.setState({ showModal: false });
+                                this.reset();
+                            }}>
+                        Reset
+                    </button>
                 </Modal>
             </div>
         );
