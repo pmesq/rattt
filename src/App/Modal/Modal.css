@@ -1,13 +1,32 @@
 .Modal {
     position: absolute;
-    left: 30%;
-    top: 30%;
-    width: 40%;
     height: 40%;
+    top: 30%;
     background-color: #202020;
     text-align: center;
     transition: all 250ms;
     box-shadow: 0 1px 5px black;    
+}
+
+@media (min-width: 600px) {
+    .Modal {
+        width: 40%;
+        left: 30%;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+    .Modal {
+        width: 60%;
+        left: 20%;
+    }
+}
+
+@media (max-width: 400px) {
+    .Modal {
+        width: 80%;
+        left: 10%;
+    }
 }
 
 .Modal:hover {

@@ -21,11 +21,22 @@
 .Custom label {
     display: block;
     padding: 10px;
-    width: 320px;
     text-align: left;
     font-size: 24px;
     background-color: #202020;
     box-shadow: 1px 1px 5px black;
+}
+
+@media (min-width: 450px) {
+    .Custom label {
+        width: 405px;
+    }
+}
+
+@media (max-width: 450px) {
+    .Custom label {
+        width: 95%;
+    }
 }
 
 .Custom label:hover {

@@ -14,7 +14,8 @@ export default class Game extends React.Component {
         this.sequence = parseInt(this.props.sequence) || Math.max(this.rows, this.cols);
 
         document.documentElement.style.setProperty("--rows", this.rows);
-        document.documentElement.style.setProperty("--cols", this.rows);
+        document.documentElement.style.setProperty("--cols", this.cols);
+        document.documentElement.style.setProperty("--max", Math.max(this.rows, this.cols));
         document.documentElement.style.setProperty("--rows-relation", Math.min(1, this.rows / this.cols));
         document.documentElement.style.setProperty("--cols-relation", Math.min(1, this.cols / this.rows));
 

@@ -1,12 +1,19 @@
 .Square {
-    width: 100%;
-    font-size: 100%;
     border: 1px solid #00aaff;
     cursor: pointer;
     color: #00aaff;
     text-align: center;
+    position: relative;
 }
 
 .Square:hover {
     box-shadow: 1px 1px 10px black;
+}
+
+.Square p {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: -5%;
+    left: 12.5%;
 }

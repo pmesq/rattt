@@ -10,14 +10,22 @@
 
 @media (min-width: 450px) {
     .Board {
-        width: calc(405px * var(--rows-relation));
-        height: calc(405px * var(--cols-relation));
+        width: calc(405px * var(--cols-relation));
+        height: calc(405px * var(--rows-relation));
+        font-size: 405px;
+    }
+    .Square {
+        font-size: calc(100% / var(--max));
     }
 }
 @media (max-width: 450px) {
     .Board {
-        width: calc(95vw * var(--rows-relation));
-        height: calc(95vw * var(--cols-relation));
+        width: calc(95vw * var(--cols-relation));
+        height: calc(95vw * var(--rows-relation));
+        font-size: 95vw;
+    }
+    .Square {
+        font-size: calc(100% / var(--max));
     }
 }
 
@@ -35,7 +43,7 @@
     outline: none;
     cursor: pointer;
     transition: all .1s linear;
-    font-size: 20px;
+    font-size: 28px;
     padding: 5px;
 }
 
